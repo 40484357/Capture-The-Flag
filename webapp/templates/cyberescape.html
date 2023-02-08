@@ -10,12 +10,28 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+       <div id="gameLauncher">
+        <div class="gameHeader">
+            <div class="title">
+                <h1 class="mainTitle">CSI:</h1>
+                <h3 class="subTitle">Crime Scene Investigation</h3>
+            </div>
+        </div>
+        <div class="gameBody">
+            <div class="descriptText">
+                Scotland Yard has asked you to gather digital evidence against Laundromats incorporated who are being investigated for money laundering. We have gathered three pieces of crucial evidence, the system administrators laptop, cell phone and server. Complete challenges attached to each piece of evidence, you have 24 hours. Goodluck. 
+            </div>
+            <button class="continue">
+                continue 
+            </button>
+        </div>
+        <div class="gameTracker">
+
+        </div>
+    </div>
         
         
         <script src="" async defer></script>
