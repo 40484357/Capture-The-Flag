@@ -13,26 +13,36 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
     </head>
     <body>
-       <div id="gameLauncher">
-        <div class="gameHeader">
-            <div class="title">
-                <h1 class="mainTitle">CSI:</h1>
-                <h3 class="subTitle">Crime Scene Investigation</h3>
+       <div class="gameLauncher" id="firstScene">
+            <div class="gameHeader">
+                <div class="title">
+                    <h1 class="mainTitle">CSI:</h1>
+                    
+                </div>
             </div>
-        </div>
-        <div class="gameBody">
-            <div class="descriptText">
-                Scotland Yard has asked you to gather digital evidence against Laundromats incorporated who are being investigated for money laundering. We have gathered three pieces of crucial evidence, the system administrators laptop, cell phone and server. Complete challenges attached to each piece of evidence, you have 24 hours. Goodluck. 
+            <div class="gameBody">
+                <div class="descriptText">
+                    Scotland Yard has asked you to gather digital evidence against Laundromats Incorporated who are being investigated for money laundering. We have gathered three pieces of crucial evidence, the system administrators laptop, cell phone and server. Complete challenges attached to each piece of evidence to help us expose Laundromats Inc., we are only able to hold the evidence for 24 hours. Goodluck. 
+                </div>
+                <button class="continue">
+                    continue &#8680;
+                </button>
             </div>
-            <button class="continue">
-                continue 
-            </button>
-        </div>
-        <div class="gameTracker">
+            <div class="gameTracker">
 
+            </div>
         </div>
-    </div>
-        
+        <div class="hidden" id="secondScene">
+            <div class="gameHeader">
+
+            </div>
+            <div class="gameBox">
+
+            </div>
+            <div class="trackerElements">
+                
+            </div>
+        </div>
         
         <script src="" async defer></script>
     </body>
