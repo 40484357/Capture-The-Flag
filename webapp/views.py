@@ -19,4 +19,4 @@ def landing():
 
 @views.route('/laptop')
 def laptop():
-    return render_template('')
+    return render_template('laptop.html')
