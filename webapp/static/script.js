@@ -16,3 +16,4 @@ function showScene(Element){
     Element.classList.remove('hidden')
     Element.classList.add('gameLauncher')
 } //fast shower of scenes
+

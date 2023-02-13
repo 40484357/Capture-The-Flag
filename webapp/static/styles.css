@@ -89,7 +89,33 @@ body{
     color: #FFFFFF;
 }
 
+.gameHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.gameHeader > *{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+}
+
+.navButton{
+    cursor: pointer;
+}
+
 .hidden{
     display: none;
 }
+
+.gameBox{
+    width: 100%;
+    height: 75%;
+    background-color: #F1F2F4;
+    margin-top: 2em;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
 
