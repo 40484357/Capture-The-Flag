@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
     </head>
     <body>
-       <div class="gameLauncher" id="firstScene">
+       <div class="gameLauncher" id="firstScene"> <!-- game launcher intro scene, with game description, image and continue button. All corresponding scenes should maybe be wrapped in a div which is shrunk down so it's not full screen?-->
             <div class="gameHeader">
                 <div class="title">
                     <h1 class="mainTitle">CSI:</h1>
@@ -24,7 +24,7 @@
                 <div class="descriptText">
                     Scotland Yard has asked you to gather digital evidence against Laundromats Incorporated who are being investigated for money laundering. We have gathered three pieces of crucial evidence, the system administrators laptop, cell phone and server. Complete challenges attached to each piece of evidence to help us expose Laundromats Inc., we are only able to hold the evidence for 24 hours. Goodluck. 
                 </div>
-                <button class="continue">
+                <button id="continue">
                     continue &#8680;
                 </button>
             </div>
@@ -32,18 +32,34 @@
 
             </div>
         </div>
-        <div class="hidden" id="secondScene">
-            <div class="gameHeader">
-
+        <div class="hidden" id="secondScene"> <!-- second scene, contains clickable elements, a navigation menu (which has time and room title), as well as a tracker for challenges and score-->
+            <div class="gameHeader"> <!-- contains nav menu (maybe just exit game, or return to main room), room title and time-->
+                <div class="navButton">
+                    exit
+                </div>
+                <div class="roomTitle">
+                    Evidence Room
+                </div>
+                <div class="clock">
+                    24h 00min
+                </div>
             </div>
-            <div class="gameBox">
-
-            </div>
-            <div class="trackerElements">
+            <div class="gameBox"> <!-- contains main clickable elements to launch related challenges -->
                 
+            </div>
+            <div class="trackerElements"> <!-- contains checklist for challenges and scores -->
+                <div class="checklist" id="checkList1">
+
+                </div>
+                <div class="checklist" id="checkList2">
+
+                </div>
+                <div class="checklist" id="checkList3">
+
+                </div>
             </div>
         </div>
         
-        <script src="" async defer></script>
+        <script src="{{ url_for('static', filename='script.js')}}" async defer></script>
     </body>
 </html>
