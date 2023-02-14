@@ -118,4 +118,55 @@ body{
     justify-content: space-between;
 }
 
+/** clock implementation **/
 
+.clockBase {
+    height: 150px;
+    width: 150px;
+    position: relative;
+}
+
+.clockBase_circle{
+    fill:none;
+    stroke: none;
+}
+
+.clockBase_path-elapsed{
+    stroke-width: 7px;
+    stroke: grey;
+}
+
+.clockBase_label{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+}
+
+.base-timer__path-remaining {
+    stroke-width: 7px;
+    stroke-linecap: round;
+    transform: rotate(90deg);
+    transform-origin: center;
+    transition: 1s linear all;
+    fill-rule: nonzero;
+    stroke: currentColor;
+  }
+  
+  .base-timer__path-remaining.green {
+    color: rgb(65, 184, 131);
+  }
+  
+  .base-timer__path-remaining.orange {
+    color: orange;
+  }
+  
+  .base-timer__path-remaining.red {
+    color: red;
+  }
+  
