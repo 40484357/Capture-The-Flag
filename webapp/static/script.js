@@ -18,6 +18,10 @@ function showScene(Element){
     Element.classList.add('gameLauncher')
 } //fast shower of scenes
 
+function copyTextToClipboard(hash){
+	navigator.clipboard.writeText(hash.textContent);
+  alert('Copied text to clipboard!');
+} // Copies hash to clipboard
 
 const Time_Limit = 86400;
 let timePassed = 0;

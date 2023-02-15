@@ -19,5 +19,9 @@ def landing():
 
 @views.route('/laptop')
 def laptop():
-    return render_template('laptop.html')
+    passLength = len(passwords) - 1
+    selection = random.randint(0, passLength)
+    selected = passwords[selection]
+    password = hashlib.sha256(selected.encode())
+    return render_template('laptop.html',password = password.hexdigest())
     
