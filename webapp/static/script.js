@@ -92,13 +92,18 @@ function timerCountdown(time){
 
 
 function startTimer(){
-    if(localStorage.getItem('timeLeft'))
+    if(localStorage.getItem('timeLeft') == null){
+        localStorage.setItem('timeLeft', timeLeft)
+    } else {
+        Time_Limit = localStorage.getItem('timeLeft')
+    }
     timerInterval = setInterval(()=>{
         timePassed = timePassed += 1;
         timeLeft = Time_Limit - timePassed;
         document.getElementById('clockBase_timer_label').innerHTML = timerCountdown(timeLeft);
         setCircleDasharray();
         setRemainingPathColour(timeLeft);
+        localStorage.setItem('timeLeft', timeLeft)
         if(timeLeft == 0){
             onTimesUp();
         }

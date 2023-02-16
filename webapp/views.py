@@ -9,12 +9,6 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def landing():
-    passLength = len(passwords) - 1
-    selection = random.randint(0, passLength)
-    selected = passwords[selection]
-    password = hashlib.sha256(selected.encode())
-    print(password.hexdigest())
-    print(passLength)
     return render_template('cyberescape.html')
 
 @views.route('/laptop')
