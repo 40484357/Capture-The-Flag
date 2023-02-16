@@ -25,6 +25,10 @@
                 
             </div>
         </div>
+        <div class = "gameBox">
+            <div id = "hash">{{password}}</div>
+            <button onclick="copyTextToClipboard(hash)">Copy to Clipboard</button>
+        </div>
         </div>
         <script src="{{ url_for('static', filename='script.js')}}" async defer></script>
     </body>
