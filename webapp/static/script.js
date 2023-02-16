@@ -6,6 +6,7 @@ if(continueButton != null){
 continueButton.addEventListener('click', ()=>{
     hideScene(firstScene)
     showScene(secondScene)
+    startTimer();
 })}
 
 function hideScene(Element){
@@ -19,7 +20,7 @@ function showScene(Element){
 } //fast shower of scenes
 
 
-const Time_Limit = 86400;
+let Time_Limit = 86400;
 let timePassed = 0;
 let timeLeft = Time_Limit;
 const FULL_DASH_ARRAY = 283;
@@ -87,6 +88,7 @@ function timerCountdown(time){
 
 
 function startTimer(){
+    if(localStorage.getItem('timeLeft'))
     timerInterval = setInterval(()=>{
         timePassed = timePassed += 1;
         timeLeft = Time_Limit - timePassed;
@@ -127,4 +129,3 @@ function setCircleDasharray() {
 }
 
 
-startTimer();
