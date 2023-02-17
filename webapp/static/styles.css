@@ -109,13 +109,98 @@ body{
 }
 
 .gameBox{
-    width: 100%;
-    height: 75%;
+
     background-color: #F1F2F4;
-    margin-top: 2em;
+    margin-top: 5em;
+    margin:auto;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
+    width: 35%;
+    height: 300px;
+    flex-wrap:wrap;
+}
+.hash{
+    display:flex;
+    padding:2em;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+   word-break: break-all;
+    
+}
+.copyClip{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:2em;
+}
+.hashDescript{
+    display:flex;
+    width:100%;
+    align-items: center;
+    text-align: center;
+    padding:2em;
+}
+.loginBox{
+    width:auto;
+    margin-top: 10em;
+    margin-left: 15%;
+    margin-right: 15%;
+    height:400px;
+    background-color: #F1F2F4;
 }
 
+/** clock implementation **/
 
+.clockBase {
+    height: 150px;
+    width: 150px;
+    position: relative;
+}
+
+.clockBase_circle{
+    fill:none;
+    stroke: none;
+}
+
+.clockBase_path-elapsed{
+    stroke-width: 7px;
+    stroke: grey;
+}
+
+.clockBase_label{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+}
+
+.base-timer__path-remaining {
+    stroke-width: 7px;
+    stroke-linecap: round;
+    transform: rotate(90deg);
+    transform-origin: center;
+    transition: 1s linear all;
+    fill-rule: nonzero;
+    stroke: currentColor;
+  }
+  
+  .base-timer__path-remaining.green {
+    color: rgb(65, 184, 131);
+  }
+  
+  .base-timer__path-remaining.orange {
+    color: orange;
+  }
+  
+  .base-timer__path-remaining.red {
+    color: red;
+  }
+  
