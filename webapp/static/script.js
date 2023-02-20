@@ -9,6 +9,7 @@ continueButton.addEventListener('click', ()=>{
     startTimer();
 })}
 
+
 function hideScene(Element){
     Element.classList.add('hidden')
     Element.classList.remove('gameLauncher')
@@ -22,6 +23,8 @@ function showScene(Element){
 function goToLaptop(){
     window.location.href = '/laptop'
 } //goes to laptop
+
+
 
 function copyTextToClipboard(hash){
 	navigator.clipboard.writeText(hash.textContent);
@@ -93,6 +96,13 @@ function timerCountdown(time){
     return `${hours}:${minutes}:${seconds}`;
 }
 
+function checkTimer(){
+    if(localStorage.getItem('timerStatus') == 'true'){
+        startTimer();
+    }
+}
+
+checkTimer();
 
 
 function startTimer(){
@@ -101,6 +111,11 @@ function startTimer(){
     } else {
         Time_Limit = localStorage.getItem('timeLeft')
     }
+
+    if(localStorage.getItem('timerStatus') == null){
+        localStorage.setItem('timerStatus', true)
+    }
+    
     timerInterval = setInterval(()=>{
         timePassed = timePassed += 1;
         timeLeft = Time_Limit - timePassed;
