@@ -4,33 +4,55 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
-    </head>
-    <body>
-       <div class="gameLauncher" id="challengeOne">
-        <div class="gameHeader">
-            <div class="navButton">
-                back 
-            </div>
-            <div class="roomTitle">
-                Evidence Room
-            </div>
-            <div id="clock">
-                
-            </div>
-        </div>
-        <div class = "gameBox">
-            <div id = "hash">{{password}}</div>
-            <button onclick="copyTextToClipboard(hash)">Copy to Clipboard</button>
-        </div>
-        </div>
-        <script src="{{ url_for('static', filename='script.js')}}" async defer></script>
-    </body>
-    
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title></title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='styles.css')}}"
+		/>
+	</head>
+	<body>
+		<div class="gameLauncher" id="challengeOne">
+			<div class="gameHeader">
+				<div class="navButton">back</div>
+				<div class="roomTitle">Evidence Room</div>
+				<div id="clock"></div>
+			</div>
+			<div class="gameBox">
+				<p class="hashDescript">
+					We need access to this computer, we suspect this hash is the password:
+				</p>
+				<div id="hash" class="hash">{{password}}</div>
+				<button class="copyClip" onclick="copyTextToClipboard(hash)">
+					Copy to Clipboard
+				</button>
+			</div>
+
+			<div class="loginBox">
+				<h1>Login Box</h1>
+                <form action="" method="POST">
+                    <input type="text" name="answer" id="answer" placeholder="password">
+                    <input type="submit" id="submitAnswer">
+                </form>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{message}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+			</div>
+		</div>
+		<script
+			src="{{ url_for('static', filename='script.js')}}"
+			async
+			defer
+		></script>
+	</body>
 </html>
