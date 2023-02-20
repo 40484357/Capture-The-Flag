@@ -109,13 +109,47 @@ body{
 }
 
 .gameBox{
-    width: 100%;
-    height: 75%;
+
     background-color: #F1F2F4;
-    margin-top: 2em;
+    margin-top: 5em;
+    margin:auto;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
+    width: 35%;
+    height: 300px;
+    flex-wrap:wrap;
+}
+.hash{
+    display:flex;
+    padding:2em;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+   word-break: break-all;
+    
+}
+.copyClip{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:2em;
+}
+.hashDescript{
+    display:flex;
+    width:100%;
+    align-items: center;
+    text-align: center;
+    padding:2em;
+}
+.loginBox{
+    width:auto;
+    margin-top: 10em;
+    margin-left: 15%;
+    margin-right: 15%;
+    height:400px;
+    background-color: #F1F2F4;
 }
 
 /** clock implementation **/

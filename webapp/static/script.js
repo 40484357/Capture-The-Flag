@@ -19,6 +19,10 @@ function showScene(Element){
     Element.classList.add('gameLauncher')
 } //fast shower of scenes
 
+function goToLaptop(){
+    window.location.href = '/laptop'
+} //goes to laptop
+
 function copyTextToClipboard(hash){
 	navigator.clipboard.writeText(hash.textContent);
   alert('Copied text to clipboard!');
