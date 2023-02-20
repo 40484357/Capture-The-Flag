@@ -2,12 +2,13 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 import hashlib, random
 passwords = []
 with open('CaptureTheFlag\webapp\static\cyberA-Z.txt') as f:
-    passwords = f.readlines()
+    words = f.readlines()
+    passwords = [x.strip().lower() for x in words]
 
 passLength = len(passwords) - 1
 selection = random.randint(0, passLength)
 selected = passwords[selection]
-password = hashlib.sha256(selected.encode())  
+password = hashlib.md5(selected.encode())  
 
 views = Blueprint('views', __name__)
 
@@ -16,7 +17,7 @@ def landing():
     passLength = len(passwords) - 1
     selection = random.randint(0, passLength)
     selected = passwords[selection]
-    password = hashlib.sha256(selected.encode())
+    password = hashlib.md5(selected.encode())
     print(password.hexdigest())
     print(passLength)
     return render_template('cyberescape.html')
