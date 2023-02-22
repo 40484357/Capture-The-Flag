@@ -34,6 +34,5 @@ def laptop():
             response = 'correct password'
             flash(response)
             
-    return render_template('laptop.html',password = password.hexdigest(), response = response)
+    return render_template('laptoptest.html',password = password.hexdigest(), response = response)
     
-

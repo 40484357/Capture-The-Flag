@@ -1,0 +1,18 @@
+{% extends "gamebase.html" %} {% block title %}Laptop{% endblock %}
+{% block instruction %}We need access to this computer, we suspect this hash is the password:{% endblock %}
+{% block game_ui %}
+<h1>Login Box</h1>
+    <form action="" method="POST">
+        <input type="text" name="answer" id="answer" placeholder="password">
+        <input type="submit" id="submitAnswer">
+    </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+{% endblock %}
