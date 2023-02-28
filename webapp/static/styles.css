@@ -8,15 +8,25 @@ body{
     height: 100vh;
     width: 100vw;
     margin: 0;
-    overflow:hidden;
+    overflow-x:hidden;
 }
 
 .gameLauncher{
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     margin: auto;
+    position:absolute;
+
     background: url(./investigation.jpg);  
     background-size:cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,0.4);
+    background-blend-mode: multiply;
+
+    
+
     padding: 2em;
 }
 
@@ -56,6 +66,7 @@ body{
     display: flex;
     flex-direction: column;
 }
+
 
 .descriptText{
     width: 50;
@@ -117,7 +128,7 @@ body{
     display: flex;
     justify-content: space-between;
     width: 35%;
-    height: 300px;
+    height: auto;
     flex-wrap:wrap;
 }
 .hash{
@@ -144,14 +155,78 @@ body{
     padding:2em;
 }
 .loginBox{
-    width:auto;
+    
+    background-color: rgba(0,0,0,0.2);
+    backdrop-filter: blur(3px);
+    width:100%;
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap:6%;
+    height:100%;
+    justify-items: center;
+    align-content: center;
+    
+}
+.blur{
+    background: url(./Windows.jpg);
+    background-size: cover;
+   
+    background-blend-mode: multiply;
+    
     margin-top: 10em;
-    margin-left: 15%;
-    margin-right: 15%;
-    height:400px;
-    background-color: #F1F2F4;
+    margin-left: 20%;
+    margin-right: 20%;
+    height:100%;
+    width: 100%;
+    width: auto;
+
+    filter:drop-shadow(8px 8px 6px black);
 }
 
+.adminPic{
+    height:100px;
+    width:100px;
+    border-radius: 50%;
+    grid-column: 2;
+    grid-row: 3;
+
+}
+.adminLabel{
+    grid-area: Label;
+    color:white;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+}
+.passwordBox{
+    grid-area: Password;
+}
+.answer{
+grid-area: answer;
+}
+.flashes{
+    grid-column: 2;
+    grid-row:7;
+    color: #FFFFFF;
+}
+.flahses, .message{
+    color:white;
+    font-size: 16px;
+}
+.laptopScreen{
+    grid-column: 2;
+    grid-row:4/7;
+    gap:10%;
+    display: grid;
+    grid-template-areas: 
+    '.'
+    'Label'
+    'Password'
+    'answer'
+    '.';
+    justify-items: center;
+    align-content: center;
+}
 /** clock implementation **/
 
 .clockBase {
@@ -204,3 +279,31 @@ body{
     color: red;
   }
   
+.desktopBox{
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+    align-content: center;
+    background: url(./desktopbg.jpg);
+    background-size:unset;
+    display: inline-block;
+    margin-top: 1em;
+    padding: 2em;
+}
+.file{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2em;
+    margin-top: 2em;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    
+    
+}
+
+.filename{
+    margin-top: -0.15em;
+    color: white;
+    font-size: 24px;
+}

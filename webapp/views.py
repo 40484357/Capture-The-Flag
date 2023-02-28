@@ -12,6 +12,8 @@ password = hashlib.md5(selected.encode())
 
 views = Blueprint('views', __name__)
 
+
+
 @views.route('/')
 def landing():
     passLength = len(passwords) - 1
@@ -36,3 +38,10 @@ def laptop():
             
     return render_template('laptoptest.html',password = password.hexdigest(), response = response)
     
+@views.route('/desktop')
+def desktop():
+    return render_template('desktop.html')
+
+@views.route('/Points_Logic')
+def points():
+    return render_template('Points_Logic.html')

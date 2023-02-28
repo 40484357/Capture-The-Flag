@@ -1,18 +1,35 @@
 {% extends "gamebase.html" %} {% block title %}Laptop{% endblock %}
 {% block instruction %}We need access to this computer, we suspect this hash is the password:{% endblock %}
 {% block game_ui %}
-<h1>Login Box</h1>
-    <form action="" method="POST">
-        <input type="text" name="answer" id="answer" placeholder="password">
-        <input type="submit" id="submitAnswer">
-    </form>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul class="flashes">
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
+<div class="blur">
+    <div class="loginBox">
+        <img
+            class="adminPic"
+            src="{{url_for('static', filename='investigation.jpg')}}"
+        />
+        <form class="laptopScreen" action="" method="POST">
+            <label for="answer" class="adminLabel">System Admin</label>
+            <input
+                type="text"
+                name="answer"
+                id="answer"
+                class="passwordBox"
+                placeholder="password"
+            />
+            <input
+                type="submit"
+                id="submitAnswer"
+                class="answer"
+                value="Login"
+            />
+        </form>
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li class="message">{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+    </div>
+</div>
 {% endblock %}
