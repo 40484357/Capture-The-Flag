@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title></title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='styles.css')}}"
+		/>
+	</head>
+	<body>
+		<div class="gameLauncher" id="phoneChallenges">
+			<div class="gameHeader">
+				<div class="navButton">Back</div>
+				<div class="roomTitle">Evidence Room</div>
+				<div id="clock"></div>
+			</div>
+
+			<div class="gameBoxPhone">
+                <div class = "phoneBox">
+                    <p class ="enterPasscode">Enter Passcode</p>
+                    <form class = "passcode" action="" method="POST">
+                        <input type="text" name="answer" id="answer" placeholder="">
+                        <input type="submit" id="submitAnswer">
+                    </form>
+                    
+
+                    <ul class="keypad">
+                        <button class="dial" onclick="dial(1)">1</li>
+                        <button class="dial" onclick="dial(2)">2</li>
+                        <button class="dial" onclick="dial(3)">3</li>
+                        <button class="dial" onclick="dial(4)">4</li>
+                        <button class="dial" onclick="dial(5)">5</li>
+                        <button class="dial" onclick="dial(6)">6</li>
+                        <button class="dial" onclick="dial(7)">7</li>
+                        <button class="dial" onclick="dial(8)">8</li>
+                        <button class="dial" onclick="dial(9)">9</li>
+                        <button class="dial middle"onclick="dial(0)">0</li>
+                    </ul>
+                    {% with messages = get_flashed_messages() %} {% if messages %}
+					<ul class="phoneFlash">
+						{% for message in messages %}
+						<li class="message">{{message}}</li>
+						{% endfor %}
+					</ul>
+					{% endif %} {% endwith %}
+
+
+
+
+
+                </div>
+				<p class="phoneDescript">
+					This phone is protected by a passcode.<br>
+                    We have discovered some information that may help you.<br>
+                </p>
+                <p class="phoneDescript">
+                    Prime: 604931<br>
+                    Generator: 30672<br>
+                    Public key 1: 593<br>
+                    Public key 2: 821<br>
+                    Can you crack it?
+				</p>
+				
+			</div>
+			
+		</div>
+		<script
+			src="{{ url_for('static', filename='script.js')}}"
+			async
+			defer
+		></script>
+	</body>
+</html>

@@ -24,6 +24,11 @@ function goToLaptop(){
     window.location.href = '/laptop'
 } //goes to laptop
 
+function goToPhone(){
+    window.location.href = '/phone'
+} //goes to phone
+
+
 
 
 function copyTextToClipboard(hash){
@@ -156,4 +161,8 @@ function setCircleDasharray() {
       .setAttribute("stroke-dasharray", circleDasharray);
 }
 
-
+function dial(number){
+    //add number to passcode form
+    var passcode = document.getElementById('passcode')
+    passcode.value += number
+}

@@ -34,12 +34,32 @@ def laptop():
             response = 'correct password'
             flash(response)
             
-    return render_template('laptoptest.html',password = password.hexdigest(), response = response)
+    return render_template('laptop.html',password = password.hexdigest(), response = response)
     
-<<<<<<< HEAD
-=======
+
+
+@views.route('/phone', methods=['GET', 'POST'])
+def phone():
+    N = 604931 
+    G = 30672
+    a = 593 #variable
+    b = 821 #variable
+    A = pow(G,a) % N
+    B = pow(G,b) % N
+    secretKey = pow(B,a) % N
+    print("A: ", A)
+    print("B: ", B)
+    print("Secret Key: ", secretKey)
+    response = None
+    if request.method=='POST':
+        if request.form['answer'] != secretKey:
+            response = 'wrong password, try again'
+            flash(response)
+        else:
+            response = 'correct password'
+            flash(response)
+    return render_template('phone.html',password = secretKey, response = response)
 
 @views.route('/Points_Logic')
 def points():
     return render_template('Points_Logic.html')
->>>>>>> 271e5a001035488ce5030f2e963a4c243e82052f
