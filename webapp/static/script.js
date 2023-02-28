@@ -156,4 +156,10 @@ function setCircleDasharray() {
       .setAttribute("stroke-dasharray", circleDasharray);
 }
 
+var file = document.getElementById('file1')
 
+file.addEventListener('click', () => {
+    var openBase64 = document.getElementById('openBase64')
+    openBase64.classList.remove('hidden')
+    
+})

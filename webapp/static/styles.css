@@ -8,15 +8,25 @@ body{
     height: 100vh;
     width: 100vw;
     margin: 0;
-    overflow:hidden;
+    overflow-x:hidden;
 }
 
 .gameLauncher{
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     margin: auto;
+    position:absolute;
+
     background: url(./investigation.jpg);  
     background-size:cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,0.4);
+    background-blend-mode: multiply;
+
+    
+
     padding: 2em;
 }
 
@@ -56,6 +66,7 @@ body{
     display: flex;
     flex-direction: column;
 }
+
 
 .descriptText{
     width: 50;
@@ -117,7 +128,7 @@ body{
     display: flex;
     justify-content: space-between;
     width: 35%;
-    height: 300px;
+    height: auto;
     flex-wrap:wrap;
 }
 .hash{
@@ -144,14 +155,78 @@ body{
     padding:2em;
 }
 .loginBox{
-    width:auto;
+    
+    background-color: rgba(0,0,0,0.2);
+    backdrop-filter: blur(3px);
+    width:100%;
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap:6%;
+    height:100%;
+    justify-items: center;
+    align-content: center;
+    
+}
+.blur{
+    background: url(./Windows.jpg);
+    background-size: cover;
+   
+    background-blend-mode: multiply;
+    
     margin-top: 10em;
-    margin-left: 15%;
-    margin-right: 15%;
-    height:400px;
-    background-color: #F1F2F4;
+    margin-left: 20%;
+    margin-right: 20%;
+    height:100%;
+    width: 100%;
+    width: auto;
+
+    filter:drop-shadow(8px 8px 6px black);
 }
 
+.adminPic{
+    height:100px;
+    width:100px;
+    border-radius: 50%;
+    grid-column: 2;
+    grid-row: 3;
+
+}
+.adminLabel{
+    grid-area: Label;
+    color:white;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+}
+.passwordBox{
+    grid-area: Password;
+}
+.answer{
+grid-area: answer;
+}
+.flashes{
+    grid-column: 2;
+    grid-row:7;
+    color: #FFFFFF;
+}
+.flahses, .message{
+    color:white;
+    font-size: 16px;
+}
+.laptopScreen{
+    grid-column: 2;
+    grid-row:4/7;
+    gap:10%;
+    display: grid;
+    grid-template-areas: 
+    '.'
+    'Label'
+    'Password'
+    'answer'
+    '.';
+    justify-items: center;
+    align-content: center;
+}
 /** clock implementation **/
 
 .clockBase {
@@ -204,3 +279,108 @@ body{
     color: red;
   }
   
+.desktopBox{
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+    align-content: center;
+    background: url(./desktopbg.jpg);
+    background-size:unset;
+    display: inline-block;
+    margin-top: 1em;
+    padding: 2em 0;
+    position: relative;
+    
+}
+.file{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    cursor: pointer;
+}
+
+
+
+.filename{
+    margin-top:-0.05em;
+    color: white;
+    font-size: 24px;
+}
+
+.base64file{
+    position: absolute;
+    background-color: white;
+    color: black;
+    width: 50%;
+    height: 75%;
+    top: 2em;
+    left: 25%;
+    border-radius: 5px;
+    border: 1px transparent;
+}
+
+.base64text{
+    padding: 1em;
+    
+}
+
+.txt_file_bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.txt_file_handle{
+    display: flex;
+    flex-direction: row;
+    width: 10%;
+}
+
+.txt_file_title{
+    margin-left: 1em;
+    font-weight: bold;
+}
+
+.txt_file_handler{
+    margin: 0 0.5em;
+}
+
+.copy_clip_board{
+    margin-left: 1em;
+}
+
+.desktop-bottom-nav-bar{
+    width: 100%;
+    background-color:rgba(33, 75, 152, 0.259);
+    height: 10%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.windows{
+    background-color: rgba(58, 61, 86, 0.368);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 0 3em;
+    color: white;
+    font-weight: bold;
+}
+.application-tab{
+    padding: 5px;
+    margin-left: 2em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.application-tab:hover{
+    background-color:rgba(90, 108, 141, 0.756)
+}

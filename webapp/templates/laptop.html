@@ -18,10 +18,11 @@
 	<body>
 		<div class="gameLauncher" id="challengeOne">
 			<div class="gameHeader">
-				<div class="navButton">back</div>
+				<div class="navButton">Back</div>
 				<div class="roomTitle">Evidence Room</div>
 				<div id="clock"></div>
 			</div>
+
 			<div class="gameBox">
 				<p class="hashDescript">
 					We need access to this computer, we suspect this hash is the password:
@@ -31,30 +32,42 @@
 					Copy to Clipboard
 				</button>
 			</div>
-
-			<div class="loginBox">
-				<h1>Login Box</h1>
-                <form action="" method="POST">
-                    <input type="text" name="answer" id="answer" placeholder="password">
-                    <input type="submit" id="submitAnswer">
-                </form>
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                <ul class="flashes">
-                    {% for message in messages %}
-                    <li>{{message}}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                {% endwith %}
+			<div class="blur">
+				<div class="loginBox">
+					<img
+						class="adminPic"
+						src="{{url_for('static', filename='investigation.jpg')}}"
+					/>
+					<form class="laptopScreen" action="" method="POST">
+						<label for="answer" class="adminLabel">System Admin</label>
+						<input
+							type="text"
+							name="answer"
+							id="answer"
+							class="passwordBox"
+							placeholder="password"
+						/>
+						<input
+							type="submit"
+							id="submitAnswer"
+							class="answer"
+							value="Login"
+						/>
+					</form>
+					{% with messages = get_flashed_messages() %} {% if messages %}
+					<ul class="flashes">
+						{% for message in messages %}
+						<li class="message">{{message}}</li>
+						{% endfor %}
+					</ul>
+					{% endif %} {% endwith %}
+				</div>
 			</div>
 		</div>
 		<script
 			src="{{ url_for('static', filename='script.js')}}"
 			async
 			defer
-		>
-         
-    </script>
+		></script>
 	</body>
 </html>

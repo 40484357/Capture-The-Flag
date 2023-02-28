@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 import hashlib, random
 passwords = []
-with open('CaptureTheFlag\webapp\static\cyberA-Z.txt') as f:
+with open('webapp\static\cyberA-Z.txt') as f:
     words = f.readlines()
     passwords = [x.strip().lower() for x in words]
 
@@ -11,6 +11,8 @@ selected = passwords[selection]
 password = hashlib.md5(selected.encode())  
 
 views = Blueprint('views', __name__)
+
+
 
 @views.route('/')
 def landing():
@@ -36,3 +38,10 @@ def laptop():
             
     return render_template('laptoptest.html',password = password.hexdigest(), response = response)
     
+@views.route('/desktop')
+def desktop():
+    return render_template('desktop.html')
+
+@views.route('/Points_Logic')
+def points():
+    return render_template('Points_Logic.html')
