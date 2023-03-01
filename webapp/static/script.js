@@ -163,6 +163,6 @@ function setCircleDasharray() {
 
 function dial(number){
     //add number to passcode form
-    var passcode = document.getElementById('passcode')
+    var passcode = document.getElementById('phoneAnswer')
     passcode.value += number
 }
