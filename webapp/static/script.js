@@ -24,6 +24,11 @@ function goToLaptop(){
     window.location.href = '/laptop'
 } //goes to laptop
 
+function goToPhone(){
+    window.location.href = '/phone'
+} //goes to phone
+
+
 
 
 function copyTextToClipboard(hash){
@@ -249,3 +254,13 @@ function fade(element){
 }
 
 fade(toast)
+function dial(number){
+    //add number to passcode form
+    var passcode = document.getElementById('phoneAnswer')
+    passcode.value += number
+}
+function backspace(){
+    //remove last number from passcode form
+    var passcode = document.getElementById('phoneAnswer')
+    passcode.value = passcode.value.slice(0, -1)
+}

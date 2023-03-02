@@ -417,3 +417,72 @@ grid-area: answer;
     position: absolute;
 }
 
+ .gameBoxPhone{
+    background-color: #F1F2F4;
+    margin-top: 5em;
+    margin:auto;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+    height: 200%;
+    flex-wrap:wrap;
+ }
+ .phoneBox{
+    background-color: rgba(42, 55, 113, 0.795);
+    backdrop-filter: blur(3px);
+    width:50%;
+    display: grid;
+    height:100%;
+    justify-items: center;
+    align-content: center;
+    align-self: center;
+    vertical-align: center;
+ }
+ 
+.dial {
+    font-family: Helvetica;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 85px;
+    font-size: 40px;
+    color: black;
+    list-style: none;
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    margin: 5px;
+    border-radius: 100%;
+    background: white;
+    position: relative;
+}
+ .submitAnswer{
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+ }
+ .phoneDescript{
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+ }
+ .phoneFlash{
+    grid-column: 1;
+    grid-row: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+ }
