@@ -166,3 +166,8 @@ function dial(number){
     var passcode = document.getElementById('phoneAnswer')
     passcode.value += number
 }
+function backspace(){
+    //remove last number from passcode form
+    var passcode = document.getElementById('phoneAnswer')
+    passcode.value = passcode.value.slice(0, -1)
+}

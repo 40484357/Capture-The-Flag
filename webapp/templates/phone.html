@@ -27,7 +27,7 @@
                 <div class = "phoneBox">
                     <p class ="enterPasscode">Enter Passcode</p>
                     <form class = "passcode" action="" method="POST">
-                        <input type="text" name="answer" id="phoneAnswer" placeholder="">
+                        <input type="text" name="answer" id="phoneAnswer" placeholder="" onkeydown="return false">
                         <input type="submit" id="submitAnswer" value = "&#x21A9;">
                     </form>
                     
@@ -43,6 +43,7 @@
                         <button class="dial" onclick="dial(8)">8</li>
                         <button class="dial" onclick="dial(9)">9</li>
                         <button class="dial middle"onclick="dial(0)">0</li>
+						<button class = "dial" onclick = "backspace()">⌫</li>
                     </ul>
                     {% with messages = get_flashed_messages() %} {% if messages %}
 					<ul class="phoneFlash">
