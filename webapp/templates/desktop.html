@@ -33,7 +33,7 @@
             
                 <p class="filename">code.txt</p>
     </div>
-    <div class="file">
+    <div class="file" id="openIP">
             
    
             <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,12 +52,12 @@
                 secret-key.txt - notepad
             </div>
             <div class="txt_file_handle">
-            <div class="txt_file_handler">
+            <div class="txt_file_handler" id="minimize_file">
                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="7.27734" y="15.4211" width="21.4453" height="5.15771" fill="black"/>
                 </svg>
             </div>
-            <div class="txt_file_handler">          
+            <div class="txt_file_handler" id="close_file">          
                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="12.2412" y="8.59448" width="21.4453" height="5.15771" transform="rotate(45 12.2412 8.59448)" fill="black"/>
                 <rect x="8.59424" y="23.7583" width="21.4453" height="5.15771" transform="rotate(-45 8.59424 23.7583)" fill="black"/>
@@ -79,18 +79,68 @@
             B0byBzZWN1cmUgZGF0YSBleGNoYW5nZXMgb24gdGhlIEludGVybmV0LiA8PEZsYWc8PDlkYjUwZGVhMmM2YzNkNGU5N
             2FhM2FlYzVkZTE2OTBkMTFiMTEwNmY+Pg0K</div>
     </div>
+    <div class="base64file hidden" id="ipcheck">
+        <div class="txt_file_bar">
+            <div class="txt_file_title">
+                What's the I.P?
+            </div>
+            <div class="txt_file_handle">
+            <div class="txt_file_handler" id="minimize_IP">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="7.27734" y="15.4211" width="21.4453" height="5.15771" fill="black"/>
+                </svg>
+            </div>
+            <div class="txt_file_handler" id="close_IP">          
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="12.2412" y="8.59448" width="21.4453" height="5.15771" transform="rotate(45 12.2412 8.59448)" fill="black"/>
+                <rect x="8.59424" y="23.7583" width="21.4453" height="5.15771" transform="rotate(-45 8.59424 23.7583)" fill="black"/>
+                </svg>
+            </div>
+        </div>  
+        </div>
+        
+        <div id="IP_form_container">
+            <form action=""  method="post">
+                <label for="answer">What's the IP?</label>
+                <input type="text" name="answer" id="answer" class='passwordBox' placeholder="IP?">
+                <input type="submit" id="submitAnswer" class="answer" value="submit">
+            </form>
+
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="response">
+            {{response}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
     <div class="desktop-bottom-nav-bar">
         <div class="windows">
             let's hack
         </div>
-        <div class="application-tab ">
+        <div class="application-tab hidden" id="txt_file_tab">
                 <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M26.25 0H5.25V42H36.75V10.5L26.25 0ZM23.625 13.125H34.125V39.375H7.875V2.625H23.625V13.125ZM26.25 10.5V2.625L34.125 10.5H26.25Z" fill="#545454"/>
                 <path d="M23.625 2.625H7.875V39.375H34.125V13.125H23.625V2.625Z" fill="white"/>
                 <path d="M10.5 18.375H31.5V21H10.5V18.375ZM10.5 23.625H31.5V26.25H10.5V23.625ZM10.5 28.875H31.5V31.5H10.5V28.875Z" fill="#545454"/>
                 <path d="M26.25 10.5V2.625L34.125 10.5H26.25Z" fill="white"/>
-                </svg>
+        </svg>
         </div>
+        <div class="application-tab hidden" id="ip_tab">
+            <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" width="32" height="42" rx="5" fill="#D77777"/>
+                <path d="M16 6.36914V35.6309" stroke="black"/>
+                <path d="M22.0254 35.6309V17.5444M22.0254 17.5444V7.54541H26.9659C28.6227 7.54541 29.9659 8.88856 29.9659 10.5454V12.5449V14.5444C29.9659 16.2013 28.6227 17.5444 26.9659 17.5444H22.0254Z" stroke="black"/>
+                <circle cx="19.2343" cy="34.7858" r="0.845093" fill="black"/>
+            </svg>
+        </div>
+
     </div>
+    </div>
+    
 </div>
+
 {% endblock %}

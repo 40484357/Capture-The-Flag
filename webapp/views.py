@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 import hashlib, random
 passwords = []
-with open('webapp\static\cyberA-Z.txt') as f:
+with open('CaptureTheFlag\webapp\static\cyberA-Z.txt') as f:
     words = f.readlines()
     passwords = [x.strip().lower() for x in words]
 
@@ -38,8 +38,21 @@ def laptop():
             
     return render_template('laptoptest.html',password = password.hexdigest(), response = response)
     
-@views.route('/desktop')
+@views.route('/desktop', methods=['GET', 'POST'])
 def desktop():
+    ip = "85.50.46.53"
+    response = None
+    if request.method == 'POST':
+        if request.form['answer'] != ip:
+            response = 'not quite try again'
+            flash(response)
+            return render_template('desktop.html', response = response)
+            
+        else:
+            response = "That's the IP, but where does it go?"
+            flash(response)
+            return render_template('desktop.html', response = response)
+
     return render_template('desktop.html')
 
 @views.route('/Points_Logic')

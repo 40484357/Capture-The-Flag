@@ -213,6 +213,12 @@ grid-area: answer;
     color:white;
     font-size: 16px;
 }
+
+.response{
+    color: black;
+    margin: 1em;
+    font-size: 16px;
+}
 .laptopScreen{
     grid-column: 2;
     grid-row:4/7;
@@ -338,6 +344,7 @@ grid-area: answer;
     display: flex;
     flex-direction: row;
     width: 10%;
+    cursor: pointer;
 }
 
 .txt_file_title{
@@ -379,8 +386,16 @@ grid-area: answer;
     margin-left: 2em;
     cursor: pointer;
     border-radius: 5px;
+    width: 50px;
+    height: 50px;
 }
 
 .application-tab:hover{
-    background-color:rgba(90, 108, 141, 0.756)
+    background-color:rgba(90, 108, 141, 0.756);
+    
+}
+
+#IP_form_container{
+    margin: 1em;
+
 }
