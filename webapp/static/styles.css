@@ -399,3 +399,21 @@ grid-area: answer;
     margin: 1em;
 
 }
+
+.toast_msg{
+    width: 25%;
+    background-color: #1f7a3f;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 0.25em;
+    position: absolute;
+}
+

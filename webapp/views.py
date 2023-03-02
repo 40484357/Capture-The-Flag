@@ -33,8 +33,7 @@ def laptop():
             response = 'wrong password, try again'
             flash(response)
         else:
-            response = 'correct password'
-            flash(response)
+            return redirect('/desktop')
             
     return render_template('laptoptest.html',password = password.hexdigest(), response = response)
     
