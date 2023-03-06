@@ -10,5 +10,26 @@
 		<header>
 			<h1>Points Logic&trade; Demonstration</h1>
 		</header>
+
+		<div>
+			<form action="" method="POST">
+				<label for="timeLeft">How much time is left?</label><br />
+				<input type="text" id="timeLeft" name="timeLeft" /><br />
+				<label for="hintsUsed">How many hints were used?</label><br />
+				<input type="text" id="hintsUsed" name="hintsUsed" /><br />
+				<label for="timeTaken">How long did the challenge take?</label><br />
+				<input type="text" id="timeTaken" name="timeTaken" /><br />
+				<input type="submit" value="submit" /><br />
+			</form>
+			<div id="pointsAnswer">
+				{% with messages = get_flashed_messages() %} {% if messages %}
+				<ul class="pointsFlash">
+					{% for message in messages %}
+					<li class="message">{{message}}</li>
+					{% endfor %}
+				</ul>
+				{% endif %} {% endwith %}
+			</div>
+		</div>
 	</body>
 </html>
