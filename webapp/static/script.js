@@ -226,8 +226,10 @@ ipTab.addEventListener('click', () => {
     if(ipCheck.classList.contains('hidden')){
         ipCheck.classList.remove('hidden')
         openBase64.classList.add('hidden')
+        localStorage.setItem('openIP', 'false')
     } else {
         ipCheck.classList.add('hidden')
+        localStorage.setItem('openIP', 'true')
     }
 })
 
