@@ -156,40 +156,48 @@ body{
 }
 .loginBox{
     
-    background-color: rgba(0,0,0,0.2);
-    backdrop-filter: blur(3px);
-    width:100%;
-    display: grid;
-    grid-template-columns:1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap:6%;
-    height:100%;
-    justify-items: center;
-    align-content: center;
-    
-}
-.blur{
-    background: url(./Windows.jpg);
-    background-size: cover;
-   
-    background-blend-mode: multiply;
-    
+    background-image: url(./Windows.jpg);
+    background-size:cover;
+    display:flex;
     margin-top: 10em;
     margin-left: 20%;
     margin-right: 20%;
-    height:100%;
-    width: 100%;
+    height:600px;
     width: auto;
-
-    filter:drop-shadow(8px 8px 6px black);
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.blur{
+   
+    
+    background-color: rgba(0,0,0,0.2);
+    height:100%;
+    width:100%;
+    display: grid;
+    gap:6%;
+    grid-template-areas:
+    '. . .'
+    '. . .'
+    '. pic .'
+    '. screen .'
+    '. screen .'
+    '. screen .'
+    '. flash .';
+    justify-items: center;
+    align-content: center;
+    backdrop-filter:blur(4px);
+    
+    
+    
 }
 
 .adminPic{
     height:100px;
     width:100px;
     border-radius: 50%;
-    grid-column: 2;
-    grid-row: 3;
+    grid-area: pic;
 
 }
 .adminLabel{
@@ -205,8 +213,7 @@ body{
 grid-area: answer;
 }
 .flashes{
-    grid-column: 2;
-    grid-row:7;
+    grid-area: flash;
     color: #FFFFFF;
 }
 .flahses, .message{
@@ -220,8 +227,7 @@ grid-area: answer;
     font-size: 16px;
 }
 .laptopScreen{
-    grid-column: 2;
-    grid-row:4/7;
+    grid-area:screen;
     gap:10%;
     display: grid;
     grid-template-areas: 
@@ -233,6 +239,7 @@ grid-area: answer;
     justify-items: center;
     align-content: center;
 }
+
 /** clock implementation **/
 
 .clockBase {
