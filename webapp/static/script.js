@@ -256,10 +256,13 @@ function fade(element){
 }
 
 fade(toast)
+
+
 function dial(number){
     //add number to passcode form
     var passcode = document.getElementById('phoneAnswer')
     passcode.value += number
+    console.log(number)
 }
 function backspace(){
     //remove last number from passcode form

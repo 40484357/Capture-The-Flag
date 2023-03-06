@@ -28,11 +28,11 @@
                     <p class ="enterPasscode">Enter Passcode</p>
                     <form class = "passcode" action="" method="POST">
                         <input type="text" name="answer" id="phoneAnswer" placeholder="" onkeydown="return false">
-                        <input type="submit" id="submitAnswer" value = "&#x21A9;">
+                        <input type="submit" id="submitAnswer" class="phoneSubmit" value = "&#x21A9;">
                     </form>
                     
 
-                    <ul class="keypad">
+                    <div class="keypad">
                         <button class="dial" onclick="dial(1)">1</li>
                         <button class="dial" onclick="dial(2)">2</li>
                         <button class="dial" onclick="dial(3)">3</li>
@@ -44,7 +44,7 @@
                         <button class="dial" onclick="dial(9)">9</li>
                         <button class="dial middle"onclick="dial(0)">0</li>
 						<button class = "dial" onclick = "backspace()">⌫</li>
-                    </ul>
+					</div>
                     {% with messages = get_flashed_messages() %} {% if messages %}
 					<ul class="phoneFlash">
 						{% for message in messages %}
@@ -52,11 +52,6 @@
 						{% endfor %}
 					</ul>
 					{% endif %} {% endwith %}
-
-
-
-
-
                 </div>
 				<p class="phoneDescript">
 					This phone is protected by a passcode.<br>
