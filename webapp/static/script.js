@@ -165,6 +165,101 @@ function setCircleDasharray() {
       .setAttribute("stroke-dasharray", circleDasharray);
 }
 
+
+//script for base64 
+
+var file = document.getElementById('file1')
+var openBase64 = document.getElementById('openBase64')
+var txt_file_tab = document.getElementById('txt_file_tab')
+var ipCheck = document.getElementById('ipcheck')
+var openIP = document.getElementById('openIP')
+var minimizeIP = document.getElementById('minimize_IP')
+var closeIP = document.getElementById('close_IP')
+var ipTab = document.getElementById('ip_tab')
+
+file.addEventListener('click', () => {
+   
+    openBase64.classList.remove('hidden')
+    txt_file_tab.classList.remove('hidden')
+    ipCheck.classList.add('hidden')
+})
+
+var close_file = document.getElementById('close_file')
+
+
+close_file.addEventListener('click', ()=>{
+    openBase64.classList.add('hidden')
+    txt_file_tab.classList.add('hidden')    
+})
+
+txt_file_tab.addEventListener('click', ()=>{
+    if (openBase64.classList.contains('hidden')){
+        openBase64.classList.remove('hidden')
+        ipCheck.classList.add('hidden')
+    } else {
+        openBase64.classList.add('hidden')
+    }
+})
+
+var minimize_file = document.getElementById('minimize_file')
+minimize_file.addEventListener('click', () =>{
+    openBase64.classList.add('hidden')
+})
+
+
+
+openIP.addEventListener('click', ()=>{
+    ipCheck.classList.remove('hidden')
+    openBase64.classList.add('hidden')
+    ipTab.classList.remove('hidden')
+    localStorage.setItem('openIP', 'true')
+})
+
+minimizeIP.addEventListener('click', ()=>{
+    ipCheck.classList.add('hidden')
+    localStorage.setItem('openIP', 'false')
+})
+
+closeIP.addEventListener('click', () => {
+    ipCheck.classList.add('hidden')
+    ipTab.classList.add('hidden')
+    localStorage.setItem('openIP', 'false')
+})
+
+ipTab.addEventListener('click', () => {
+    if(ipCheck.classList.contains('hidden')){
+        ipCheck.classList.remove('hidden')
+        openBase64.classList.add('hidden')
+        localStorage.setItem('openIP', 'false')
+    } else {
+        ipCheck.classList.add('hidden')
+        localStorage.setItem('openIP', 'true')
+    }
+})
+
+function checkOpenIp(){
+    if(localStorage.getItem('openIP') == 'true'){
+        ipCheck.classList.remove('hidden')
+    }
+}
+
+checkOpenIp()
+var toast = document.getElementById('toast')
+
+function fade(element){
+    var op = 1; 
+    var timer = setInterval(function (){
+        if(op<=0.1){
+            clearInterval(timer)
+            element.style.display = 'none';
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity='+ op * 100 + ')';
+        op -= op * 0.1;
+    }, 75);
+}
+
+fade(toast)
 function dial(number){
     //add number to passcode form
     var passcode = document.getElementById('phoneAnswer')

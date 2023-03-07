@@ -41,6 +41,8 @@ print("Secret Key: ", secretKey)
 
 views = Blueprint('views', __name__)
 
+
+
 @views.route('/')
 def landing():
     passLength = len(passwords) - 1
@@ -60,11 +62,26 @@ def laptop():
             response = 'wrong password, try again'
             flash(response)
         else:
-            response = 'correct password'
-            flash(response)
+            return redirect('/desktop')
             
     return render_template('laptop.html',password = password.hexdigest(), response = response)
     
+@views.route('/desktop', methods=['GET', 'POST'])
+def desktop():
+    ip = "85.50.46.53"
+    response = None
+    if request.method == 'POST':
+        if request.form['answer'] != ip:
+            response = 'not quite try again'
+            flash(response)
+            return render_template('desktop.html', response = response)
+            
+        else:
+            response = "That's the IP, but where does it go?"
+            flash(response)
+            return render_template('desktop.html', response = response)
+
+    return render_template('desktop.html')
 
 
 @views.route('/phone', methods=['GET', 'POST'])
@@ -89,6 +106,22 @@ def phoneHome():
     return render_template('phoneHome.html')
 
 
-@views.route('/Points_Logic')
+@views.route('/Points_Logic', methods=['GET', 'POST'])
 def points():
-    return render_template('Points_Logic.html')
+    response=None
+    if request.method=='POST':
+        timeLeft=request.form.get('timeLeft',type=int)
+        hintsUsed=request.form.get('hintsUsed',type=int)
+        timeTaken=request.form.get('timeTaken',type=int)
+        basePoints=25000
+        timeLPenalty = (24 - timeLeft)*500
+        hintPenalty = basePoints - ((basePoints-timeLPenalty) * (1-(hintsUsed * 0.08)))
+        timeTPenalty = timeTaken *0.03
+
+        points = basePoints - (timeLPenalty + hintPenalty + timeTPenalty)
+
+        response = points
+
+        flash(response)
+        
+    return render_template('Points_Logic.html', response= response)

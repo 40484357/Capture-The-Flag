@@ -18,33 +18,31 @@
 	<body>
 		<div class="gameLauncher" id="challengeOne">
 			<div class="gameHeader">
-				<div class="navButton">back</div>
+				<div class="navButton">Back</div>
 				<div class="roomTitle">Evidence Room</div>
 				<div id="clock"></div>
 			</div>
+
+			<div class="buttonContainer tooltip">
+				<button class="buttonHelp">
+					<span class="material-icons-outlined md-30">&#xE79A;</span>
+				</button>
+				<span class="tooltiptext">Use a hint!</span>
+			</div>
+
 			<div class="gameBox">
-				<p class="hashDescript">
-					{% block instruction %} {% endblock %}
-				</p>
+				<p class="hashDescript">{% block instruction %} {% endblock %}</p>
 				<div id="hash" class="hash">{{password}}</div>
 				<button class="copyClip" onclick="copyTextToClipboard(hash)">
 					Copy to Clipboard
 				</button>
 			</div>
-
-			<div class="loginBox">
-            {% block game_ui %}
-				
-            {% endblock %}
-			</div>
-        
+			{% block game_ui %} {% endblock %}
 		</div>
 		<script
 			src="{{ url_for('static', filename='script.js')}}"
 			async
 			defer
-		>
-         
-    </script>
+		></script>
 	</body>
 </html>
