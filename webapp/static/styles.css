@@ -351,15 +351,19 @@ grid-area: answer;
  }
  .phoneHome
  {
+    position: relative;
     background: url(./phoneBackground.jpeg);
-    background-size:auto;
+    background-size: cover;
     height:700px;
     width: 400px;
     margin-top: 5em;
     margin:auto;
-    border-radius: 5px;
     display: flex;
     justify-content: space-between;
+    border: 16px black solid;
+    border-top-width: 60px;
+    border-bottom-width: 60px;
+    border-radius: 36px;
    
  }
  .photosButton
@@ -368,15 +372,29 @@ grid-area: answer;
     background-size: contain;
     height:70px;
     width:70px;
-    left:1000px;
-    bottom: 700px;
+    left:280px;
+    bottom:50px;
     border:1px;
-    position: relative;
-    
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+ }
+ .aesFileButton
+ {
+    background: url(./aesFile.jpg);
+    background-size: contain;
+    height:70px;
+    width:70px;
+    left:280px;
+    bottom:150px;
+    border:1px;
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
  }
 
  .stegoImage
  {
-    display:none
-    
+    background: url(./stegoImage.jpg);
+    display: flex;
  }

@@ -24,8 +24,8 @@
 			</div>
 
 			<div class="phoneHome">
-                
-
+				<div class = "photosButton" onclick="showPhoto()"></div>
+				<div class = "aesFileButton" onclick="showAES()"></div>
                   
                     {% with messages = get_flashed_messages() %} {% if messages %}
 					<ul class="phoneFlash">
@@ -35,18 +35,13 @@
 					</ul>
 					{% endif %} {% endwith %}
 
-                </div>
+            </div>
 				<p class="phoneDescript">
 					There seems to be an encrypted file.<br>
                     Look around to see if there are any hints.<br>
                 </p>
-                <div class = "photosButton" onclick="showPhoto()"></div>
-			
-			</div>
-
-            <div class ="stegoImage"> hey</div>
-
-			
+               
+		<div class ="stegoImage"> hey</div>
 		</div>
 		<script
 			src="{{ url_for('static', filename='script.js')}}"
