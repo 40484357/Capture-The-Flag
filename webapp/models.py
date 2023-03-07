@@ -8,9 +8,9 @@ class users(db.Model, UserMixin):
     password = db.Column(db.String(1000))
     admin = db.Column(db.String(100))
     email = db.Column(db.String(1000), unique=True)
-    Challenge = db.relationship('Challenge')
+    Challenge = db.relationship('challenge')
     points = db.relationship('points')
-    leaderBoard = db.relationship('leaderBoard')
+    leaderBoard = db.relationship('leaderboard')
 
 class challenge(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,7 +25,7 @@ class points(db.Model):
     pointsTotal = db.Column(db.Integer)
     timeLeft = db.Column(db.Integer)
     lastAvtive = db.Column(db.String(1000))
-    leaderBoard = db.relationship('leaderBoard')
+    leaderBoard = db.relationship('leaderboard')
 
 class leaderboard(db.Model):
     id = db.Column(db.Integer, primary_key = True)
