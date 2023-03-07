@@ -1,22 +1,81 @@
 *, *::after, *::before{
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    color: #462D56;
+   /* color: #462D56;*/
 }   
 
 body{
     height: 100vh;
     width: 100vw;
     margin: 0;
+
     overflow-x:hidden;
 }
+.material-icons-outlined.md-30 { 
+    font-size: 30px; 
+}
+.buttonContainer{
+    margin-top:3em;
+    float:right;
+    margin-right: 4em;
+}
+.buttonHelp{
+    padding:10px;
+    transition-duration: 0.3s;
+    background-color: #F1F2F4;
+    position:absolute;
+    border:none;
+    border-radius: 5px;
+    color:black;
+}
+.buttonHelp:hover{
+    cursor:pointer;
+    background: rgba(204, 101, 57, 0.65);
+    border-radius:5px;
+    color:#FFFFFF;
+    border:none;
+}
+.tooltip{
+    position:relative;
+    display:inline-block;
+}
+.tooltip .tooltiptext{
+    visibility: hidden;
+  width: 8em;
+  background-color: rgba(204, 101, 57, 0.65);
+  color: white;
+  text-align: center;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  margin-right:10px;
+  right: 110%;
+  opacity:0;
+  transition:opacity 1s;
 
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgba(204, 101, 57, 0.65);
+  }
 .gameLauncher{
     width: 100%;
     min-height: 100%;
     margin: auto;
     position:absolute;
-
     background: url(./investigation.jpg);  
     background-size:cover;
     background-attachment: fixed;
@@ -67,7 +126,9 @@ body{
     flex-direction: column;
 }
 
-
+#laptop:hover{
+    cursor:pointer;
+}
 .descriptText{
     width: 50;
     margin: auto;
@@ -99,6 +160,9 @@ body{
     /* or 50px */
     color: #FFFFFF;
 }
+#continue:hover{
+    cursor:pointer;
+}
 
 .gameHeader{
     display: flex;
@@ -122,12 +186,13 @@ body{
 .gameBox{
 
     background-color: #F1F2F4;
-    margin-top: 5em;
-    margin:auto;
+    margin-top: 3em;
     border-radius: 5px;
+    margin-left: 32.5%;
+    margin-right: 32.5%;
     display: flex;
     justify-content: space-between;
-    width: 35%;
+    width: auto;
     height: auto;
     flex-wrap:wrap;
 }
@@ -135,6 +200,7 @@ body{
     display:flex;
     padding:2em;
     align-items: center;
+    justify-content: center;
     width: 100%;
     text-align: center;
    word-break: break-all;
@@ -146,6 +212,9 @@ body{
     justify-content: center;
     align-items: center;
     padding:2em;
+}
+.copyClip:hover{
+    cursor:pointer;
 }
 .hashDescript{
     display:flex;
@@ -211,6 +280,9 @@ body{
 }
 .answer{
 grid-area: answer;
+}
+.answer:hover{
+    cursor:pointer;
 }
 .flashes{
     grid-area: flash;
