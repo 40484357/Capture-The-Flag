@@ -22,10 +22,33 @@
 				<div class="roomTitle">Evidence Room</div>
 				<div id="clock"></div>
 			</div>
-
-			<div class="phoneHome">
-				<div class = "photosButton" onclick="showPhoto()"></div>
-				<div class = "aesFileButton" onclick="showAES()"></div>
+			
+			<div class="phoneHome"id = "phoneHome">
+				<div id = "photosButton"></div>
+				<div id="steganoModal" class="modal">
+					<span class="close">&times;</span>
+					<img class="modal-content" src="../static/forensicimage.png">
+					<div id="caption"></div>
+				  </div>
+				<div id = "aesFileButton" ></div>
+				<div id = "notesButton" onclick="openNotesApp()"></div>
+				<div class = "notesApp" id = "notesApp">
+					<h1>Notes</h1>
+					<h2>Passphrases</h2>
+					<ul>
+						<li>diffiehellman</li>
+						<li>aesencryption</li>
+						<li>blowfish</li>
+						<li>rivestshamiradleman</li>
+						<li>twofish</li>
+						<li>bcrypt</li>
+						<li>ellipticcurve</li>
+						<li>ripemd</li>
+						<li>murmur</li>
+						<li>tiger</li>
+					</ul>
+				</div>
+				<div id = "backButton"onclick="closeNotesApp()"></div>
                   
                     {% with messages = get_flashed_messages() %} {% if messages %}
 					<ul class="phoneFlash">
@@ -41,7 +64,7 @@
                     Look around to see if there are any hints.<br>
                 </p>
                
-		<div class ="stegoImage"> hey</div>
+		
 		</div>
 		<script
 			src="{{ url_for('static', filename='script.js')}}"

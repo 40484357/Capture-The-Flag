@@ -15,7 +15,7 @@ N = 604931
 G = 30672
 
 # List of potential a and b values
-possibleValues = [631,503, 643, 541, 631, 643]
+possibleValues = [503, 521, 541, 557, 563, 613, 631, 641, 653, 661]
     
 # Need to select two random unique values from the list
 possibleValuesLength = len(possibleValues) - 1
