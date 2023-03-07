@@ -349,3 +349,34 @@ grid-area: answer;
     height: 100%;
     flex-direction: column;
  }
+ .phoneHome
+ {
+    background: url(./phoneBackground.jpeg);
+    background-size:auto;
+    height:700px;
+    width: 400px;
+    margin-top: 5em;
+    margin:auto;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+   
+ }
+ .photosButton
+ {
+    background: url(./photosApp.png);
+    background-size: contain;
+    height:70px;
+    width:70px;
+    left:1000px;
+    bottom: 700px;
+    border:1px;
+    position: relative;
+    
+ }
+
+ .stegoImage
+ {
+    display:none
+    
+ }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title></title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='styles.css')}}"
+		/>
+	</head>
+	<body>
+		<div class="gameLauncher" id="phoneChallenges">
+			<div class="gameHeader">
+				<div class="navButton">Back</div>
+				<div class="roomTitle">Evidence Room</div>
+				<div id="clock"></div>
+			</div>
+
+			<div class="phoneHome">
+                
+
+                  
+                    {% with messages = get_flashed_messages() %} {% if messages %}
+					<ul class="phoneFlash">
+						{% for message in messages %}
+						<li class="message">{{message}}</li>
+						{% endfor %}
+					</ul>
+					{% endif %} {% endwith %}
+
+                </div>
+				<p class="phoneDescript">
+					There seems to be an encrypted file.<br>
+                    Look around to see if there are any hints.<br>
+                </p>
+                <div class = "photosButton" onclick="showPhoto()"></div>
+			
+			</div>
+
+            <div class ="stegoImage"> hey</div>
+
+			
+		</div>
+		<script
+			src="{{ url_for('static', filename='script.js')}}"
+			async
+			defer
+		></script>
+	</body>
+</html>

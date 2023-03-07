@@ -28,7 +28,11 @@ function goToPhone(){
     window.location.href = '/phone'
 } //goes to phone
 
-
+function showPhoto(){
+    
+    document.getElementById('stegoImage').style.display = "block"
+    alert('hey')
+}
 
 
 function copyTextToClipboard(hash){
