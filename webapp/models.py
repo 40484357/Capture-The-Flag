@@ -1,9 +1,9 @@
 from . import db
-from flask import UserMixin
+from flask_login import UserMixin
 from datetime import datetime, date
 
-class Users(db.Model, UserMixin):
-    id = db.Column(db.Interger, primaryKey=True)
+class users(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(1000))
     password = db.Column(db.String(1000))
     admin = db.Column(db.String(100))
@@ -12,29 +12,29 @@ class Users(db.Model, UserMixin):
     points = db.relationship('points')
     leaderBoard = db.relationship('leaderBoard')
 
-class Challenge(db.Model):
-    id = db.Column(db.Interger, primaryKey=True)
-    user_id = db.Column(db.Interger, db.ForeignKey('Users.id'))
-    challengeState = db.Column(db.Interger)
+class challenge(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    challengeState = db.Column(db.Integer)
     laptopPassword = db.Column(db.String(1000))
-    phonePassword = db.Column(db.Interger)
+    phonePassword = db.Column(db.Integer)
     hints = db.relationship('hints')
 
 class points(db.Model):
-    id = db.Column(db.Interger, db.ForeignKey('Users.id'), primaryKey=True)
-    pointsTotal = db.Column(db.Interger)
-    timeLeft = db.Column(db.Interger)
+    id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    pointsTotal = db.Column(db.Integer)
+    timeLeft = db.Column(db.Integer)
     lastAvtive = db.Column(db.String(1000))
     leaderBoard = db.relationship('leaderBoard')
 
-class leaderBoard(db.Model):
-    id = db.Column(db.interger, primaryKey = True)
-    points = db.Column(db.interger, db.ForeignKey('points.pointsTotal'))
-    user_id = db.Column(db.Interger, db.ForeignKey('Users.id'))
+class leaderboard(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    points = db.Column(db.Integer, db.ForeignKey('points.pointsTotal'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 class hints(db.Model):
-    challengeId = db.Column(db.Interger, db.ForeignKey('Challenge.id'), primaryKey=True)
-    hintCount = db.Column(db.Interger)
+    challengeId = db.Column(db.Integer, db.ForeignKey('challenge.id'), primary_key=True)
+    hintCount = db.Column(db.Integer)
 
 
 

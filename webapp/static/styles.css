@@ -529,3 +529,101 @@ grid-area: answer;
     height: 100%;
     flex-direction: column;
  }
+
+
+ /* register page css */ 
+
+ .login-page-container{
+    background-image: url("background_img.jpg");
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-title{
+    margin: 0;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: normal;
+    color: black;
+
+}
+
+.login-container{
+    background-color: #ffc573bd;
+    box-shadow: 0 0 15px 0 #ffc57332;
+    padding: 2em 1em;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 20px;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 40px;
+}
+
+.input-group{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-weight:600;
+}
+
+.input-group label{
+    color: black;
+}
+
+.input-group input{
+    font-size: 1.25rem;
+    padding: .5em;
+    background-color: #f8d29c9c;
+    border: none;
+    outline: none;
+    border-radius: .25em;
+    color: black;
+}
+
+.input-group input:focus{
+    box-shadow: 0 0 0 2px #f7b250;
+}
+
+.input-group.success input{
+    box-shadow: 0 0 0 2px #6ae95794;
+}
+
+.input-group .msg{
+    display: none;
+}
+
+.input-group.success .msg{
+    display: block;
+}
+
+.input-group.error .msg{
+    display: block;
+    color: red;
+}
+
+.login-button{
+    padding: .5em 1em;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    color: black;
+    background-color: #E6CEAC;
+    border: 1px solid #AD864E;
+    border-radius: .25em;
+    outline: none;
+    cursor: pointer;
+}
+
+.login-button:hover,
+.login-button:focus{
+    background-color: #ad854e98;
+}

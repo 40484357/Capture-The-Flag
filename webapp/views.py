@@ -1,7 +1,11 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 import hashlib, random, time
+from . import db
+from .models import users, challenge, points, leaderboard, hints
+from datetime import date, datetime
+
 passwords = []
-with open('CaptureTheFlag\webapp\static\cyberA-Z.txt') as f:
+with open('webapp\static\cyberA-Z.txt') as f:
     words = f.readlines()
     passwords = [x.strip().lower() for x in words]
 
@@ -57,7 +61,6 @@ def landing():
     selected = passwords[selection]
     password = hashlib.md5(selected.encode())
     print(password.hexdigest())
-    print(passLength)
     return render_template('cyberescape.html')
 
 @views.route('/laptop', methods=['GET', 'POST'])
