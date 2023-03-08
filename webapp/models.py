@@ -18,23 +18,22 @@ class Challenge(db.Model):
     challengeState = db.Column(db.Interger)
     laptopPassword = db.Column(db.String(1000))
     phonePassword = db.Column(db.Interger)
+    challengeAttempts = db.Column(db.Interger)
     hints = db.relationship('hints')
 
 class points(db.Model):
     id = db.Column(db.Interger, db.ForeignKey('Users.id'), primaryKey=True)
     pointsTotal = db.Column(db.Interger)
     timeLeft = db.Column(db.Interger)
-    lastAvtive = db.Column(db.String(1000))
+    lastActive = db.Column(db.String(1000))
     leaderBoard = db.relationship('leaderBoard')
 
 class leaderBoard(db.Model):
-    id = db.Column(db.interger, primaryKey = True)
     points = db.Column(db.interger, db.ForeignKey('points.pointsTotal'))
-    user_id = db.Column(db.Interger, db.ForeignKey('Users.id'))
+    user_id = db.Column(db.Interger, db.ForeignKey('Users.id'), primaryKey=True)
 
 class hints(db.Model):
     challengeId = db.Column(db.Interger, db.ForeignKey('Challenge.id'), primaryKey=True)
     hintCount = db.Column(db.Interger)
-
 
 
