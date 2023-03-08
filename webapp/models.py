@@ -1,39 +1,48 @@
 from . import db
-from flask import UserMixin
+from flask_login import UserMixin
 from datetime import datetime, date
 
-class Users(db.Model, UserMixin):
-    id = db.Column(db.Interger, primaryKey=True)
+class users(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(1000))
     password = db.Column(db.String(1000))
     admin = db.Column(db.String(100))
     email = db.Column(db.String(1000), unique=True)
-    Challenge = db.relationship('Challenge')
     points = db.relationship('points')
-    leaderBoard = db.relationship('leaderBoard')
+    leaderBoard = db.relationship('leaderboard')
+    laptop_challenge = db.relationship('laptop_challenge')
+    phone_challenge = db.relationship('phone_challenge')
+    server_challenge = db.relationship('server_challenge')
 
-class Challenge(db.Model):
-    id = db.Column(db.Interger, primaryKey=True)
-    user_id = db.Column(db.Interger, db.ForeignKey('Users.id'))
-    challengeState = db.Column(db.Interger)
+class laptop_challenge(db.Model):
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    challengeState = db.Column(db.Integer)
     laptopPassword = db.Column(db.String(1000))
-    phonePassword = db.Column(db.Interger)
-    challengeAttempts = db.Column(db.Interger)
-    hints = db.relationship('hints')
+    hints = db.Column(db.Integer)
+
+class phone_challenge(db.Model):
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key = True)
+    challengeState = db.Column(db.Integer)
+    phonePassword = db.Column(db.Integer)
+    hints = db.Column(db.Integer)
+
+class server_challenge(db.Model):
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key = True)
+    challengeState = db.Column(db.Integer)
+    hints = db.Column(db.Integer)
 
 class points(db.Model):
-    id = db.Column(db.Interger, db.ForeignKey('Users.id'), primaryKey=True)
-    pointsTotal = db.Column(db.Interger)
-    timeLeft = db.Column(db.Interger)
-    lastActive = db.Column(db.String(1000))
-    leaderBoard = db.relationship('leaderBoard')
+    id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    pointsTotal = db.Column(db.Integer)
+    timeLeft = db.Column(db.Integer)
+    lastAvtive = db.Column(db.String(1000))
+    leaderBoard = db.relationship('leaderboard')
 
-class leaderBoard(db.Model):
-    points = db.Column(db.interger, db.ForeignKey('points.pointsTotal'))
-    user_id = db.Column(db.Interger, db.ForeignKey('Users.id'), primaryKey=True)
+class leaderboard(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    points = db.Column(db.Integer, db.ForeignKey('points.pointsTotal'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-class hints(db.Model):
-    challengeId = db.Column(db.Interger, db.ForeignKey('Challenge.id'), primaryKey=True)
-    hintCount = db.Column(db.Interger)
+
 
 

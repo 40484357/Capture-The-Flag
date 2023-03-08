@@ -1,14 +1,15 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 import hashlib, random, time
+from . import db
+from flask_login import login_user, login_required, current_user
+from .models import users, phone_challenge, laptop_challenge, server_challenge, points, leaderboard
+from datetime import date, datetime
+
 passwords = []
 with open('CaptureTheFlag\webapp\static\cyberA-Z.txt') as f:
     words = f.readlines()
     passwords = [x.strip().lower() for x in words]
 
-passLength = len(passwords) - 1
-selection = random.randint(0, passLength)
-selected = passwords[selection]
-password = hashlib.md5(selected.encode()) 
 
 # Diffie-Hellman Key Exchange start
 N = 604931 
@@ -52,23 +53,42 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def landing():
-    passLength = len(passwords) - 1
-    selection = random.randint(0, passLength)
-    selected = passwords[selection]
-    password = hashlib.md5(selected.encode())
-    print(password.hexdigest())
-    print(passLength)
-    return render_template('cyberescape.html')
+   
+   
+    return render_template('cyberescape.html', user = current_user)
 
 @views.route('/laptop', methods=['GET', 'POST'])
 def laptop():
-    print(selected)
+    #database query for passkey, if it exists then that is the passkey otherwise generate and store new passkey
+    passkey = db.session.query(laptop_challenge.laptopPassword).filter_by(user_id = current_user.id).first()
+    challengeState = db.session.query(laptop_challenge.challengeState).filter_by(user_id = current_user.id).first()
+    if challengeState[0] == 2:
+        return redirect('/desktop')
+    if passkey:
+        print(passkey)
+        selected = passkey[0]
+        password = hashlib.md5(passkey[0].encode())
+        print(password.hexdigest())
+    else:
+        passLength = len(passwords) - 1
+        selection = random.randint(0, passLength) 
+        selected = passwords[selection]
+        password = hashlib.md5(selected.encode()) 
+        new_password = laptop_challenge(user_id = current_user.id, challengeState = 1, laptopPassword = selected, hints = 0)
+        db.session.add(new_password)
+        db.session.commit()
+        print(password.hexdigest())
+
     response = None
     if request.method=='POST':
         if request.form['answer'] != selected:
             response = 'wrong password, try again'
             flash(response)
         else:
+            newChallengeState = laptop_challenge.query.get_or_404(current_user.id)
+            print(newChallengeState.challengeState)
+            newChallengeState.challengeState = 2
+            db.session.commit()
             return redirect('/desktop')
             
     return render_template('laptop.html',password = password.hexdigest(), response = response)

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
+    </head>
+    <body style="background-color:black;">
+      <div class="login-page-container">
+        <div class="login-container">
+            <h1 class="login-title">
+                Cyber-E-Scape
+            </h1>
+            <form class="login-form" method="POST">
+                <div class="input-group ">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
+                    <span class="msg">Valid Email</span>
+                </div>
+                <div class="input-group ">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                    <span class="msg">Incorrect Password</span>
+                </div>
+
+                <button type="submit" class="login-button">Login</button>
+            </form>
+        </div>
+      </div>
+        
+        <script src="" async defer></script>
+    </body>
+</html>
