@@ -36,7 +36,7 @@ function copyTextToClipboard(hash){
   alert('Copied text to clipboard!');
 } // Copies hash to clipboard
 
-let Time_Limit = 86400;
+let Time_Limit = {{userTime}};
 let timePassed = 0;
 let timeLeft = Time_Limit;
 const FULL_DASH_ARRAY = 283;
@@ -201,8 +201,6 @@ var minimize_file = document.getElementById('minimize_file')
 minimize_file.addEventListener('click', () =>{
     openBase64.classList.add('hidden')
 })
-
-
 
 openIP.addEventListener('click', ()=>{
     ipCheck.classList.remove('hidden')

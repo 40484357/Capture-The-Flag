@@ -23,7 +23,8 @@ class laptop_challenge(db.Model):
 class phone_challenge(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key = True)
     challengeState = db.Column(db.Integer)
-    phonePassword = db.Column(db.Integer)
+    phonePrime1 = db.Column(db.Integer)
+    phonePrime2 = db.Column(db.Integer)
     hints = db.Column(db.Integer)
 
 class server_challenge(db.Model):
@@ -35,7 +36,7 @@ class points(db.Model):
     id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     pointsTotal = db.Column(db.Integer)
     timeLeft = db.Column(db.Integer)
-    lastAvtive = db.Column(db.String(1000))
+    lastActive = db.Column(db.String(1000))
     leaderBoard = db.relationship('leaderboard')
 
 class leaderboard(db.Model):

@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-import hashlib, random, time
+import hashlib, random, time, atexit
 from . import db
 from flask_login import login_user, login_required, current_user
 from .models import users, phone_challenge, laptop_challenge, server_challenge, points, leaderboard
 from datetime import date, datetime
+from apscheduler.schedulers.background import BackgroundScheduler
 
 passwords = []
 with open('CaptureTheFlag\webapp\static\cyberA-Z.txt') as f:
@@ -51,17 +52,31 @@ views = Blueprint('views', __name__)
 
 
 
+
 @views.route('/')
 def landing():
-   
-   
-    return render_template('cyberescape.html', user = current_user)
+    user_points = db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
+    user_time = db.session.query(points.timeLeft).filter_by(id = current_user.id).first()
+    
+    if user_points:
+        userPoints = user_points[0]
+        userTime = user_time[0]
+    else:
+        userPoints = 0 
+        userTime = 86400
+        new_user_points = points(id = current_user.id, pointsTotal = 0, timeLeft = 86400, lastActive = datetime.now())
+        db.session.add(new_user_points)
+        db.session.commit()
+     
+
+    return render_template('cyberescape.html', user = current_user, userPoints = userPoints, userTime = userTime)
 
 @views.route('/laptop', methods=['GET', 'POST'])
 def laptop():
     #database query for passkey, if it exists then that is the passkey otherwise generate and store new passkey
     passkey = db.session.query(laptop_challenge.laptopPassword).filter_by(user_id = current_user.id).first()
     challengeState = db.session.query(laptop_challenge.challengeState).filter_by(user_id = current_user.id).first()
+    #checks challenge state, if it's 2 it will redirect the user to second challenge
     if challengeState[0] == 2:
         return redirect('/desktop')
     if passkey:
@@ -114,6 +129,43 @@ def desktop():
 @views.route('/phone', methods=['GET', 'POST'])
 def phone():
     response = None
+    primeA = db.session.query(phone_challenge.phonePrime1).filter_by(user_id = current_user.id).first()
+    primeB = db.session.query(phone_challenge.phonePrime2).filter_by(user_id = current_user.id).first()
+
+    if primeA:
+        a = primeA[0] #variable
+        b = primeB[0] #variable
+        A = pow(G,a) % N
+        B = pow(G,b) % N
+        secretKey = pow(B,a) % N
+        print("A: ", A)
+        print("B: ", B)
+        print("Secret Key: ", secretKey)
+    else: 
+        # Need to select two random unique values from the list
+        possibleValuesLength = len(possibleValues) - 1
+        primeSelection1 = random.randint(0, possibleValuesLength)
+        prime1 = possibleValues[primeSelection1]
+
+        # Remove the first value from the list and decrease the length of the list by 1
+        possibleValues.pop(primeSelection1)
+        possibleValuesLength -= 1
+
+        # Select the second value from the list
+        primeSelection2 = random.randint(0, possibleValuesLength)
+        prime2 = possibleValues[primeSelection2]
+            
+        a = prime1 #variable
+        b = prime2 #variable
+        A = pow(G,a) % N
+        B = pow(G,b) % N
+        secretKey = pow(B,a) % N
+        print("A: ", A)
+        print("B: ", B)
+        print("Secret Key: ", secretKey)
+        new_phone_challenge = phone_challenge(user_id = current_user.id, challengeState = 1, phonePrime1 = a, phonePrime2 = b, hints = 0 )
+        db.session.add(new_phone_challenge)
+        db.session.commit()
     if request.method=='POST':
         secretKeyGuess=request.form.get('answer', type=int)
         #secretKeyGuess = int(request.form['answer'])
@@ -127,5 +179,5 @@ def phone():
     return render_template('phone.html',password = secretKey,a=a,b=b, response = response)
 
 @views.route('/Points_Logic')
-def points():
+def pointsLogic():
     return render_template('Points_Logic.html')
