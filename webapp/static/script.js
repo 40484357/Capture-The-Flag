@@ -6,7 +6,6 @@ if(continueButton != null){
 continueButton.addEventListener('click', ()=>{
     hideScene(firstScene)
     showScene(secondScene)
-    startTimer();
 })}
 
 
@@ -36,7 +35,14 @@ function copyTextToClipboard(hash){
   alert('Copied text to clipboard!');
 } // Copies hash to clipboard
 
-let Time_Limit = {{userTime}};
+
+
+
+let Time_Limit = 86400;
+function getTimeLimit(timeLimit){
+    Time_Limit = timeLimit
+    localStorage.setItem('timeLeft', Time_Limit)
+}
 let timePassed = 0;
 let timeLeft = Time_Limit;
 const FULL_DASH_ARRAY = 283;
@@ -101,13 +107,6 @@ function timerCountdown(time){
     return `${hours}:${minutes}:${seconds}`;
 }
 
-function checkTimer(){
-    if(localStorage.getItem('timerStatus') == 'true'){
-        startTimer();
-    }
-}
-
-checkTimer();
 
 
 function startTimer(){
@@ -116,24 +115,20 @@ function startTimer(){
     } else {
         Time_Limit = localStorage.getItem('timeLeft')
     }
-
-    if(localStorage.getItem('timerStatus') == null){
-        localStorage.setItem('timerStatus', true)
-    }
-    
     timerInterval = setInterval(()=>{
         timePassed = timePassed += 1;
         timeLeft = Time_Limit - timePassed;
         document.getElementById('clockBase_timer_label').innerHTML = timerCountdown(timeLeft);
         setCircleDasharray();
         setRemainingPathColour(timeLeft);
-        localStorage.setItem('timeLeft', timeLeft)
         if(timeLeft == 0){
             onTimesUp();
         }
 
     }, 1000)
 }
+
+startTimer();
 
 function setRemainingPathColour(timeLeft){
     const {alert, warning, info} = COLOUR_CODES;

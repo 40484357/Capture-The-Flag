@@ -2005,11 +2005,11 @@
 				<div class="checklist" id="checkList3"></div>
 			</div>
 		</div>
-
 		<script
 			src="{{ url_for('static', filename='script.js')}}"
-			async
-			defer
 		></script>
+		<script>
+			myVar = getTimeLimit({{userTime}})
+		</script>
 	</body>
 </html>

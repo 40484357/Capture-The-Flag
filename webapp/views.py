@@ -5,9 +5,10 @@ from flask_login import login_user, login_required, current_user
 from .models import users, phone_challenge, laptop_challenge, server_challenge, points, leaderboard
 from datetime import date, datetime
 from apscheduler.schedulers.background import BackgroundScheduler
+#from main import update_timeLeft
 
 passwords = []
-with open('CaptureTheFlag\webapp\static\cyberA-Z.txt') as f:
+with open('webapp\static\cyberA-Z.txt') as f:
     words = f.readlines()
     passwords = [x.strip().lower() for x in words]
 
@@ -51,25 +52,6 @@ print("Secret Key: ", secretKey)
 views = Blueprint('views', __name__)
 
 
-
-
-@views.route('/')
-def landing():
-    user_points = db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
-    user_time = db.session.query(points.timeLeft).filter_by(id = current_user.id).first()
-    
-    if user_points:
-        userPoints = user_points[0]
-        userTime = user_time[0]
-    else:
-        userPoints = 0 
-        userTime = 86400
-        new_user_points = points(id = current_user.id, pointsTotal = 0, timeLeft = 86400, lastActive = datetime.now())
-        db.session.add(new_user_points)
-        db.session.commit()
-     
-
-    return render_template('cyberescape.html', user = current_user, userPoints = userPoints, userTime = userTime)
 
 @views.route('/laptop', methods=['GET', 'POST'])
 def laptop():
