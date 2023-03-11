@@ -19,6 +19,7 @@ class laptop_challenge(db.Model):
     challengeState = db.Column(db.Integer)
     laptopPassword = db.Column(db.String(1000))
     hints = db.Column(db.Integer)
+    startTime = db.Column(db.String)
 
 class phone_challenge(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key = True)

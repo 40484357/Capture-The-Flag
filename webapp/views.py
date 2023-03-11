@@ -59,19 +59,23 @@ def laptop():
     passkey = db.session.query(laptop_challenge.laptopPassword).filter_by(user_id = current_user.id).first()
     challengeState = db.session.query(laptop_challenge.challengeState).filter_by(user_id = current_user.id).first()
     #checks challenge state, if it's 2 it will redirect the user to second challenge
-    if challengeState[0] == 2:
-        return redirect('/desktop')
+    if challengeState:
+        if challengeState[0] > 1:
+            return redirect('/desktop')
+    
     if passkey:
         print(passkey)
         selected = passkey[0]
         password = hashlib.md5(passkey[0].encode())
+        
         print(password.hexdigest())
     else:
         passLength = len(passwords) - 1
         selection = random.randint(0, passLength) 
         selected = passwords[selection]
-        password = hashlib.md5(selected.encode()) 
-        new_password = laptop_challenge(user_id = current_user.id, challengeState = 1, laptopPassword = selected, hints = 0)
+        password = hashlib.md5(selected.encode())
+        beginTime = datetime.now()
+        new_password = laptop_challenge(user_id = current_user.id, challengeState = 1, laptopPassword = selected, hints = 0, startTime = beginTime)
         db.session.add(new_password)
         db.session.commit()
         print(password.hexdigest())
@@ -82,9 +86,34 @@ def laptop():
             response = 'wrong password, try again'
             flash(response)
         else:
-            newChallengeState = laptop_challenge.query.get_or_404(current_user.id)
-            print(newChallengeState.challengeState)
-            newChallengeState.challengeState = 2
+            userChallenge = laptop_challenge.query.get_or_404(current_user.id)
+            print(userChallenge.challengeState)
+            userChallenge.challengeState = 2
+            #points allocation 
+            basePoints = 25000
+            userPoints = points.query.get_or_404(current_user.id)
+            #get database values
+            timeLeft = db.session.query(points.timeLeft).filter_by(id = current_user.id).first()
+            hints = db.session.query(laptop_challenge.hints).filter_by(user_id = current_user.id).first()
+            currTime = datetime.now()
+            time = db.session.query(laptop_challenge.startTime).filter_by(user_id = current_user.id).first()
+            userTime = time[0]
+            totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
+            #end get database values start calc
+            t2 = datetime.strptime(userTime, '%Y-%m-%d %H:%M:%S.%f') #convert starttime to int
+            timeTaken = (currTime - t2).seconds #current time - start time = timetaken in seconds
+            print('timeTaken ', timeTaken)
+            timeLPenalty = (24-round(timeLeft[0]/3600))*500 #time left penalty 24 - time left (converted to hrs)
+            print('timeLPenalty ', timeLPenalty) 
+            hintPenalty = basePoints - ((basePoints-timeLPenalty) * (1-(hints[0] * 0.08)))
+            print('hintPenalty ', hintPenalty)
+            timeTPenalty = timeTaken * 0.03
+            print('timeTPenalty ', timeTPenalty)
+            finalPoints = basePoints - (timeLPenalty + hintPenalty + timeTPenalty)
+            print('finalPoints ', finalPoints)
+            newPoints = totalPoints[0] + finalPoints
+            print('newPoints ', newPoints)
+            userPoints.pointsTotal = newPoints #add new points total to DB
             db.session.commit()
             return redirect('/desktop')
             
@@ -162,4 +191,19 @@ def phone():
 
 @views.route('/Points_Logic')
 def pointsLogic():
+    response=None
+    if request.method=='POST':
+        timeLeft=request.form.get('timeLeft',type=int)
+        hintsUsed=request.form.get('hintsUsed',type=int)
+        timeTaken=request.form.get('timeTaken',type=int)
+        basePoints=25000
+        timeLPenalty = (24 - timeLeft)*500
+        hintPenalty = basePoints - ((basePoints-timeLPenalty) * (1-(hintsUsed * 0.08)))
+        timeTPenalty = timeTaken *0.03
+
+        points = basePoints - (timeLPenalty + hintPenalty + timeTPenalty)
+
+        response = points
+
+        flash(response)
     return render_template('Points_Logic.html')
