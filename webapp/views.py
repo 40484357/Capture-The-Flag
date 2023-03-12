@@ -101,8 +101,14 @@ def phone():
 
 @views.route('/phoneHome',methods =['GET','POST'])
 def phoneHome():
-    #
-    #
+    response = None
+    if request.method=='POST':
+        if request.form['password'] != "check_user.php":
+            response = 'Incorrect password'
+            flash(response)
+        else:
+            response = 'Correct. Now use it at: http://52.1.222.178:8000'
+            flash(response)
     return render_template('phoneHome.html')
 
 

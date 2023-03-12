@@ -30,7 +30,7 @@
 					<img class="modal-content" src="../static/forensicimage.png">
 					<div id="caption"></div>
 				  </div>
-				<div id = "aesFileButton" ></div>
+				<div id = "aesFileButton"onclick="openAesApp()" ></div>
 				<div id = "notesButton" onclick="openNotesApp()"></div>
 				<div class = "notesApp" id = "notesApp">
 					<h1>Notes</h1>
@@ -48,15 +48,27 @@
 						<li>tiger</li>
 					</ul>
 				</div>
-				<div id = "backButton"onclick="closeNotesApp()"></div>
-                  
-                    {% with messages = get_flashed_messages() %} {% if messages %}
-					<ul class="phoneFlash">
+				<div class = "aesApp" id = "aesApp">
+					<h1>Encrypted file</h1>
+					<h2>Enter the password to unlock</h2>
+					<div class = "aesLock" id = "aesLock"></div> 
+					<form class = "aesPassword" method = "POST">
+						<input type = "answer" name = "password" id = "password">
+						<input type = "submit" value = "Submit">
+					</form>
+					
+				</div>	
+				{% with messages = get_flashed_messages() %} {% if messages %}
+					<div class="aesFlash">
 						{% for message in messages %}
-						<li class="message">{{message}}</li>
+						<div class="aesMessage" id = "aesMessage">{{message}}</div>
 						{% endfor %}
-					</ul>
+					</div>
 					{% endif %} {% endwith %}
+				<div id = "backButtonNotes"onclick="closeNotesApp()"></div>
+				<div id = "backButtonAes"onclick="closeAesApp()"></div>
+                  
+                    
 
             </div>
 				<p class="phoneDescript">

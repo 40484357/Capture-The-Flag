@@ -629,7 +629,7 @@ grid-area: answer;
     position: absolute;
     display: flex;
  }
- #backButton
+ #backButtonNotes, #backButtonAes
  {
     background: url(./backButton.png);
     background-size:contain;
@@ -739,3 +739,45 @@ grid-area: answer;
 .notesApp li{ 
     margin-bottom: 7px;  
  }
+ .aesApp{
+    display:none;
+ }
+.aesApp h1{
+    position: absolute;
+    left:14%;
+    font-size: 2.5em;
+}
+.aesApp h2{
+    position: absolute;
+    top: 15%;
+    left:5%;
+    font-size: 1.5em;
+}
+.aesApp form{
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    font-size: 1.5em;
+    padding: 10px 0px;
+}
+.aesLock{
+    background: url(./lock.png);
+    background-size: contain;
+    position: relative;
+    display: none;
+    height:100px;
+    width:100px;
+    left:120%;
+    top:30%;
+}
+
+.aesMessage{
+    position: absolute;
+    text-align: center;
+    left:7%;
+    top:5%;
+    color:black;
+    font-size: 30px;
+}
+
+

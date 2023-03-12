@@ -164,8 +164,10 @@ function openNotesApp(){
     document.getElementById('photosButton').style.display='none';
     document.getElementById('phoneHome').style.background='none';
     document.getElementById('phoneHome').style.backgroundColor='#f3f198';
-    document.getElementById('backButton').style.display='flex';
+    document.getElementById('backButtonNotes').style.display='flex';
     document.getElementById('notesApp').style.display='flex';
+    document.getElementById('aesMessage').style.display='none';
+    document.getElementById('aesFlash').style.display='none';
 }
 
 function closeNotesApp(){
@@ -176,9 +178,34 @@ function closeNotesApp(){
     document.getElementById('phoneHome').style.backgroundImage= backgroundImageUrl;
     document.getElementById('phoneHome').style.backgroundSize='cover';
     document.getElementById('phoneHome').style.backgroundColor='none';
-    document.getElementById('backButton').style.display='none';
+    document.getElementById('backButtonNotes').style.display='none';
     document.getElementById('notesApp').style.display='none';
-    
+}
+
+function openAesApp()
+{
+    document.getElementById('notesButton').style.display='none';
+    document.getElementById('aesFileButton').style.display='none';
+    document.getElementById('photosButton').style.display='none';
+    document.getElementById('phoneHome').style.background='none';
+    document.getElementById('phoneHome').style.backgroundColor='grey';
+    document.getElementById('backButtonAes').style.display='flex';
+    document.getElementById('aesApp').style.display='flex';
+    document.getElementById('aesLock').style.display='flex';
+    document.getElementById('aesMessage').style.display='none';
+    document.getElementById('aesFlash').style.display='none';
+}
+function closeAesApp()
+{
+    var backgroundImageUrl = "url('../static/phoneBackground.jpeg')"
+    document.getElementById('notesButton').style.display='block';
+    document.getElementById('aesFileButton').style.display='block';
+    document.getElementById('photosButton').style.display='block';
+    document.getElementById('phoneHome').style.backgroundImage= backgroundImageUrl;
+    document.getElementById('phoneHome').style.backgroundSize='cover';
+    document.getElementById('phoneHome').style.backgroundColor='none';
+    document.getElementById('backButtonAes').style.display='none';
+    document.getElementById('aesApp').style.display='none';
 }
 // Stuff for steganography
 // Get the modal
