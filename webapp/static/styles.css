@@ -71,6 +71,129 @@ body{
     border-style: solid;
     border-color: transparent transparent transparent rgba(204, 101, 57, 0.65);
   }
+
+  .navigation, .Signups{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+   
+  }
+
+  .navigation li, .Signups li{
+    display:inline-block;
+    text-align:center;
+    padding: 10px 10px;
+  }
+  .navigation li a{
+    transition: color 1s;
+  }
+  .navigation li a:hover{
+    color:#ec131a;
+  }
+  button, li, a{
+    text-decoration: none;
+  }
+  a{
+    color:inherit;
+  }
+
+  .Signups li a{
+    display:inline-block;
+    text-align:center;
+    transition: color 1s;
+
+  }
+  .Signups li a:hover{
+    color:#ec131a;
+
+  }
+  .SignupBtn{
+    font-weight:600;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    border:none;
+    padding:7px 15px;
+    cursor:pointer;
+    transition:background-color 1s, color 1s;
+  }
+  .SignupBtn:hover{
+    background-color: #ec131a;
+    color:white;
+  }
+
+  .Signups li:nth-child(1){
+    border-right: 2px solid white;
+  }
+
+  .landingNav{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:3px 5%;
+    background-color: #0B0909;
+    font-weight:600;
+    letter-spacing: 1px;
+    font-size: 18px;
+    color: white;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1;
+  }
+ .SectionOne{
+    display:flex;
+    flex-direction: column;
+    margin-top:100px;
+    height:auto;
+    text-align:center;
+    background-image:url(./police.jpg);
+    background-color:rgba(0,0,0,0.5);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-attachment: fixed;
+ }
+ .gray{
+    height:100%;
+    width:100%;
+    backdrop-filter: grayscale(100%);
+ }
+ .huge{
+    font-size:126px;
+    font-weight:900;
+    color:white;
+    text-align:center;
+ }
+.tagline{
+    font-size:24px;
+    font-weight:700;
+    text-align:center;
+    color:white;
+    line-height: 48px;
+}
+.ctaBtn{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 32px 106px;
+    margin-top: 88px;
+    margin-bottom:126px;
+    font-weight:800;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    border-radius: 15px;
+    border:none;
+    cursor:pointer;
+    transition:background-color 1s, color 1s;
+
+}
+
+.ctaBtn:hover{
+    background-color: #ec131a;
+    color:white;
+}
 .gameLauncher{
     width: 100%;
     min-height: 100%;
@@ -370,7 +493,7 @@ grid-area: answer;
     justify-items: center;
     align-content: center;
     background: url(./desktopbg.jpg);
-    background-size:unset;
+    background-size:cover;
     display: inline-block;
     margin-top: 1em;
     padding: 2em 0;
@@ -399,10 +522,11 @@ grid-area: answer;
     position: absolute;
     background-color: white;
     color: black;
-    width: 50%;
+    width: auto;
+    margin-right:25%;
+    margin-left:15%;
     height: 75%;
     top: 2em;
-    left: 25%;
     border-radius: 5px;
     border: 1px transparent;
 }
