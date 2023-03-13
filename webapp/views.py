@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, Markup
 import hashlib, random, time
 passwords = []
 with open('webapp\static\cyberA-Z.txt') as f:
@@ -107,7 +107,7 @@ def phoneHome():
             response = 'Incorrect password'
             flash(response)
         else:
-            response = 'Correct. Now use it at: http://52.1.222.178:8000'
+            response = Markup("Correct. Now use it <a href ='http://52.1.222.178:8000'>here</a>")
             flash(response)
     return render_template('phoneHome.html')
 
