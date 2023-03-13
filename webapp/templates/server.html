@@ -1,0 +1,13 @@
+{% extends "gamebase.html" %} {% block title %}Laptop{% endblock %}
+{% block instruction %}We have found a vulnerable website that could help us get some more information{% endblock %}
+{% block password %}http://127.0.0.1:5000/wcg{% endblock %}
+{% block button %}
+
+{% endblock %}
+{% block game_ui %}
+<a href ="{{url_for('views.wcg')}}" target="_blank">
+<button class="copyClip"  >
+    visit site
+</button>
+</a>
+{% endblock %}

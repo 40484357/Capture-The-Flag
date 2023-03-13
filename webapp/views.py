@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-import hashlib, random, time, atexit
+import hashlib, random, time, math
 from . import db
 from flask_login import login_user, login_required, current_user
 from .models import users, phone_challenge, laptop_challenge, server_challenge, points, leaderboard
@@ -8,7 +8,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 #from main import update_timeLeft
 
 passwords = []
-with open('webapp\static\cyberA-Z.txt') as f:
+with open('CaptureTheFlag\webapp\static\cyberA-Z.txt') as f:
     words = f.readlines()
     passwords = [x.strip().lower() for x in words]
 
@@ -51,6 +51,20 @@ print("Secret Key: ", secretKey)
 
 views = Blueprint('views', __name__)
 
+def pointsLogic(timeLeft, hintsUsed, userTime, totalPoints):
+    basePoints = 50
+    #timeLPenalty = (24 - round(timeLeft /3600))*500
+    currTime = datetime.now()
+    startTime = datetime.strptime(userTime, '%Y-%m-%d %H:%M:%S.%f')
+    timeTaken = (currTime - startTime).seconds
+    timeTPenalty = timeTaken * 0.005
+    hintPenalty = 0
+    if(hintsUsed > 0):
+        hintPenalty = basePoints - ((basePoints-timeTPenalty) * (1-(hintsUsed * 0.08)))
+    finalPoints = basePoints - (hintPenalty + timeTPenalty)
+    newPoints = math.ceil(totalPoints + finalPoints)
+    return(newPoints)
+
 
 
 @views.route('/laptop', methods=['GET', 'POST'])
@@ -89,30 +103,13 @@ def laptop():
             userChallenge = laptop_challenge.query.get_or_404(current_user.id)
             print(userChallenge.challengeState)
             userChallenge.challengeState = 2
-            #points allocation 
-            basePoints = 25000
             userPoints = points.query.get_or_404(current_user.id)
-            #get database values
             timeLeft = db.session.query(points.timeLeft).filter_by(id = current_user.id).first()
-            hints = db.session.query(laptop_challenge.hints).filter_by(user_id = current_user.id).first()
-            currTime = datetime.now()
+            hintsUsed = db.session.query(laptop_challenge.hints).filter_by(user_id = current_user.id).first()
             time = db.session.query(laptop_challenge.startTime).filter_by(user_id = current_user.id).first()
-            userTime = time[0]
             totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
-            #end get database values start calc
-            t2 = datetime.strptime(userTime, '%Y-%m-%d %H:%M:%S.%f') #convert starttime to int
-            timeTaken = (currTime - t2).seconds #current time - start time = timetaken in seconds
-            print('timeTaken ', timeTaken)
-            timeLPenalty = (24-round(timeLeft[0]/3600))*500 #time left penalty 24 - time left (converted to hrs)
-            print('timeLPenalty ', timeLPenalty) 
-            hintPenalty = basePoints - ((basePoints-timeLPenalty) * (1-(hints[0] * 0.08)))
-            print('hintPenalty ', hintPenalty)
-            timeTPenalty = timeTaken * 0.03
-            print('timeTPenalty ', timeTPenalty)
-            finalPoints = basePoints - (timeLPenalty + hintPenalty + timeTPenalty)
-            print('finalPoints ', finalPoints)
-            newPoints = totalPoints[0] + finalPoints
-            print('newPoints ', newPoints)
+
+            newPoints = pointsLogic(timeLeft[0], hintsUsed[0],time[0], totalPoints[0])
             userPoints.pointsTotal = newPoints #add new points total to DB
             db.session.commit()
             return redirect('/desktop')
@@ -122,6 +119,18 @@ def laptop():
 @views.route('/desktop', methods=['GET', 'POST'])
 def desktop():
     ip = "85.50.46.53"
+    completed = 'false'
+    userChallenge = laptop_challenge.query.get_or_404(current_user.id)
+    challengeStateCheck = db.session.query(laptop_challenge.challengeState).filter_by(user_id = current_user.id).first()
+    if(challengeStateCheck[0] == 1):
+        return redirect('/laptop')
+    elif(challengeStateCheck[0] == 3):
+        return redirect('/')
+    else:
+        userChallenge.hints = 0
+        userChallenge.startTime = datetime.now()
+        db.session.commit()
+
     response = None
     if request.method == 'POST':
         if request.form['answer'] != ip:
@@ -130,9 +139,10 @@ def desktop():
             return render_template('desktop.html', response = response)
             
         else:
-            response = "That's the IP, but where does it go?"
+            response = "That's the IP, but where does it go? " + ip
+            completed = 'true'
             flash(response)
-            return render_template('desktop.html', response = response)
+            return render_template('desktop.html', response = response, completed = completed)
 
     return render_template('desktop.html')
 
@@ -189,21 +199,29 @@ def phone():
             
     return render_template('phone.html',password = secretKey,a=a,b=b, response = response)
 
-@views.route('/Points_Logic')
-def pointsLogic():
-    response=None
-    if request.method=='POST':
-        timeLeft=request.form.get('timeLeft',type=int)
-        hintsUsed=request.form.get('hintsUsed',type=int)
-        timeTaken=request.form.get('timeTaken',type=int)
-        basePoints=25000
-        timeLPenalty = (24 - timeLeft)*500
-        hintPenalty = basePoints - ((basePoints-timeLPenalty) * (1-(hintsUsed * 0.08)))
-        timeTPenalty = timeTaken *0.03
+@views.route('/server')
+def server():
+    return render_template('server.html')
 
-        points = basePoints - (timeLPenalty + hintPenalty + timeTPenalty)
 
-        response = points
+@views.route('/wcg', methods = ['GET', 'POST'])
+def wcg():
+    response = None
+    if request.method == 'POST':
+        if request.form['username'] == 'admin':
+            if request.form['password'] == 'IloveWickedGames2023':
+                return redirect('/login_wcg')
+            else: 
+                response = 'wrong password'
+        else: 
+            response = 'wrong username'
+            flash(response)
+            return render_template('wickedcybergames.html', response = response)
 
-        flash(response)
-    return render_template('Points_Logic.html')
+
+    return render_template('wickedcybergames.html')
+
+@views.route('/login_wcg')
+def login_wcg():
+    flag = 'FLAG = ROBOTS'
+    return render_template('login_wcg.html', flag = flag)

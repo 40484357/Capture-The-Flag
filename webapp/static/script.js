@@ -118,6 +118,7 @@ function startTimer(){
     timerInterval = setInterval(()=>{
         timePassed = timePassed += 1;
         timeLeft = Time_Limit - timePassed;
+        localStorage.setItem('timeLeft', timeLeft)
         document.getElementById('clockBase_timer_label').innerHTML = timerCountdown(timeLeft);
         setCircleDasharray();
         setRemainingPathColour(timeLeft);

@@ -41,9 +41,9 @@ class points(db.Model):
     leaderBoard = db.relationship('leaderboard')
 
 class leaderboard(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key = True)
     points = db.Column(db.Integer, db.ForeignKey('points.pointsTotal'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    
 
 
 

@@ -26,10 +26,12 @@
 				<p class="hashDescript">
 					{% block instruction %} {% endblock %}
 				</p>
-				<div id="hash" class="hash">{{password}}</div>
+				<div id="hash" class="hash">{% block password %}{% endblock %}</div>
+				{% block button %}
 				<button class="copyClip" onclick="copyTextToClipboard(hash)">
 					Copy to Clipboard
 				</button>
+				{% endblock %}
 			</div>
 			{% block game_ui %}
 				
