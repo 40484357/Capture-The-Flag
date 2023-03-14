@@ -8,6 +8,12 @@
 			rel="stylesheet"
 			href="{{ url_for('static', filename='styles.css')}}"
 		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
+			rel="stylesheet"
+		/>
 		<title>Home Page</title>
 	</head>
 
@@ -149,13 +155,7 @@
 					fill="black"
 				/>
 			</svg>
-			<nav>
-				<ul class="navigation">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Games</a></li>
-				</ul>
-			</nav>
+
 			<ul class="Signups">
 				<li><a href="#">Login</a></li>
 				<li>
@@ -165,6 +165,11 @@
 		</header>
 		<div class="SectionOne">
 			<div class="gray">
+				<ul class="navigation">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Games</a></li>
+				</ul>
 				<h1 class="huge">Welcome to Cyberescape.</h1>
 				<p class="tagline">
 					Come and test your cyber security skills with our escape room
@@ -173,6 +178,86 @@
 				</p>
 				<a href="#"><button class="ctaBtn">View Games</button></a>
 			</div>
+		</div>
+		<div class="sectionTwo">
+			<h1 class="big">About</h1>
+			<div class="ourPurpose">
+				<span class="AbtHook">Our purpose</span>
+				<span class="aboutPara">
+					is to supplement and enrich the experience for those learning cyber
+					security skills.
+				</span>
+			</div>
+			<div class="ourTeam">
+				<span class="AbtHook">Our team</span
+				><span class="aboutPara"> consists of highly trained ninjas...</span>
+			</div>
+			<div class="bioBox">
+				<div class="card">
+					<img
+						class="teamPic"
+						src="{{ url_for('static', filename='placeholder.png')}}"
+					/>
+					<div class="bio">
+						<h2>Fionnuala Shakespeare</h2>
+						<p>Lead Ninja Developer</p>
+					</div>
+				</div>
+				<div class="card">
+					<img
+						class="teamPic"
+						src="{{ url_for('static', filename='placeholder.png')}}"
+					/>
+					<div class="bio">
+						<h2>Byron Fry</h2>
+						<p>Web Developer & Designer</p>
+					</div>
+				</div>
+				<div class="card">
+					<img
+						class="teamPic"
+						src="{{ url_for('static', filename='placeholder.png')}}"
+					/>
+					<div class="bio">
+						<h2>Matthew Lenathen</h2>
+						<p>Games Developer</p>
+					</div>
+				</div>
+				<div class="card">
+					<img
+						class="teamPic"
+						src="{{ url_for('static', filename='placeholder.png')}}"
+					/>
+					<div class="bio">
+						<h2>Carrie Mitchelson</h2>
+						<p>Cyber Security</p>
+					</div>
+				</div>
+				<div class="card">
+					<img
+						class="teamPic"
+						src="{{ url_for('static', filename='placeholder.png')}}"
+					/>
+					<div class="bio">
+						<h2>Shalu Madan</h2>
+						<p>Cyber Security</p>
+					</div>
+				</div>
+				<div class="card">
+					<img
+						class="teamPic"
+						src="{{ url_for('static', filename='placeholder.png')}}"
+					/>
+					<div class="bio">
+						<h2>Jessica Magurean</h2>
+						<p>Project Manager</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="sectionThree">
+			<h1 class="bigTwo">Games</h1>
+			<div class="selectionBox"></div>
 		</div>
 
 		<script

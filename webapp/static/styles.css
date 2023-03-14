@@ -75,7 +75,6 @@ body{
   .navigation, .Signups{
     list-style-type: none;
     margin:0;
-    padding:0;
     overflow:hidden;
    
   }
@@ -84,9 +83,23 @@ body{
     display:inline-block;
     text-align:center;
     padding: 10px 10px;
+    text-shadow:5px 5px 5px #0B0909;
+  }
+  .navigation{
+    padding-top:50px;
+    
+  }
+  .navigation li{
+    border-right: 3px solid #FFFFFF;
+    padding-right: 20px;
+    
+  }
+  .navigation li:nth-child(3){
+    border-right:none;
   }
   .navigation li a{
     transition: color 1s;
+    font-family: 'Merriweather';
   }
   .navigation li a:hover{
     color:#ec131a;
@@ -102,6 +115,7 @@ body{
     display:inline-block;
     text-align:center;
     transition: color 1s;
+    font-family: 'Merriweather';
 
   }
   .Signups li a:hover{
@@ -110,12 +124,14 @@ body{
   }
   .SignupBtn{
     font-weight:600;
+    font-size: 18px;
     letter-spacing: 1px;
     border-radius: 5px;
     border:none;
     padding:7px 15px;
     cursor:pointer;
     transition:background-color 1s, color 1s;
+    font-family: 'Merriweather';
   }
   .SignupBtn:hover{
     background-color: #ec131a;
@@ -147,12 +163,16 @@ body{
     margin-top:100px;
     height:auto;
     text-align:center;
-    background-image:url(./police.jpg);
+    background-image:url(./escape.jpg);
     background-color:rgba(0,0,0,0.5);
     background-blend-mode: multiply;
+    color:white;
+    font-size: 20px;
+    font-weight: 700;
     background-size: cover;
     background-attachment: fixed;
  }
+ 
  .gray{
     height:100%;
     width:100%;
@@ -163,6 +183,7 @@ body{
     font-weight:900;
     color:white;
     text-align:center;
+    font-family: 'Merriweather';
  }
 .tagline{
     font-size:24px;
@@ -170,6 +191,7 @@ body{
     text-align:center;
     color:white;
     line-height: 48px;
+    font-family: 'Merriweather';
 }
 .ctaBtn{
     justify-content: center;
@@ -179,7 +201,7 @@ body{
     margin-right:auto;
     padding: 32px 106px;
     margin-top: 88px;
-    margin-bottom:126px;
+    margin-bottom:162px;
     font-weight:800;
     font-size: 24px;
     letter-spacing: 0.5px;
@@ -187,11 +209,103 @@ body{
     border:none;
     cursor:pointer;
     transition:background-color 1s, color 1s;
+    font-family: 'Merriweather';
 
 }
 
 .ctaBtn:hover{
     background-color: #ec131a;
+    color:white;
+}
+.sectionTwo{
+    background-color: #0B0909;
+    height:auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top:-100px;
+}
+.big{
+    font-size: 64px;
+    text-align: center;
+    border-bottom:3px solid #ec131a;
+    font-family: 'Merriweather';
+    color:white;
+}
+.AbtHook{
+    font-size:24px;
+    font-weight: 800;
+    text-align: center;
+    font-family: 'Merriweather';
+    color:white;
+}
+.aboutPara{
+    font-size:24px;
+    text-align: center;
+    font-weight:400;
+    color:white;
+    font-family: 'Merriweather';
+    line-height: 48px;
+}
+.ourPurpose{
+    padding-top:12px;
+}
+.ourTeam{
+    padding-top:48px;
+    padding-bottom:24px;
+}
+.bioBox{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap:10%;
+    color:white;
+    padding:80px 5%;
+    margin-bottom:20px;
+    
+}
+.teamPic{
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+
+}
+.card{
+    width:25%;
+    height:50%;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: color 1s;
+}
+.card:hover .bio{
+    color:#ec131a;
+
+}
+.bio{
+    color:#0B0909;
+    text-align:center;
+    transition:color 1s;
+}
+.sectionThree{
+    background-color: #ec131a;
+    height:auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top:-100px;
+}
+.bigTwo{
+    font-size: 64px;
+    text-align: center;
+    border-bottom:3px solid #0B0909;
+    font-family: 'Merriweather';
     color:white;
 }
 .gameLauncher{
