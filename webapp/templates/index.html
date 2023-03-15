@@ -163,12 +163,12 @@
 				</li>
 			</ul>
 		</header>
-		<div class="SectionOne">
+		<div id="home" class="SectionOne">
 			<div class="gray">
 				<ul class="navigation">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Games</a></li>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#games">Games</a></li>
 				</ul>
 				<h1 class="huge">Welcome to Cyberescape.</h1>
 				<p class="tagline">
@@ -176,10 +176,10 @@
 					challenge.<br />
 					Can you escape?
 				</p>
-				<a href="#"><button class="ctaBtn">View Games</button></a>
+				<a href="#games"><button class="ctaBtn">View Games</button></a>
 			</div>
 		</div>
-		<div class="sectionTwo">
+		<div id="about" class="sectionTwo">
 			<h1 class="big">About</h1>
 			<div class="ourPurpose">
 				<span class="AbtHook">Our purpose</span>
@@ -190,7 +190,9 @@
 			</div>
 			<div class="ourTeam">
 				<span class="AbtHook">Our team</span
-				><span class="aboutPara"> consists of highly trained ninjas...</span>
+				><span class="aboutPara">
+					consists of highly trained spymasters...</span
+				>
 			</div>
 			<div class="bioBox">
 				<div class="card">
@@ -199,8 +201,8 @@
 						src="{{ url_for('static', filename='placeholder.png')}}"
 					/>
 					<div class="bio">
-						<h2>Fionnuala Shakespeare</h2>
-						<p>Lead Ninja Developer</p>
+						<h2>Kerr Mason</h2>
+						<p>Web Developer & Designer</p>
 					</div>
 				</div>
 				<div class="card">
@@ -255,9 +257,54 @@
 				</div>
 			</div>
 		</div>
-		<div class="sectionThree">
+		<div id="games" class="sectionThree">
 			<h1 class="bigTwo">Games</h1>
-			<div class="selectionBox"></div>
+
+			<div class="selectionBox">
+				<div class="gameCard Laundromats">
+					<div class="cardOverlay">
+						<div class="challengeInfo">
+							<h3>Laundromats Inc.</h3>
+							<span>Difficulty:</span>
+							<span> Medium</span><br />
+							<span>Challenges:</span>
+							<span> 10</span><br />
+							<span>Time:</span>
+							<span> 24 Hours</span>
+						</div>
+						<a href="{{url_for('views.landing')}}"
+							><button class="playBtn">Play</button></a
+						>
+					</div>
+				</div>
+				<div class="gameCard comingSoon">
+					<div class="cardOverlay">
+						<div class="challengeInfo">
+							<h3>Challenge Coming Soon!</h3>
+							<span>Difficulty:</span>
+							<span> Unkown</span><br />
+							<span>Challenges:</span>
+							<span> Unknown</span><br />
+							<span>Time:</span>
+							<span> Unknown</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="gameCard comingSoon">
+					<div class="cardOverlay">
+						<div class="challengeInfo">
+							<h3>Challenge Coming Soon!</h3>
+							<span>Difficulty:</span>
+							<span> Unknown</span><br />
+							<span>Challenges:</span>
+							<span> Unknown</span><br />
+							<span>Time:</span>
+							<span> Unknown</span>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<script
