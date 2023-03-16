@@ -162,6 +162,7 @@ function openNotesApp(){
     document.getElementById('notesButton').style.display='none';
     document.getElementById('aesFileButton').style.display='none';
     document.getElementById('photosButton').style.display='none';
+    document.getElementById('decodeButton').style.display='none';
     document.getElementById('phoneHome').style.background='none';
     document.getElementById('phoneHome').style.backgroundColor='#f3f198';
     document.getElementById('backButtonNotes').style.display='flex';
@@ -175,6 +176,7 @@ function closeNotesApp(){
     document.getElementById('notesButton').style.display='block';
     document.getElementById('aesFileButton').style.display='block';
     document.getElementById('photosButton').style.display='block';
+    document.getElementById('decodeButton').style.display='block';
     document.getElementById('phoneHome').style.backgroundImage= backgroundImageUrl;
     document.getElementById('phoneHome').style.backgroundSize='cover';
     document.getElementById('phoneHome').style.backgroundColor='none';
@@ -187,13 +189,15 @@ function openAesApp()
     document.getElementById('notesButton').style.display='none';
     document.getElementById('aesFileButton').style.display='none';
     document.getElementById('photosButton').style.display='none';
+    document.getElementById('decodeButton').style.display='none';
     document.getElementById('phoneHome').style.background='none';
     document.getElementById('phoneHome').style.backgroundColor='grey';
     document.getElementById('backButtonAes').style.display='flex';
     document.getElementById('aesApp').style.display='flex';
-    document.getElementById('aesLock').style.display='flex';
+    document.getElementById('aesLock').style.display='block';
     document.getElementById('aesMessage').style.display='none';
     document.getElementById('aesFlash').style.display='none';
+   
 }
 function closeAesApp()
 {
@@ -201,11 +205,14 @@ function closeAesApp()
     document.getElementById('notesButton').style.display='block';
     document.getElementById('aesFileButton').style.display='block';
     document.getElementById('photosButton').style.display='block';
+    document.getElementById('decodeButton').style.display='block';
     document.getElementById('phoneHome').style.backgroundImage= backgroundImageUrl;
     document.getElementById('phoneHome').style.backgroundSize='cover';
     document.getElementById('phoneHome').style.backgroundColor='none';
     document.getElementById('backButtonAes').style.display='none';
     document.getElementById('aesApp').style.display='none';
+    document.getElementById('aesLock').style.display='none';
+    
 }
 // Stuff for steganography
 // Get the modal
@@ -227,6 +234,7 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() {
   modal.style.display = "none";
 }
+
 
 //script for base64 
 
