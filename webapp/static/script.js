@@ -28,8 +28,6 @@ function goToPhone(){
 } //goes to phone
 
 
-
-
 function copyTextToClipboard(hash){
 	navigator.clipboard.writeText(hash.textContent);
   alert('Copied text to clipboard!');
@@ -156,7 +154,77 @@ function setCircleDasharray() {
       .getElementById("base-timer-path-remaining")
       .setAttribute("stroke-dasharray", circleDasharray);
 }
+function openNotesApp(){
+    document.getElementById('notesButton').style.display='none';
+    document.getElementById('aesFileButton').style.display='none';
+    document.getElementById('photosButton').style.display='none';
+    document.getElementById('phoneHome').style.background='none';
+    document.getElementById('phoneHome').style.backgroundColor='#f3f198';
+    document.getElementById('backButtonNotes').style.display='flex';
+    document.getElementById('notesApp').style.display='flex';
+    document.getElementById('aesMessage').style.display='none';
+    document.getElementById('aesFlash').style.display='none';
+}
 
+function closeNotesApp(){
+    var backgroundImageUrl = "url('../static/phoneBackground.jpeg')"
+    document.getElementById('notesButton').style.display='block';
+    document.getElementById('aesFileButton').style.display='block';
+    document.getElementById('photosButton').style.display='block';
+    document.getElementById('phoneHome').style.backgroundImage= backgroundImageUrl;
+    document.getElementById('phoneHome').style.backgroundSize='cover';
+    document.getElementById('phoneHome').style.backgroundColor='none';
+    document.getElementById('backButtonNotes').style.display='none';
+    document.getElementById('notesApp').style.display='none';
+}
+
+function openAesApp()
+{
+    document.getElementById('notesButton').style.display='none';
+    document.getElementById('aesFileButton').style.display='none';
+    document.getElementById('photosButton').style.display='none';
+    document.getElementById('phoneHome').style.background='none';
+    document.getElementById('phoneHome').style.backgroundColor='grey';
+    document.getElementById('backButtonAes').style.display='flex';
+    document.getElementById('aesApp').style.display='flex';
+    document.getElementById('aesLock').style.display='flex';
+    document.getElementById('aesMessage').style.display='none';
+    document.getElementById('aesFlash').style.display='none';
+}
+function closeAesApp()
+{
+    var backgroundImageUrl = "url('../static/phoneBackground.jpeg')"
+    document.getElementById('notesButton').style.display='block';
+    document.getElementById('aesFileButton').style.display='block';
+    document.getElementById('photosButton').style.display='block';
+    document.getElementById('phoneHome').style.backgroundImage= backgroundImageUrl;
+    document.getElementById('phoneHome').style.backgroundSize='cover';
+    document.getElementById('phoneHome').style.backgroundColor='none';
+    document.getElementById('backButtonAes').style.display='none';
+    document.getElementById('aesApp').style.display='none';
+}
+// Stuff for steganography
+// Get the modal
+var modal = document.getElementById("steganoModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("photosButton");
+var modalImg = document.getElementById("forensicimage.png");
+var captionText = document.getElementById("caption");
+if(img){
+img.onclick = function(){
+  modal.style.display = "block";
+  captionText.innerHTML = "Looks like a normal image... or is it?";
+}}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+if(span){
+span.onclick = function() {
+  modal.style.display = "none";
+}}
 
 //script for base64 
 
@@ -263,3 +331,4 @@ function backspace(){
     var passcode = document.getElementById('phoneAnswer')
     passcode.value = passcode.value.slice(0, -1)
 }
+
