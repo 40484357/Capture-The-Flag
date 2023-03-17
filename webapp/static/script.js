@@ -314,7 +314,7 @@ function fade(element){
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity='+ op * 100 + ')';
         op -= op * 0.1;
-    }, 75);
+    }, 110);
 }
 
 fade(toast)

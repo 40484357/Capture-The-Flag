@@ -483,6 +483,7 @@ grid-area: answer;
 
 .toast_msg{
     width: 25%;
+    padding: 1em 0;
     background-color: #1f7a3f;
     color: white;
     border-radius: 5px;
@@ -494,7 +495,6 @@ grid-area: answer;
     left: 0;
     right: 0;
     text-align: center;
-    padding: 0.25em;
     position: absolute;
 }
 
