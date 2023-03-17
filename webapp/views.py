@@ -102,15 +102,26 @@ def phone():
 @views.route('/phoneHome',methods =['GET','POST'])
 def phoneHome():
     response = None
-    if request.method=='POST':
-        if request.form['password'] != "check_user.php":
-            response = 'Incorrect password'
-            flash(response)
-        else:
-            response = Markup("Correct. Now use it <a href ='http://52.1.222.178:8000'>here</a>")
-            flash(response)
-    return render_template('phoneHome.html')
+    # Doing this because of two forms on one view, checks which one was used
+    if request.method =='POST':
+        if "validater" in request.form:
+            if request.form['validatePhoto'] != "U2FsdGVkX18099HHwV0FYWBJXXfd4JDKkrhsHwGeD64=":
+                response = 'Incorrect Ciphertext'
+                flash(response)
+            else:
+                # assign chall 2 points, steganography
+                response = 'Correct Ciphertext.' 
+                flash(response)
+        elif "aes" in request.form:
+            if request.form['password'] != "check_user.php":
+                response = 'Incorrect password'
+                flash(response)
+            else:
+                # assign chall 3 points, aes
+                response = Markup("Correct password.<br>Access Splunk <a href ='http://52.1.222.178:8000' target='_blank'>here</a><br>Username: ctf<br>Password: EscapeEscap3")
+                flash(response)
 
+    return render_template('phoneHome.html')     
 
 @views.route('/Points_Logic', methods=['GET', 'POST'])
 def points():

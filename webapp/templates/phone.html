@@ -21,17 +21,22 @@
 				<div class="navButton">Back</div>
 				<div class="roomTitle">Evidence Room</div>
 				<div id="clock"></div>
+				
 			</div>
-
-			<div class="gameBoxPhone">
-                <div class = "phoneBox">
-                    <p class ="enterPasscode">Enter Passcode</p>
-                    <form class = "passcode" action="" method="POST">
-                        <input type="text" name="answer" id="phoneAnswer" placeholder="" onkeydown="return false">
-                        <input type="submit" id="submitAnswer" value = "&#x21A9;">
-                    </form>
-                    
-
+			
+			<div class="phoneLockscreen">
+                
+				<form class = "passcode" action="" method="POST" id = "passcodeForm">
+					<input type="text" name="answer" id="phoneAnswer" placeholder="" onkeydown="return false">
+					<input type="submit" id="submitAnswer" value = "&#x21A9;">
+				</form>
+				{% with messages = get_flashed_messages() %} {% if messages %}
+				<ul class="phoneFlash">
+					{% for message in messages %}
+					<li class="message">{{message}}</li>
+					{% endfor %}
+				</ul>
+				{% endif %} {% endwith %}
                     <ul class="keypad">
                         <button class="dial" onclick="dial(1)">1</li>
                         <button class="dial" onclick="dial(2)">2</li>
@@ -45,19 +50,9 @@
                         <button class="dial middle"onclick="dial(0)">0</li>
 						<button class = "dial" onclick = "backspace()">⌫</li>
                     </ul>
-                    {% with messages = get_flashed_messages() %} {% if messages %}
-					<ul class="phoneFlash">
-						{% for message in messages %}
-						<li class="message">{{message}}</li>
-						{% endfor %}
-					</ul>
-					{% endif %} {% endwith %}
+                   
 
-
-
-
-
-                </div>
+            </div>
 				<p class="phoneDescript">
 					This phone is protected by a passcode.<br>
                     We have discovered some information that may help you.<br>
