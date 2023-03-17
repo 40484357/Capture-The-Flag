@@ -109,13 +109,15 @@ def phoneHome():
                 response = 'Incorrect Ciphertext'
                 flash(response)
             else:
-                response = 'Correct Ciphertext.' # assign points here?
+                # assign chall 2 points, steganography
+                response = 'Correct Ciphertext.' 
                 flash(response)
         elif "aes" in request.form:
             if request.form['password'] != "check_user.php":
                 response = 'Incorrect password'
                 flash(response)
             else:
+                # assign chall 3 points, aes
                 response = Markup("Correct password.<br>Access Splunk <a href ='http://52.1.222.178:8000' target='_blank'>here</a><br>Username: ctf<br>Password: EscapeEscap3")
                 flash(response)
 

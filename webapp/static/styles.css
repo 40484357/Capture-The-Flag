@@ -550,7 +550,16 @@ body {
     vertical-align: center;
 }
 
+.keypad{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: -30px;
+    margin: -30px;
+}
 .dial {
+    left:-65px;
+    top:190px;
     font-family: Helvetica;
     text-align: center;
     vertical-align: middle;
@@ -561,21 +570,30 @@ body {
     display: inline-block;
     width: 75px;
     height: 75px;
-    margin: 5px;
+    margin: 10px;
     border-radius: 100%;
     background: white;
     position: relative;
 }
 
-.submitAnswer {
-    grid-column: 1;
-    grid-row: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
+
+.passcode input[type = "text"]{
+    width:80px;
+    font-size: 22px;
+    left:130px;
+    height:30px;
+    top:50px;
+   position: relative;
+   z-index: 1;
+}
+
+.passcode input[type = "submit"] {
+    position: relative;
+    left:230px;
+    top:20px;
+    height:30px;
+    width:30px;
+    z-index: 1;
 }
 
 .phoneDescript {
@@ -598,14 +616,13 @@ body {
 }
 
 .phoneFlash {
-    grid-column: 1;
-    grid-row: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    top:90px;
+    left:50px;
+    border-radius: 5px;
+   
 }
 
 .phoneHome {
@@ -622,7 +639,22 @@ body {
     border-top-width: 60px;
     border-bottom-width: 60px;
     border-radius: 36px;
-
+}
+.phoneLockscreen
+{
+    position: relative;
+    background-color : cadetblue;
+    background-size: cover;
+    height: 700px;
+    width: 400px;
+    margin-top: 5em;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    border: 16px black solid;
+    border-top-width: 60px;
+    border-bottom-width: 60px;
+    border-radius: 36px;
 }
 
 #photosButton {
