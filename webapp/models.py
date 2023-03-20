@@ -27,6 +27,7 @@ class phone_challenge(db.Model):
     challengeState = db.Column(db.Integer)
     phonePrime1 = db.Column(db.Integer)
     phonePrime2 = db.Column(db.Integer)
+    startTime = db.Column(db.String)
     hints = db.Column(db.Integer)
 
 class server_challenge(db.Model):

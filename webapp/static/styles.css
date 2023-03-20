@@ -1,67 +1,77 @@
-*, *::after, *::before{
+*,
+*::after,
+*::before {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-   /* color: #462D56;*/
-}   
+    /* color: #462D56;*/
+}
 
-body{
+body {
     height: 100vh;
     width: 100vw;
     margin: 0;
 
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
-.material-icons-outlined.md-30 { 
-    font-size: 30px; 
+
+.material-icons-outlined.md-30 {
+    font-size: 30px;
 }
-.buttonContainer{
-    margin-top:3em;
-    float:right;
+
+.buttonContainer {
+    margin-top: 3em;
+    float: right;
     margin-right: 4em;
 }
-.buttonHelp{
-    padding:10px;
+
+.buttonHelp {
+    padding: 10px;
     transition-duration: 0.3s;
     background-color: #F1F2F4;
-    position:absolute;
-    border:none;
+    position: absolute;
+    border: none;
     border-radius: 5px;
-    color:black;
+    color: black;
 }
-.buttonHelp:hover{
-    cursor:pointer;
+
+.buttonHelp:hover {
+    cursor: pointer;
     background: rgba(204, 101, 57, 0.65);
-    border-radius:5px;
-    color:#FFFFFF;
-    border:none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    border: none;
 }
-.tooltip{
-    position:relative;
-    display:inline-block;
+
+.tooltip {
+    position: relative;
+    display: inline-block;
 }
-.tooltip .tooltiptext{
+
+.tooltip .tooltiptext {
     visibility: hidden;
-  width: 8em;
-  background-color: rgba(204, 101, 57, 0.65);
-  color: white;
-  text-align: center;
-  letter-spacing: 0.5px;
-  border-radius: 6px;
-  padding: 0.5em 1em;
-  position: absolute;
-  z-index: 1;
-  top: 10px;
-  margin-right:10px;
-  right: 110%;
-  opacity:0;
-  transition:opacity 1s;
+    width: 8em;
+    background-color: rgba(204, 101, 57, 0.65);
+    color: white;
+    text-align: center;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    padding: 0.5em 1em;
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    margin-right: 10px;
+    right: 110%;
+    opacity: 0;
+    transition: opacity 1s;
 
 }
+
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
-  }
-  .tooltip .tooltiptext::after {
+}
+
+.tooltip .tooltiptext::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -71,31 +81,341 @@ body{
     border-style: solid;
     border-color: transparent transparent transparent rgba(204, 101, 57, 0.65);
   }
+
+  .navigation, .Signups{
+    list-style-type: none;
+    margin:0;
+    overflow:hidden;
+   
+  }
+
+  .navigation li, .Signups li{
+    display:inline-block;
+    text-align:center;
+    padding: 10px 10px;
+    text-shadow:5px 5px 5px #0B0909;
+  }
+  .navigation{
+    padding-top:50px;
+    
+  }
+  .navigation li{
+    border-right: 3px solid #FFFFFF;
+    padding-right: 20px;
+    
+  }
+  .navigation li:nth-child(3){
+    border-right:none;
+  }
+  .navigation li a{
+    transition: color 1s;
+    font-family: 'Merriweather';
+  }
+  .navigation li a:hover{
+    color:#ec131a;
+  }
+  button, li, a{
+    text-decoration: none;
+  }
+  a{
+    color:inherit;
+  }
+
+  .Signups li a{
+    display:inline-block;
+    text-align:center;
+    transition: color 1s;
+    font-family: 'Merriweather';
+
+  }
+  .Signups li a:hover{
+    color:#ec131a;
+
+  }
+  .SignupBtn{
+    font-weight:600;
+    font-size: 18px;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    border:none;
+    padding:7px 15px;
+    cursor:pointer;
+    transition:background-color 1s, color 1s;
+    font-family: 'Merriweather';
+  }
+  .SignupBtn:hover{
+    background-color: #ec131a;
+    color:white;
+  }
+
+  .Signups li:nth-child(1){
+    border-right: 2px solid white;
+  }
+
+  .landingNav{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:3px 5%;
+    background-color: #0B0909;
+    font-weight:600;
+    letter-spacing: 1px;
+    font-size: 18px;
+    color: white;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:3;
+  }
+ .SectionOne{
+    display:flex;
+    flex-direction: column;
+    margin-top:100px;
+    height:auto;
+    text-align:center;
+    background-image:url(./escape.jpg);
+    background-color:rgba(0,0,0,0.5);
+    background-blend-mode: multiply;
+    color:white;
+    font-size: 20px;
+    font-weight: 700;
+    background-size: cover;
+    background-attachment: fixed;
+ }
+ 
+ .gray{
+    height:100%;
+    width:100%;
+    backdrop-filter: grayscale(100%);
+ }
+ .huge{
+    font-size:126px;
+    font-weight:900;
+    color:white;
+    text-align:center;
+    font-family: 'Merriweather';
+ }
+.tagline{
+    font-size:24px;
+    font-weight:700;
+    text-align:center;
+    color:white;
+    line-height: 48px;
+    font-family: 'Merriweather';
+}
+.ctaBtn{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 32px 106px;
+    margin-top: 88px;
+    margin-bottom:162px;
+    font-weight:800;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    border-radius: 15px;
+    border:none;
+    cursor:pointer;
+    transition:background-color 1s, color 1s;
+    font-family: 'Merriweather';
+
+}
+
+.ctaBtn:hover{
+    background-color: #ec131a;
+    color:white;
+}
+.sectionTwo{
+    background-color: #0B0909;
+    height:auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top:-100px;
+}
+.big{
+    font-size: 64px;
+    text-align: center;
+    border-bottom:3px solid #ec131a;
+    font-family: 'Merriweather';
+    color:white;
+}
+.AbtHook{
+    font-size:24px;
+    font-weight: 800;
+    text-align: center;
+    font-family: 'Merriweather';
+    color:white;
+}
+.aboutPara{
+    font-size:24px;
+    text-align: center;
+    font-weight:400;
+    color:white;
+    font-family: 'Merriweather';
+    line-height: 48px;
+}
+.ourPurpose{
+    padding-top:12px;
+}
+.ourTeam{
+    padding-top:48px;
+    padding-bottom:24px;
+}
+.bioBox{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap:10%;
+    color:white;
+    padding:80px 5%;
+    margin-bottom:20px;
+    
+}
+.teamPic{
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+
+}
+.card{
+    width:25%;
+    height:50%;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: color 1s;
+}
+.card:hover .bio{
+    color:#ec131a;
+
+}
+.bio{
+    color:#0B0909;
+    text-align:center;
+    transition:color 1s;
+}
+.sectionThree{
+    background-color: #ec131a;
+    height:auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top:-100px;
+}
+.bigTwo{
+    font-size: 64px;
+    text-align: center;
+    border-bottom:3px solid #0B0909;
+    font-family: 'Merriweather';
+    color:white;
+}
+.selectionBox{
+    height:auto;
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction:row;
+    margin:5%;
+    gap:5%;
+}
+.gameCard{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width:350px;
+    box-shadow: 7px 5px 10px black;
+    cursor: pointer;
+}
+
+ .Laundromats{
+    background-image: url(./investigation.jpg);
+    background-size: cover;
+    background-position: center;
+}
+ .comingSoon{
+    background-image: url(./Wip.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.cardOverlay{
+    position: relative;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   gap:15%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  opacity:0;
+  transition: 1s;
+  background-color: #0B0909;
+}
+.challengeInfo{
+ color:white;
+  font-size: 24px;
+  text-align: center;
+}
+.gameCard:hover .cardOverlay{
+  opacity:1;
+}
+.playBtn{
+    font-weight:600;
+    font-size: 18px;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    border:none;
+    padding:7px 15px;
+    cursor:pointer;
+    z-index:2;
+    transition:background-color 1s, color 1s;
+    font-family: 'Merriweather';
+}
+.playBtn:hover{
+    background-color: #ec131a;
+    color:white;
+}
 .gameLauncher{
     width: 100%;
     min-height: 100%;
     margin: auto;
-    position:absolute;
-    background: url(./investigation.jpg);  
-    background-size:cover;
+    position: absolute;
+    background: url(./investigation.jpg);
+    background-size: cover;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     background-blend-mode: multiply;
 
-    
+
 
     padding: 2em;
 }
 
-.title{
+.title {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.mainTitle{
+.mainTitle {
     margin: auto;
     font-family: 'NATS';
     font-style: normal;
@@ -107,7 +427,7 @@ body{
     -webkit-text-stroke: 3px #CC6539;
 }
 
-.subTitle{
+.subTitle {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -118,21 +438,23 @@ body{
     letter-spacing: 0.31em;
 
     color: #CC6539;
-    
+
 }
 
-.gameBody{
+.gameBody {
     display: flex;
     flex-direction: column;
 }
 
-#laptop:hover{
-    cursor:pointer;
+#laptop:hover {
+    cursor: pointer;
 }
-.descriptText{
+
+.descriptText {
     width: 50;
     margin: auto;
-    background: rgba(204, 101, 57, 0.38);;
+    background: rgba(204, 101, 57, 0.38);
+    ;
     border-radius: 14px;
     padding: 1em;
     font-family: 'Inter';
@@ -144,7 +466,7 @@ body{
     color: #FFFFFF;
 }
 
-#continue{
+#continue {
     margin-top: 1em;
     background: rgba(204, 101, 57, 0.65);
     border-radius: 11px;
@@ -160,30 +482,31 @@ body{
     /* or 50px */
     color: #FFFFFF;
 }
-#continue:hover{
-    cursor:pointer;
+
+#continue:hover {
+    cursor: pointer;
 }
 
-.gameHeader{
+.gameHeader {
     display: flex;
     justify-content: space-between;
 }
 
-.gameHeader > *{
+.gameHeader>* {
     font-size: 1.5em;
     font-weight: bold;
     color: white;
 }
 
-.navButton{
+.navButton {
     cursor: pointer;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
-.gameBox{
+.gameBox {
 
     background-color: #F1F2F4;
     margin-top: 3em;
@@ -194,120 +517,134 @@ body{
     justify-content: space-between;
     width: auto;
     height: auto;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 }
-.hash{
-    display:flex;
-    padding:2em;
+
+.hash {
+    display: flex;
+    padding: 2em;
     align-items: center;
     justify-content: center;
     width: 100%;
     text-align: center;
-   word-break: break-all;
-    
+    word-break: break-all;
+
 }
-.copyClip{
+
+.copyClip {
     width: 100%;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    padding:2em;
+    padding: 2em;
 }
-.copyClip:hover{
-    cursor:pointer;
+
+.copyClip:hover {
+    cursor: pointer;
 }
-.hashDescript{
-    display:flex;
-    width:100%;
+
+.hashDescript {
+    display: flex;
+    width: 100%;
     align-items: center;
     text-align: center;
-    padding:2em;
+    padding: 2em;
 }
-.loginBox{
-    
+
+.loginBox {
+
     background-image: url(./Windows.jpg);
-    background-size:cover;
-    display:flex;
+    background-size: cover;
+    display: flex;
     margin-top: 10em;
     margin-left: 20%;
     margin-right: 20%;
-    height:600px;
+    height: 600px;
     width: auto;
     justify-content: center;
     align-items: center;
-    
-    
-}
-.blur{
-   
-    
-    background-color: rgba(0,0,0,0.2);
-    height:100%;
-    width:100%;
-    display: grid;
-    gap:6%;
-    grid-template-areas:
-    '. . .'
-    '. . .'
-    '. pic .'
-    '. screen .'
-    '. screen .'
-    '. screen .'
-    '. flash .';
-    justify-items: center;
-    align-content: center;
-    backdrop-filter:blur(4px);
-    
-    
-    
+
+
 }
 
-.adminPic{
-    height:100px;
-    width:100px;
+.blur {
+
+
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 100%;
+    width: 100%;
+    display: grid;
+    gap: 6%;
+    grid-template-areas:
+        '. . .'
+        '. . .'
+        '. pic .'
+        '. screen .'
+        '. screen .'
+        '. screen .'
+        '. flash .';
+    justify-items: center;
+    align-content: center;
+    backdrop-filter: blur(4px);
+
+
+
+}
+
+.adminPic {
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
     grid-area: pic;
 
 }
-.adminLabel{
+
+.adminLabel {
     grid-area: Label;
-    color:white;
+    color: white;
     font-size: 20px;
     letter-spacing: 1.5px;
 }
-.passwordBox{
+
+.passwordBox {
     grid-area: Password;
 }
-.answer{
-grid-area: answer;
+
+.answer {
+    grid-area: answer;
 }
-.answer:hover{
-    cursor:pointer;
+
+.answer:hover {
+    cursor: pointer;
 }
-.flashes{
+
+.flashes {
     grid-area: flash;
     color: #FFFFFF;
 }
-.flahses, .message{
-    color:white;
+
+.flahses,
+.message {
+    color: white;
     font-size: 16px;
 }
 
-.response{
+.response {
     color: black;
     margin: 1em;
     font-size: 16px;
 }
-.laptopScreen{
-    grid-area:screen;
-    gap:10%;
+
+.laptopScreen {
+    grid-area: screen;
+    gap: 10%;
     display: grid;
-    grid-template-areas: 
-    '.'
-    'Label'
-    'Password'
-    'answer'
-    '.';
+    grid-template-areas:
+        '.'
+        'Label'
+        'Password'
+        'answer'
+        '.';
     justify-items: center;
     align-content: center;
 }
@@ -320,17 +657,17 @@ grid-area: answer;
     position: relative;
 }
 
-.clockBase_circle{
-    fill:none;
+.clockBase_circle {
+    fill: none;
     stroke: none;
 }
 
-.clockBase_path-elapsed{
+.clockBase_path-elapsed {
     stroke-width: 5px;
     stroke: grey;
 }
 
-.clockBase_label{
+.clockBase_label {
     position: absolute;
     width: 100px;
     height: 100px;
@@ -350,34 +687,37 @@ grid-area: answer;
     transition: 1s linear all;
     fill-rule: nonzero;
     stroke: currentColor;
-  }
-  
-  .base-timer__path-remaining.green {
+}
+
+.base-timer__path-remaining.green {
     color: rgb(65, 184, 131);
-  }
-  
-  .base-timer__path-remaining.orange {
+}
+
+.base-timer__path-remaining.orange {
     color: orange;
-  }
-  
-  .base-timer__path-remaining.red {
+}
+
+.base-timer__path-remaining.red {
     color: red;
-  }
-  
-.desktopBox{
+}
+
+.desktopBox {
     width: 100%;
     height: 600px;
     justify-items: center;
     align-content: center;
+    background: url(./desktopbg.jpg);
+    background-size:cover;
     background: url(./desktopbg.svg);
     background-size:cover;
     display: inline-block;
     margin-top: 1em;
     padding: 2em 0;
     position: relative;
-    
+
 }
-.file{
+
+.file {
     display: flex;
     flex-direction: column;
     margin-top: 2em;
@@ -389,59 +729,60 @@ grid-area: answer;
 
 
 
-.filename{
-    margin-top:-0.05em;
+.filename {
+    margin-top: -0.05em;
     color: white;
     font-size: 24px;
 }
 
-.base64file{
+.base64file {
     position: absolute;
     background-color: white;
     color: black;
-    width: 50%;
+    width: auto;
+    margin-right:25%;
+    margin-left:15%;
     height: 75%;
     top: 2em;
-    left: 25%;
     border-radius: 5px;
     border: 1px transparent;
 }
 
-.base64text{
+.base64text {
     padding: 1em;
-    
+
 }
 
-.txt_file_bar{
+.txt_file_bar {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-.txt_file_handle{
+.txt_file_handle {
     display: flex;
     flex-direction: row;
     width: 10%;
     cursor: pointer;
 }
 
-.txt_file_title{
+.txt_file_title {
     margin-left: 1em;
     font-weight: bold;
 }
 
-.txt_file_handler{
+.txt_file_handler {
     margin: 0 0.5em;
 }
 
-.copy_clip_board{
+.copy_clip_board {
     margin-left: 1em;
 }
 
-.desktop-bottom-nav-bar{
+.desktop-bottom-nav-bar {
     width: 100%;
-    background-color:rgba(33, 75, 152, 0.259);
+    background-color: rgba(33, 75, 152, 0.259);
     height: 10%;
     position: absolute;
     bottom: 0;
@@ -452,7 +793,7 @@ grid-area: answer;
 
 }
 
-.windows{
+.windows {
     background-color: rgba(58, 61, 86, 0.368);
     align-items: center;
     justify-content: center;
@@ -462,7 +803,8 @@ grid-area: answer;
     font-weight: bold;
     height: 100%;
 }
-.application-tab{
+
+.application-tab {
     padding: 5px;
     margin-left: 2em;
     cursor: pointer;
@@ -471,17 +813,17 @@ grid-area: answer;
     height: 50px;
 }
 
-.application-tab:hover{
-    background-color:rgba(90, 108, 141, 0.756);
-    
+.application-tab:hover {
+    background-color: rgba(90, 108, 141, 0.756);
+
 }
 
-#IP_form_container{
+#IP_form_container {
     margin: 1em;
 
 }
 
-.toast_msg{
+.toast_msg {
     width: 25%;
     padding: 1em 0;
     background-color: #1f7a3f;
@@ -498,16 +840,25 @@ grid-area: answer;
     position: absolute;
 }
 
- .gameBoxPhone{
+.gameBoxPhone {
     background-color: #F1F2F4;
     margin-top: 5em;
-    margin:auto;
+    margin: auto;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 25%;
     height: 200%;
+    flex-wrap: wrap;
+}
+
+.phoneBox {
+    background-color: rgba(42, 55, 113, 0.795);
+    backdrop-filter: blur(3px);
+    width: 50%;
+    display: grid;
+    height: 100%;
     flex-wrap:wrap;
  }
  .phoneBox{
@@ -520,6 +871,15 @@ grid-area: answer;
     justify-items: center;
     align-items: center;
     vertical-align: center;
+}
+
+.keypad{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: -30px;
+    margin: -30px;
+}
  }
 
 .enterPasscode{
@@ -560,12 +920,15 @@ grid-area: answer;
     grid-template-columns: repeat(3,1fr);
 }
 .dial {
+    left:-65px;
+    top:190px;
     font-family: Helvetica;
     font-size: 40px;
     color: white;
     list-style: none;
     width: 75px;
     height: 75px;
+    margin: 10px;
     box-sizing: border-box;
     position: relative;
     margin: 5px;
@@ -573,24 +936,35 @@ grid-area: answer;
     background: rgba(84, 84, 85, 0.374);
 
 }
- .submitAnswer{
-    grid-column: 1;
-    grid-row: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
- }
- .phoneDescript{
+
+
+.passcode input[type = "text"]{
+    width:80px;
+    font-size: 22px;
+    left:130px;
+    height:30px;
+    top:50px;
+   position: relative;
+   z-index: 1;
+}
+
+.passcode input[type = "submit"] {
+    position: relative;
+    left:230px;
+    top:20px;
+    height:30px;
+    width:30px;
+    z-index: 1;
+}
+
+.phoneDescript {
     /* nice bright text */
     color: white;
     font-size: 24px;
     font-weight: bold;
     text-align: center;
     margin: 0.5em;
-    
+
     grid-column: 1;
     grid-row: 1;
     display: flex;
@@ -600,113 +974,151 @@ grid-area: answer;
     height: 100%;
     flex-direction: column;
 
- }
- .phoneFlash{
-    grid-column: 1;
-    grid-row: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
- }
- .phoneHome
- {
+}
+
+.phoneFlash {
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    top:90px;
+    left:50px;
+    border-radius: 5px;
+   
+}
+
+.phoneHome {
     position: relative;
     background: url(./phoneBackground.jpeg);
     background-size: cover;
-    height:700px;
+    height: 700px;
     width: 400px;
     margin-top: 5em;
-    margin:auto;
+    margin: auto;
     display: flex;
     justify-content: space-between;
     border: 16px black solid;
     border-top-width: 60px;
     border-bottom-width: 60px;
     border-radius: 36px;
-   
- }
- #photosButton
- {
+}
+.phoneLockscreen
+{
+    position: relative;
+    background-color : cadetblue;
+    background-size: cover;
+    height: 700px;
+    width: 400px;
+    margin-top: 5em;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    border: 16px black solid;
+    border-top-width: 60px;
+    border-bottom-width: 60px;
+    border-radius: 36px;
+}
+
+#photosButton {
     background: url(./photosApp.png);
     background-size: contain;
-    height:70px;
-    width:70px;
-    left:280px;
-    bottom:50px;
-    border:1px;
+    height: 70px;
+    width: 70px;
+    left: 280px;
+    bottom: 50px;
+    border: 1px;
     border-radius: 50%;
     position: absolute;
     display: flex;
- }
- #aesFileButton
- {
+}
+
+#aesFileButton {
     background: url(./aesFile.jpg);
     background-size: contain;
-    height:70px;
-    width:70px;
-    left:280px;
-    bottom:150px;
-    border:1px;
+    height: 70px;
+    width: 70px;
+    left: 280px;
+    bottom: 150px;
+    border: 1px;
     border-radius: 50%;
     position: absolute;
     display: flex;
- }
-#notesButton
- {
+}
+
+#notesButton {
     background: url(./notesApp.png);
     background-size: contain;
-    height:70px;
-    width:70px;
-    left:30px;
-    bottom:300px;
-    border:1px;
+    height: 70px;
+    width: 70px;
+    left: 30px;
+    bottom: 300px;
+    border: 1px;
     border-radius: 50%;
     position: absolute;
     display: flex;
- }
- #backButtonNotes, #backButtonAes
- {
-    background: url(./backButton.png);
-    background-size:contain;
-    display:none;
-    height:35px;
-    width:35px;
-    left:50px;
-    bottom:-50px;
-    border:1px;
+}
+
+#decodeButton{
+    background: url(./decodeApp.png);
+    background-size: contain;
+    height: 70px;
+    width: 70px;
+    left: 280px;
+    bottom: 300px;
+    border: 1px;
     border-radius: 50%;
     position: absolute;
- }
+    display: flex;
+}
+
+#backButtonNotes,
+#backButtonAes {
+    background: url(./backButton.png);
+    background-size: contain;
+    display: none;
+    height: 35px;
+    width: 35px;
+    left: 50px;
+    bottom: -50px;
+    border: 1px;
+    border-radius: 50%;
+    position: absolute;
+}
 
 
- /* The Modal (background) */
+/* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-  }
-  
-  /* Modal Content (Image) */
-  .modal-content {
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
     margin: auto;
     display: block;
     width: 80%;
     max-width: 700px;
-  }
-  
-  /* Caption of Modal Image (Image Text) - Same Width as the Image */
-  #caption {
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
     margin: auto;
     display: block;
     width: 80%;
@@ -715,21 +1127,77 @@ grid-area: answer;
     color: #ccc;
     padding: 10px 0;
     height: 150px;
-  }
-  
-  /* Add Animation - Zoom in the Modal */
-  .modal-content, #caption {
+}
+
+
+
+.dlPhoto {
+    position: relative;
+    left:35%;
+    align-items: center;
+    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-family: Phantomsans, sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    width:250px;
+    padding: 19px 24px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+
+.dlPhoto:active,
+.dlPhoto:hover {
+    outline: 0;
+}
+
+.validatePhoto{
+    /*form css*/
+    position: relative;
+    left:47%;
+    top: -3.5%;
+    width: 300px;
+}
+
+@media (min-width: 768px) {
+    .dlPhoto {
+        font-size: 24px;
+        min-width: 196px;
+    }
+}
+
+
+
+/* Add Animation - Zoom in the Modal */
+.modal-content,
+#caption {
     animation-name: zoom;
     animation-duration: 0.6s;
-  }
-  
-  @keyframes zoom {
-    from {transform:scale(0)}
-    to {transform:scale(1)}
-  }
-  
-  /* The Close Button */
-  .close {
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+/* The Close Button */
+.close {
     position: absolute;
     top: 15px;
     right: 35px;
@@ -737,36 +1205,40 @@ grid-area: answer;
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
-  }
-  
-  .close:hover,
-  .close:focus {
+}
+
+.close:hover,
+.close:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
-  }
-  
-  /* 100% Image Width on Smaller Screens */
-  @media only screen and (max-width: 700px){
-    .modal-content {
-      width: 100%;
-    }
-  }
-.notesApp{
-    display:none;
 }
-.notesApp h1{
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 100%;
+    }
+}
+
+.notesApp {
+    display: none;
+}
+
+.notesApp h1 {
     position: absolute;
-    left:35%;
+    left: 35%;
     font-size: 2.5em;
 }
-.notesApp h2{
+
+.notesApp h2 {
     position: absolute;
     top: 15%;
-    left:5%;
+    left: 5%;
     font-size: 1.5em;
 }
-.notesApp ul{
+
+.notesApp ul {
     position: absolute;
     top: 20%;
     left: 10%;
@@ -774,48 +1246,53 @@ grid-area: answer;
     padding: 10px 0px;
     list-style-type: circle;
 }
-.notesApp li{ 
-    margin-bottom: 7px;  
- }
- .aesApp{
-    display:none;
- }
-.aesApp h1{
+
+.notesApp li {
+    margin-bottom: 7px;
+}
+
+.aesApp {
+    display: none;
+}
+
+.aesApp h1 {
     position: absolute;
-    left:14%;
+    left: 14%;
     font-size: 2.5em;
 }
-.aesApp h2{
+
+.aesApp h2 {
     position: absolute;
     top: 15%;
-    left:5%;
+    left: 5%;
     font-size: 1.5em;
 }
-.aesApp form{
+
+.aesApp form {
     position: absolute;
     top: 50%;
     left: 20%;
     font-size: 1.5em;
     padding: 10px 0px;
 }
-.aesLock{
+
+.aesApp .aesLock {
     background: url(./lock.png);
     background-size: contain;
-    position: relative;
+    position: absolute;
     display: none;
-    height:100px;
-    width:100px;
-    left:120%;
-    top:30%;
+    height: 100px;
+    width: 100px;
+    top: 30%;
+    right:40%;
 }
 
-.aesMessage{
+.aesMessage {
     position: absolute;
-    text-align: center;
-    left:7%;
-    top:5%;
-    color:black;
-    font-size: 30px;
+    left: 7%;
+    top: 5%;
+    color: black;
+    font-size: 25px;
 }
 
 

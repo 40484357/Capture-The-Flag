@@ -44,7 +44,7 @@ print("Secret Key: ", secretKey)
 
 views = Blueprint('views', __name__)
 
-def pointsLogic(timeLeft, hintsUsed, userTime, totalPoints):
+def pointsLogic(hintsUsed, userTime, totalPoints):
     basePoints = 50
     #timeLPenalty = (24 - round(timeLeft /3600))*500
     timeTaken = timeChange(userTime)
@@ -92,15 +92,13 @@ def laptop():
             flash(response)
         else:
             userChallenge = laptop_challenge.query.get_or_404(current_user.id)
-            print(userChallenge.challengeState)
             userChallenge.challengeState = 2
             userPoints = points.query.get_or_404(current_user.id)
-            timeLeft = db.session.query(points.timeLeft).filter_by(id = current_user.id).first()
             hintsUsed = db.session.query(laptop_challenge.hints).filter_by(user_id = current_user.id).first()
             time = db.session.query(laptop_challenge.startTime).filter_by(user_id = current_user.id).first()
             totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
 
-            newPoints = pointsLogic(timeLeft[0], hintsUsed[0],time[0], totalPoints[0])
+            newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
             userPoints.pointsTotal = newPoints #add new points total to DB
             db.session.commit()
             return redirect('/desktop')
@@ -143,6 +141,11 @@ def phone():
     response = None
     primeA = db.session.query(phone_challenge.phonePrime1).filter_by(user_id = current_user.id).first()
     primeB = db.session.query(phone_challenge.phonePrime2).filter_by(user_id = current_user.id).first()
+    challengeState = db.session.query(phone_challenge.challengeState).filter_by(user_id = current_user.id).first()
+
+    if(challengeState):
+        if(challengeState[0] == 2):
+            return redirect('/phoneHome')
 
     if primeA:
         a = primeA[0] #variable
@@ -175,16 +178,27 @@ def phone():
         print("A: ", A)
         print("B: ", B)
         print("Secret Key: ", secretKey)
-        new_phone_challenge = phone_challenge(user_id = current_user.id, challengeState = 1, phonePrime1 = a, phonePrime2 = b, hints = 0 )
+        new_phone_challenge = phone_challenge(user_id = current_user.id, challengeState = 1, phonePrime1 = a, phonePrime2 = b, hints = 0, startTime = datetime.now() )
         db.session.add(new_phone_challenge)
         db.session.commit()
+
     if request.method=='POST':
         secretKeyGuess=request.form.get('answer', type=int)
         #secretKeyGuess = int(request.form['answer'])
         if secretKeyGuess != secretKey:
             response = 'wrong password, try again'
+            print(secretKeyGuess)
             flash(response)
         else:
+            userChallenge = phone_challenge.query.get_or_404(current_user.id)
+            userChallenge.challengeState = 2
+            userPoints = points.query.get_or_404(current_user.id)
+            hintsUsed = db.session.query(phone_challenge.hints).filter_by(user_id = current_user.id).first()
+            time = db.session.query(phone_challenge.startTime).filter_by(user_id = current_user.id).first()
+            totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
+            newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+            userPoints.pointsTotal = newPoints #add new points total to DB
+            db.session.commit()
             # Redirect to the next page
             return redirect(url_for('views.phoneHome'))
             
@@ -216,17 +230,30 @@ def wcg():
 def login_wcg():
     flag = 'FLAG = ROBOTS'
     return render_template('login_wcg.html', flag = flag)
+
 @views.route('/phoneHome',methods =['GET','POST'])
 def phoneHome():
     response = None
-    if request.method=='POST':
-        if request.form['password'] != "check_user.php":
-            response = 'Incorrect password'
-            flash(response)
-        else:
-            response = Markup("Correct. Now use it <a href ='http://52.1.222.178:8000'>here</a>")
-            flash(response)
-    return render_template('phoneHome.html')
+    # Doing this because of two forms on one view, checks which one was used
+    if request.method =='POST':
+        if "validater" in request.form:
+            if request.form['validatePhoto'] != "U2FsdGVkX18099HHwV0FYWBJXXfd4JDKkrhsHwGeD64=":
+                response = 'Incorrect Ciphertext'
+                flash(response)
+            else:
+                # assign chall 2 points, steganography
+                response = 'Correct Ciphertext.' 
+                flash(response)
+        elif "aes" in request.form:
+            if request.form['password'] != "check_user.php":
+                response = 'Incorrect password'
+                flash(response)
+            else:
+                # assign chall 3 points, aes
+                response = Markup("Correct password.<br>Access Splunk <a href ='http://52.1.222.178:8000' target='_blank'>here</a><br>Username: ctf<br>Password: EscapeEscap3")
+                flash(response)
+
+    return render_template('phoneHome.html')     
 
 
 """@views.route('/Points_Logic', methods=['GET', 'POST'])
@@ -248,3 +275,4 @@ def points():
         flash(response)
         
     return render_template('Points_Logic.html', response= response)"""
+
