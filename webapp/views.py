@@ -6,7 +6,7 @@ from .models import users, phone_challenge, laptop_challenge, server_challenge, 
 from datetime import date, datetime
 from .utils import timeChange
 from flask import Blueprint, render_template, request, redirect, url_for, flash, Markup
-import hashlib, random, time
+import hashlib, random, time, webbrowser
 passwords = []
 with open('CaptureTheFlag\webapp\static\cyberA-Z.txt') as f:
     words = f.readlines()
@@ -187,7 +187,8 @@ def phone():
         #secretKeyGuess = int(request.form['answer'])
         if secretKeyGuess != secretKey:
             response = 'wrong password, try again'
-            print(secretKeyGuess)
+            print("secretKey: ", secretKey)
+            print("secretKeyGuess: ", secretKeyGuess)
             flash(response)
         else:
             userChallenge = phone_challenge.query.get_or_404(current_user.id)
@@ -198,23 +199,142 @@ def phone():
             totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
             newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
             userPoints.pointsTotal = newPoints #add new points total to DB
+            userChallenge.hints = 0
             db.session.commit()
             # Redirect to the next page
             return redirect(url_for('views.phoneHome'))
             
     return render_template('phone.html',password = secretKey,a=a,b=b, response = response)
 
+@views.route('/phoneHome',methods =['GET','POST'])
+def phoneHome():
+
+    challengeState = db.session.query(phone_challenge.challengeState).filter_by(user_id = current_user.id).first()
+    userChallenge = phone_challenge.query.get_or_404(current_user.id)
+    userPoints = points.query.get_or_404(current_user.id)
+    if (challengeState == 1):
+        return redirect('/phone')
+    elif (challengeState == 3):
+        return redirect('/')
+    else: 
+        userChallenge.startTime = datetime.now()
+
+    response = None
+    # Doing this because of two forms on one view, checks which one was used
+    if request.method =='POST':
+        if "validater" in request.form:
+            if request.form['validatePhoto'] != "U2FsdGVkX18099HHwV0FYWBJXXfd4JDKkrhsHwGeD64=":
+                response = 'Incorrect Ciphertext'
+                flash(response)
+            else:
+                # assign chall 2 points, steganography
+                hintsUsed = db.session.query(phone_challenge.hints).filter_by(user_id = current_user.id).first()
+                time = db.session.query(phone_challenge.startTime).filter_by(user_id = current_user.id).first()
+                totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
+                newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+                userPoints.pointsTotal = newPoints #add new points total to DB
+                userChallenge.hints = 0
+                userChallenge.startTime = datetime.now()
+                db.session.commit()
+                response = 'Correct Ciphertext.' 
+                flash(response)
+        elif "aes" in request.form:
+            if request.form['password'] != "check_user.php":
+                response = 'Incorrect password'
+                flash(response)
+            else:
+                # assign chall 3 points, aes
+                response = Markup("Correct password.<br>Access Splunk <a href ='http://52.1.222.178:8000' target='_blank'>here</a><br>Username: ctf<br>Password: EscapeEscap3")
+                hintsUsed = db.session.query(phone_challenge.hints).filter_by(user_id = current_user.id).first()
+                time = db.session.query(phone_challenge.startTime).filter_by(user_id = current_user.id).first()
+                totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
+                newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+                userPoints.pointsTotal = newPoints #add new points total to DB
+                db.session.commit()
+                flash(response)
+
+    return render_template('phoneHome.html')     
+
 @views.route('/server')
 def server():
     return render_template('server.html')
 
 
-@views.route('/wcg', methods = ['GET', 'POST'])
-def wcg():
+
+
+@views.route('/login_wcg', methods = ['GET', 'POST'])
+def login_wcg():
+    flag = 'FLAG = static/robots.txt'
+    redir = "false"
+    challengeState = db.session.query(server_challenge.challengeState).filter_by(user_id = current_user.id)
+    if(challengeState == 1):
+        return redirect('/wcg')
+    elif(challengeState == 4):
+        return redirect('/wcg')
+    else:
+        userChallenge = server_challenge.query.get_or_404(current_user.id)
+        userChallenge.startTime = datetime.now()
+        userChallenge.hints = 0
+        db.session.commit()
+    if request.method == 'POST':
+        if request.form['flag_response'] != 'install':
+            response = 'incorrect flag, keep looking'
+            answer = request.form['flag_response']
+            flash(response)
+            flash(answer)
+            return render_template('login_wcg.html', flag = flag, response = response, answer = answer)
+        else: 
+            response = 'flag found, redirecting to main... press enter to continue'
+            answer = request.form['flag_response']
+            flash(response)
+            flash(answer)
+            redir = "true"
+            userChallenge = server_challenge.query.get_or_404(current_user.id)
+            userPoints = points.query.get_or_404(current_user.id)
+            hintsUsed = db.session.query(server_challenge.hints).filter_by(user_id = current_user.id).first()
+            time = db.session.query(server_challenge.startTime).filter_by(user_id = current_user.id).first()
+            totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
+            newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+            userPoints.pointsTotal = newPoints #add new points total to DB
+            userChallenge.startTime = datetime.now()
+            userChallenge.challengeState = 3
+            db.session.commit()
+            return render_template('login_wcg.html', flag = flag, response = response, answer = answer, redir = redir)
+
+    return render_template('login_wcg.html', flag = flag, redir = redir)
+
+
+@views.route('/wickedcybergames' , methods=['GET','POST'])
+def wickedcybergames():
+    challengeState = db.session.query(server_challenge.challengeState).filter_by(user_id = current_user.id).first()
+    if(challengeState):
+        if(challengeState[0] == 1):
+            userChallenge = server_challenge.query.get_or_404(current_user.id)
+            userChallenge.startTime = datetime.now()
+            db.session.commit()
+        elif(challengeState[0] == 2 | 3):
+            return redirect('/login_wcg')
+        elif(challengeState[0] == 4):
+            return redirect('/adminCheck')
+    else:
+        new_server_challenge = server_challenge(user_id = current_user.id, challengeState = 1, startTime = datetime.now(), hints = 0)
+        db.session.add(new_server_challenge)
+        db.session.commit()
+
     response = None
     if request.method == 'POST':
         if request.form['username'] == 'admin':
             if request.form['password'] == 'IloveWickedGames2023':
+                userChallenge = server_challenge.query.get_or_404(current_user.id)
+                userPoints = points.query.get_or_404(current_user.id)
+                hintsUsed = db.session.query(server_challenge.hints).filter_by(user_id = current_user.id).first()
+                time = db.session.query(server_challenge.startTime).filter_by(user_id = current_user.id).first()
+                totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
+                newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+                userPoints.pointsTotal = newPoints #add new points total to DB
+                userChallenge.startTime = datetime.now()
+                userChallenge.challengeState = 2
+                db.session.commit()
                 return redirect('/login_wcg')
             else: 
                 response = 'wrong password'
@@ -226,53 +346,33 @@ def wcg():
 
     return render_template('wickedcybergames.html')
 
-@views.route('/login_wcg')
-def login_wcg():
-    flag = 'FLAG = ROBOTS'
-    return render_template('login_wcg.html', flag = flag)
 
-@views.route('/phoneHome',methods =['GET','POST'])
-def phoneHome():
-    response = None
-    # Doing this because of two forms on one view, checks which one was used
-    if request.method =='POST':
-        if "validater" in request.form:
-            if request.form['validatePhoto'] != "U2FsdGVkX18099HHwV0FYWBJXXfd4JDKkrhsHwGeD64=":
-                response = 'Incorrect Ciphertext'
-                flash(response)
-            else:
-                # assign chall 2 points, steganography
-                response = 'Correct Ciphertext.' 
-                flash(response)
-        elif "aes" in request.form:
-            if request.form['password'] != "check_user.php":
-                response = 'Incorrect password'
-                flash(response)
-            else:
-                # assign chall 3 points, aes
-                response = Markup("Correct password.<br>Access Splunk <a href ='http://52.1.222.178:8000' target='_blank'>here</a><br>Username: ctf<br>Password: EscapeEscap3")
-                flash(response)
+@views.route('/adminCheck', methods = ['GET', 'POST'])
+def adminCheck():
+    p1Text = None
+    p2Text = None
+    name = request.cookies.get('user')
+    if request.method == 'POST':
+        name = 'done'
+        if request.form['username'] == 'admin':
+            if request.form['password'] == 'plugin':
+                print('successful login')
+                p1Text = 'all details verified, game complete'
+                p2Text = 'congratulations!'
+            else: 
+                p2Text = 'wrong password, try again'
+        else:
+            p1Text = 'wrong username or password, try again'
 
-    return render_template('phoneHome.html')     
-
-
-"""@views.route('/Points_Logic', methods=['GET', 'POST'])
-def points():
-    response=None
-    if request.method=='POST':
-        timeLeft=request.form.get('timeLeft',type=int)
-        hintsUsed=request.form.get('hintsUsed',type=int)
-        timeTaken=request.form.get('timeTaken',type=int)
-        basePoints=25000
-        timeLPenalty = (24 - timeLeft)*500
-        hintPenalty = basePoints - ((basePoints-timeLPenalty) * (1-(hintsUsed * 0.08)))
-        timeTPenalty = timeTaken *0.03
-
-        points = basePoints - (timeLPenalty + hintPenalty + timeTPenalty)
-
-        response = points
-
-        flash(response)
-        
-    return render_template('Points_Logic.html', response= response)"""
-
+    if(name == 'admin'):
+         p1Text = 'Admin Verified'
+         p2Text = 'Please login with password to continue'
+         webbrowser.open_new_tab('http://127.0.0.1:5000/static/cookie_admin.txt')
+    elif(name == 'done'):
+        print('done')
+    else:
+        p1Text = 'Error: Unverified Admin Login'
+        p2Text = 'Cookies Display NoneType User...Please Check Details And Refresh The Page'
+    
+    
+    return render_template('admin_check.html', p1Text = p1Text, p2Text = p2Text)

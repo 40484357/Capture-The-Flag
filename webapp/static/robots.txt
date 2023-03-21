@@ -4,7 +4,6 @@ Think you are at the right place or do you want to keep looking.
 
 dHJ5IGFub3RoZXIgb25l (try another one)
 c3VwZXJzZWNyZXQxLnR4dA==   (supersecret1.txt)
-eW91IGZvdW5kIHNvbWV0aGluZw==  (you found something)
-dGhlIHNlY3JldCBpcyB2aWdlbmVyZQ== (the secret is vigenere)
-nmivrx/jykmxwrgiio.bdx (secret/supersecret2.txt)
-Disallow: /wp-admin/
+ZGVjcnlwdGlvbiBrZXkgaXMgcm9ib3Rz (decryption key is robots)
+jiqskkvqssm2.loh (supersecret2.txt)
+

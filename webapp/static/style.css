@@ -518,3 +518,39 @@ img {
     }
 
 }
+
+.terminal{
+    color: white;
+}
+
+.terminal_body{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1em;
+    font-size: 2rem;
+}
+
+.terminal_header{
+    text-decoration: underline;
+    margin: 1em;
+}
+
+.terminal_row{
+    display: flex;
+    margin-top: 1em;
+}
+
+.terminal_row > * {
+    margin: 0 1em; 
+}
+
+.terminal_form_response{
+    border:none;
+    background-color:#010103;
+    color:white;
+    font-size: 2rem;
+}
+
+.hidden{
+    display: none;
+}

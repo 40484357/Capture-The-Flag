@@ -33,6 +33,7 @@ class phone_challenge(db.Model):
 class server_challenge(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key = True)
     challengeState = db.Column(db.Integer)
+    startTime = db.Column(db.String)
     hints = db.Column(db.Integer)
 
 class points(db.Model):

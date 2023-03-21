@@ -23,17 +23,6 @@
 				<div id="clock"></div>
 				
 			</div>
-
-			<div class="gameBoxPhone">
-                <div class = "phoneBox">
-                    <p class ="enterPasscode">Enter Passcode</p>
-                    <form class = "passcode" action="" method="POST">
-                        <input type="text" name="answer" id="phoneAnswer" placeholder="" onkeydown="return false">
-                        <input type="submit" id="submitAnswer" class="phoneSubmit" value = "&#x21A9;">
-                    </form>
-                    
-
-                    <div class="keypad">
 			
 			<div class="phoneLockscreen">
                 
@@ -60,15 +49,10 @@
                         <button class="dial" onclick="dial(9)">9</li>
                         <button class="dial middle"onclick="dial(0)">0</li>
 						<button class = "dial" onclick = "backspace()">⌫</li>
-					</div>
-                    {% with messages = get_flashed_messages() %} {% if messages %}
-					<ul class="phoneFlash">
-						{% for message in messages %}
-						<li class="message">{{message}}</li>
-						{% endfor %}
-					</ul>
-					{% endif %} {% endwith %}
-                </div>
+                    </ul>
+                   
+
+            </div>
 				<p class="phoneDescript">
 					This phone is protected by a passcode.<br>
                     We have discovered some information that may help you.<br>
