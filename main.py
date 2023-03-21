@@ -3,26 +3,32 @@ from flask import render_template, redirect, url_for, request
 from flask_login import login_user, login_required, current_user
 import atexit
 from webapp import db
-from webapp.models import users, phone_challenge, laptop_challenge, server_challenge, points, leaderboard
+from webapp.models import users, phone_challenge, laptop_challenge, server_challenge, points
 from datetime import date, datetime
 from apscheduler.schedulers.background import BackgroundScheduler
+from webapp.utils import timeChange
 
 app = create_app()
 @app.route('/')
 def landing():
     user_points = db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
-    user_time = db.session.query(points.timeLeft).filter_by(id = current_user.id).first()
+    startGameTime = db.session.query(points.startGameTime).filter_by(id = current_user.id).first()
     if user_points:
         userPoints = user_points[0]
-        userTime = user_time[0]
+        startTime = startGameTime[0]
+        timePassed = timeChange(startTime)
+        timeLeft = 86400 - timePassed
+        userTimeChange = points.query.get_or_404(current_user.id)
+        userTimeChange.timeLeft = timeLeft
+        db.session.commit()
     else:
         userPoints = 0 
-        userTime = 86400
-        new_user_points = points(id = current_user.id, pointsTotal = 0, timeLeft = 86400, lastActive = datetime.now())
+        timeLeft = 86400
+        new_user_points = points(id = current_user.id, pointsTotal = 0, startGameTime = datetime.now())
         db.session.add(new_user_points)
         db.session.commit()
     id = current_user.id
-    def update_timeLeft():
+    """def update_timeLeft():
         with app.app_context():
             print(id)
             timeLeft = db.session.query(points.timeLeft).filter_by(id = id).first()
@@ -47,8 +53,8 @@ def landing():
 
     scheduler.start()
     
-    atexit.register(lambda: scheduler.shutdown())
-    return render_template('cyberescape.html', user = current_user, userPoints = userPoints, userTime = userTime)
+    atexit.register(lambda: scheduler.shutdown())"""
+    return render_template('cyberescape.html', user = current_user, userPoints = userPoints, userTime = timeLeft)
 
 
 if __name__ == '__main__':

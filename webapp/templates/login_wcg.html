@@ -19,14 +19,254 @@
 		<!-- HINT: Important file to look at  -->
 		
 		<script src="{{ url_for('static', filename='secure.js')}}"></script>
+		<div class="terminal_body terminal" id="terminalBody">
+			<div class="terminal_header terminal">
+				TERMINAL
+			</div>
+			<div class="terminal_row terminal ">
+				<div class="termianl_address terminal">
+					10.0.0.1
+				</div>
+				<div class="terminal-split">
+					- -
+				</div>
+				<div class="terminal_response terminal">
+					"{{flag}}"
+				</div>
+			</div>
+			<div class="terminal_row terminal ">
+				<div class="termianl_address terminal">
+					10.0.0.1
+				</div>
+				<div class="terminal-split">
+					- -
+				</div>
+				<div class="terminal_response terminal">
+					awaiting new flag...
+				</div>
+			</div>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<div class="terminal_row terminal ">
+				<div class="termianl_address terminal">
+					10.0.0.1
+				</div>
+				<div class="terminal-split">
+					- -
+				</div>
+				<div class="terminal_response terminal">
+					{{answer}}
+				</div>
+			</div>
+			{% endif %}
+			{% endwith %}
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<div class="terminal_row terminal ">
+				<div class="termianl_address terminal">
+					10.0.0.1
+				</div>
+				<div class="terminal-split">
+					- -
+				</div>
+				<div class="terminal_response terminal">
+					{{response}}
+				</div>
+			</div>
+			{% endif %}
+			{% endwith %}
+			<div class="terminal_row terminal "id = 'terminal_response'>
+				<div class="termianl_address terminal">
+					10.0.0.1
+				</div>
+				<div class="terminal-split">
+					- -
+				</div>
+				<div class="terminal_response" >
+					<form action="" method="post" class="terminal_form">
+						<input type="text" name="flag_response" class="terminal_form_response">
+					</form>
+				</div>
+				<div class="hidden" id="continue">
+					<div class="terminal_address terminal">
+						10.0.0.1
+					</div>
+					<div class="terminal-split">
+						- -
+					</div>
+					<div class="terminal_response">
+						press enter to continue
+					</div>
+				</div>
+			</div>
+		</div>
 		
-		<p id='msg' style="margin: 2em; font-size: 24px; color: white;">{{flag}}</p>
 		
 		<form hidden action="admin.php" method="post" id="hiddenAdminForm">
 		  <input type="text" name="hash" required id="adminFormHash">
 		</form>
 		
-	 
+		<script defer>
+			var redirect = {{ redir }}
+			var challengetext = {{challengeText|tojson}}
+			var challengeCheck = {{challenge3}}
+			var text2 = {{challengeText2|tojson}}
+			
+			
+			function checkChallenge(){
+				if(challengeCheck == true){
+					var terminal_response = document.getElementById('terminal_response')
+					terminal_response.classList.add('hidden')
+					console.log('challenge Checked fuck you')
+					const terminal_body = document.getElementById('terminalBody')
+					let i = 0;
+					for(i; i<challengetext.length; i++){
+					terminal_body.innerHTML+=
+						`<div class="dark terminal_row terminal">
+							<div class="termianl_address terminal">
+								10.0.0.1
+							</div>
+							<div class="terminal-split">
+								- -
+							</div>
+							<div class="terminal_response terminal">
+								${challengetext[i]}
+							</div>
+						</div> `
+					}
+					if(i == challengetext.length){
+					let char = 0;
+					let timer = setInterval(onTick, 1000);
+					function onTick(){
+						console.log(char)
+						const dark = document.querySelectorAll('.dark')[char]
+						dark.classList.add('fade')
+						char++
+						if(char === challengetext.length){
+							complete();
+							return;
+						}
+
+					}
+					function complete(){
+						clearInterval(timer);
+						timer = null;
+						document.addEventListener('keypress', ()=>{
+							if(event.key == 'Enter'){
+								
+								
+								
+
+								window.open(text2[0], '_blank')
+								terminal_body.innerHTML+=
+
+								`
+								<div class="terminal_row terminal">
+								<div class="termianl_address terminal">
+									10.0.0.1
+								</div>
+								<div class="terminal-split">
+									- -
+								</div>
+								<div class="terminal_response terminal">
+									${text2[1]}
+								</div>
+								</div>
+
+								<div class="terminal_row terminal "id = 'terminal_response'>
+								<div class="terminal_address terminal">
+									10.0.0.1
+								</div>
+								<div class="terminal-split">
+									- -
+								</div>
+								<div class="terminal_response" >
+									<form action="" method="post" class="terminal_form">
+										<input type="text" name="flag_response" class="terminal_form_response">
+									</form>
+								</div>
+								</div>
+								`
+							}
+
+
+						})
+					}
+				}
+			}
+			}
+
+			function check_state(){
+				
+				
+				if (redirect == true){
+					var terminal_response = document.getElementById('terminal_response')
+					terminal_response.classList.add('hidden')
+					var continueDiv = document.getElementById('continue')
+					continueDiv.classList.remove('hidden')
+					continueDiv.classList.add('terminal')
+					continueDiv.classList.add('terminal_response')
+
+					document.addEventListener('keypress', () => {
+						if(event.key == "Enter"){
+							var terminal_body = document.getElementById('terminalBody')
+							let i = 0;
+							document.cookie = 'user = None'
+							for(i; i<challengetext.length; i++){
+							terminal_body.innerHTML+=
+								`<div class="dark terminal_row terminal">
+									<div class="termianl_address terminal">
+										10.0.0.1
+									</div>
+									<div class="terminal-split">
+										- -
+									</div>
+									<div class="terminal_response terminal">
+										${challengetext[i]}
+									</div>
+								</div> `
+							}
+							if(i == challengetext.length){
+							let char = 0;
+							let timer = setInterval(onTick, 1000);
+							function onTick(){
+								console.log(char)
+								const dark = document.querySelectorAll('.dark')[char]
+								dark.classList.add('fade')
+								char++
+								
+								if(char === challengetext.length){
+									complete();
+									return;
+								}
+
+							}
+
+							function complete(){
+								clearInterval(timer);
+								timer = null;
+								document.removeEventListener('keypress')
+							}
+							}
+						}
+					})
+
+					
+				}
+				else{
+					checkChallenge()
+				}
+				
+		
+					
+			}
+
+			
+			
+			check_state()
+
+
+		</script>
     
 		<!-- <script type="text/javascript">
 		  function filter(string) {

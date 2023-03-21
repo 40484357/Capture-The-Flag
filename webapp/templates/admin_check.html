@@ -57,11 +57,9 @@
 		<div class="home__container">
 			<div class="home__content container">
 				<h3>Wicked Cyber Games</h3>
-				<p>learn about cyber security with fun challenges.</p>
-				<p>login with your username and password to get access.</p>
+				<p>{{p1Text}}</p>
+				<p>{{p2Text}}</p>
 			   
-				
-				<!-- HINT: Credentials input into the login form will be sent to the static/login.html file  -->
 				
 				
 				<form role="form" action="" method="post">
@@ -114,30 +112,6 @@
 
 		</div>
 
-	</section>
-	<section class="about" id="admin_check">
-		<h1 class="heading"><span>Verify</span> admin </h1>
-		<div class="row">
-			<div class="image">
-
-			</div>
-			<div class="content">
-				<h3>Verify you are an admin</h3>
-				<p>Check your cookies and verify if you are an admin</p>
-				<form role="form" action="" method="post">
-					<div class="inputBox">
-						<input type="text" name="username" placeholder="Username" required
-						autofocus></br>
-					</div>
-					
-					<div class="inputBox">
-						<input type="password" name="password" placeholder="Password" required
-						autofocus></br>
-					</div>
-						<button class="btn" type="submit" name="login">Login</button>
-				</form>
-			</div>
-		</div>
 	</section>
 	<!-- ============ ABOUT SECTION ENDS =========== -->
 
@@ -209,5 +183,21 @@
 	<!-- =========== CUSTOM JS FILE ==========  -->
 	
 	<script src = "{{ url_for('static', filename='wickedcybergames.js')}}"></script>
+    <script>
+        function createCookie(){
+            document.cookie = 'user = None'
+        }
+        
+
+        function checkCookie(){
+            if(document.cookie.user = 'admin'){
+                console.log('true')
+            } else {
+                createCookie()
+            }
+        }
+
+        checkCookie()
+    </script>
 </body>
 </html>

@@ -1,9 +1,13 @@
 {% extends "gamebase.html" %}{% block title %}Desktop{% endblock %}
 {% block instruction %}This computer has a file with encrypted text that could lead us to a key{% endblock %}
+{% block hash %}
+{% endblock %}
+{% block button %}
+{% endblock %}
 {% block game_ui %}
 <div class="desktopBox">
     <div class="toast_msg" id="toast">
-        successfully logged in
+        successfully logged in.
     </div>
     <div class="file" id="file1">  
         
@@ -70,12 +74,12 @@
                 </button>
             </div>
         </div>
-        <div class="base64text B64" id="B64">UlNBIGVuY3J5cHRpb24gKG5hbWVkIGFmdGVyIHRoZSBpbml0aWFscyBvZiBpdHMgY3JlYXRvcnM
+        <div class="base64text B64" id="B64"><p style = "width: 100%;">UlNBIGVuY3J5cHRpb24gKG5hbWVkIGFmdGVyIHRoZSBpbml0aWFscyBvZiBpdHMgY3JlYXRvcnM
             gUml2ZXN0LCBTaGFtaXIsIGFuZCBBZGxlbWFuKSBpcyB0aGUgbW9zdCB3aWRlbHkgdXNlZCBhc3ltbWV0cmljIGNyeXB0
             b2dyYXBoeSBhbGdvcml0aG0uIEJhc2VkIG9uIG1hdGhlbWF0aWNhbCBhbmQgYXJpdGhtZXRpYyBwcmluY2lwbGVzIG9mI
             HByaW1lIG51bWJlcnMsIGl0IHVzZXMgbGFyZ2UgbnVtYmVycywgYSBwdWJsaWMga2V5IGFuZCBhIHByaXZhdGUga2V5LC
             B0byBzZWN1cmUgZGF0YSBleGNoYW5nZXMgb24gdGhlIEludGVybmV0LiA8PEZsYWc8PDlkYjUwZGVhMmM2YzNkNGU5N
-            2FhM2FlYzVkZTE2OTBkMTFiMTEwNmY+Pg0K</div>
+            2FhM2FlYzVkZTE2OTBkMTFiMTEwNmY+Pg0K</p></div>
     </div>
     <div class="base64file hidden" id="ipcheck">
         <div class="txt_file_bar">
@@ -143,14 +147,14 @@
 <script>
     var completed = {{completed}}
 
-   function checkChallange(){
-    if(completed = 'true'){
+   function checkChallenge(){
+    if(completed == true){
         var splunk = document.getElementById('splunk')
         splunk.classList.remove('hidden')
         splunk.classList.add('file')
     }
     }
 
-    checkChallange()
+    checkChallenge()
 </script>
 {% endblock %}

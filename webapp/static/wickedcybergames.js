@@ -61,3 +61,16 @@ function scrollActive() {
     })
 }
 window.addEventListener('scroll', scrollActive)
+
+/*
+var dc = document.cookie;
+13:20:26.700 undefined
+13:21:05.442 if(dc = 'username = admin'){
+    window.location = ('127.0.0.1:5000/laptop')
+}
+13:21:05.467 '127.0.0.1:5000/laptop'
+13:21:14.102 if(dc = 'username = admin'){
+    window.location = ('/laptop')
+}
+13:21:14.113 '/laptop'
+*/
