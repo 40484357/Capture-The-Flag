@@ -8,7 +8,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 #from main import update_timeLeft
 
 passwords = []
-with open('CaptureTheFlag\webapp\static\cyberA-Z.txt') as f:
+with open('webapp\static\cyberA-Z.txt') as f:
     words = f.readlines()
     passwords = [x.strip().lower() for x in words]
 
