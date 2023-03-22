@@ -768,11 +768,10 @@ body {
     height: 150px;
 }
 
-
-
 .dlPhoto {
     position: relative;
-    left:35%;
+    left:45%;
+    top: -5%;
     align-items: center;
     background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
     border: 0;
@@ -802,10 +801,9 @@ body {
 }
 
 .validatePhoto{
-    /*form css*/
+    
     position: relative;
-    left:47%;
-    top: -3.5%;
+    left:46%;
     width: 300px;
 }
 
