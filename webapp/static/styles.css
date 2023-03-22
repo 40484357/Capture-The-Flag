@@ -80,9 +80,318 @@ body {
     border-width: 5px;
     border-style: solid;
     border-color: transparent transparent transparent rgba(204, 101, 57, 0.65);
+  }
+
+  .navigation, .Signups{
+    list-style-type: none;
+    margin:0;
+    overflow:hidden;
+   
+  }
+
+  .navigation li, .Signups li{
+    display:inline-block;
+    text-align:center;
+    padding: 10px 10px;
+    text-shadow:5px 5px 5px #0B0909;
+  }
+  .navigation{
+    padding-top:50px;
+    
+  }
+  .navigation li{
+    border-right: 3px solid #FFFFFF;
+    padding-right: 20px;
+    
+  }
+  .navigation li:nth-child(3){
+    border-right:none;
+  }
+  .navigation li a{
+    transition: color 1s;
+    font-family: 'Merriweather';
+  }
+  .navigation li a:hover{
+    color:#ec131a;
+  }
+  button, li, a{
+    text-decoration: none;
+  }
+  a{
+    color:inherit;
+  }
+
+  .Signups li a{
+    display:inline-block;
+    text-align:center;
+    transition: color 1s;
+    font-family: 'Merriweather';
+
+  }
+  .Signups li a:hover{
+    color:#ec131a;
+
+  }
+  .SignupBtn{
+    font-weight:600;
+    font-size: 18px;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    border:none;
+    padding:7px 15px;
+    cursor:pointer;
+    transition:background-color 1s, color 1s;
+    font-family: 'Merriweather';
+  }
+  .SignupBtn:hover{
+    background-color: #ec131a;
+    color:white;
+  }
+
+  .Signups li:nth-child(1){
+    border-right: 2px solid white;
+  }
+
+  .landingNav{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:3px 5%;
+    background-color: #0B0909;
+    font-weight:600;
+    letter-spacing: 1px;
+    font-size: 18px;
+    color: white;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:3;
+  }
+ .SectionOne{
+    display:flex;
+    flex-direction: column;
+    margin-top:100px;
+    height:auto;
+    text-align:center;
+    background-image:url(./escape.jpg);
+    background-color:rgba(0,0,0,0.5);
+    background-blend-mode: multiply;
+    color:white;
+    font-size: 20px;
+    font-weight: 700;
+    background-size: cover;
+    background-attachment: fixed;
+ }
+ 
+ .gray{
+    height:100%;
+    width:100%;
+    backdrop-filter: grayscale(100%);
+ }
+ .huge{
+    font-size:126px;
+    font-weight:900;
+    color:white;
+    text-align:center;
+    font-family: 'Merriweather';
+ }
+.tagline{
+    font-size:24px;
+    font-weight:700;
+    text-align:center;
+    color:white;
+    line-height: 48px;
+    font-family: 'Merriweather';
+}
+.ctaBtn{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 32px 106px;
+    margin-top: 88px;
+    margin-bottom:162px;
+    font-weight:800;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    border-radius: 15px;
+    border:none;
+    cursor:pointer;
+    transition:background-color 1s, color 1s;
+    font-family: 'Merriweather';
+
 }
 
-.gameLauncher {
+.ctaBtn:hover{
+    background-color: #ec131a;
+    color:white;
+}
+.sectionTwo{
+    background-color: #0B0909;
+    height:auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top:-100px;
+}
+.big{
+    font-size: 64px;
+    text-align: center;
+    border-bottom:3px solid #ec131a;
+    font-family: 'Merriweather';
+    color:white;
+}
+.AbtHook{
+    font-size:24px;
+    font-weight: 800;
+    text-align: center;
+    font-family: 'Merriweather';
+    color:white;
+}
+.aboutPara{
+    font-size:24px;
+    text-align: center;
+    font-weight:400;
+    color:white;
+    font-family: 'Merriweather';
+    line-height: 48px;
+}
+.ourPurpose{
+    padding-top:12px;
+}
+.ourTeam{
+    padding-top:48px;
+    padding-bottom:24px;
+}
+.bioBox{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap:10%;
+    color:white;
+    padding:80px 5%;
+    margin-bottom:20px;
+    
+}
+.teamPic{
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+
+}
+.card{
+    width:25%;
+    height:50%;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: color 1s;
+}
+.card:hover .bio{
+    color:#ec131a;
+
+}
+.bio{
+    color:#0B0909;
+    text-align:center;
+    transition:color 1s;
+}
+.sectionThree{
+    background-color: #ec131a;
+    height:auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top:-100px;
+}
+.bigTwo{
+    font-size: 64px;
+    text-align: center;
+    border-bottom:3px solid #0B0909;
+    font-family: 'Merriweather';
+    color:white;
+}
+.selectionBox{
+    height:auto;
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction:row;
+    margin:5%;
+    gap:5%;
+}
+.gameCard{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width:350px;
+    box-shadow: 7px 5px 10px black;
+    cursor: pointer;
+}
+
+ .Laundromats{
+    background-image: url(./investigation.jpg);
+    background-size: cover;
+    background-position: center;
+}
+ .comingSoon{
+    background-image: url(./Wip.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.cardOverlay{
+    position: relative;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   gap:15%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  opacity:0;
+  transition: 1s;
+  background-color: #0B0909;
+}
+.challengeInfo{
+ color:white;
+  font-size: 24px;
+  text-align: center;
+}
+.gameCard:hover .cardOverlay{
+  opacity:1;
+}
+.playBtn{
+    font-weight:600;
+    font-size: 18px;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    border:none;
+    padding:7px 15px;
+    cursor:pointer;
+    z-index:2;
+    transition:background-color 1s, color 1s;
+    font-family: 'Merriweather';
+}
+.playBtn:hover{
+    background-color: #ec131a;
+    color:white;
+}
+.gameLauncher{
     width: 100%;
     min-height: 100%;
     margin: auto;
@@ -398,7 +707,7 @@ body {
     justify-items: center;
     align-content: center;
     background: url(./desktopbg.jpg);
-    background-size: unset;
+    background-size:cover;
     display: inline-block;
     margin-top: 1em;
     padding: 2em 0;
@@ -428,10 +737,11 @@ body {
     position: absolute;
     background-color: white;
     color: black;
-    width: 50%;
+    width: auto;
+    margin-right:25%;
+    margin-left:15%;
     height: 75%;
     top: 2em;
-    left: 25%;
     border-radius: 5px;
     border: 1px transparent;
 }

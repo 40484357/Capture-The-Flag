@@ -43,7 +43,7 @@ views = Blueprint('views', __name__)
 
 
 
-@views.route('/')
+@views.route('/cyberescape')
 def landing():
     passLength = len(passwords) - 1
     selection = random.randint(0, passLength)
@@ -142,3 +142,7 @@ def points():
         flash(response)
         
     return render_template('Points_Logic.html', response= response)
+
+@views.route('/')
+def home():
+    return render_template('index.html')
