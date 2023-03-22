@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='styles.css')}}"
+		/>
+    <title>Introduction</title>
+</head>
+<body>
+    <div class="gameLauncher" id="firstScene">
+        <!-- game launcher intro scene, with game description, image and continue button. All corresponding scenes should maybe be wrapped in a div which is shrunk down so it's not full screen?-->
+        <div class="introHeader">
+            <div class="title">
+                <h1 class="mainTitle">CSI:</h1>
+            </div>
+        </div>
+        <div class="gameBody">
+            <div class="descriptText" id = "descriptText">
+                Scotland Yard has asked you to gather digital evidence against
+                Laundromats Incorporated who are being investigated for money
+                laundering. We have gathered three pieces of crucial evidence, the
+                system administrators laptop, cell phone and server. Complete
+                challenges attached to each piece of evidence to help us expose
+                Laundromats Inc., we are only able to hold the evidence for 24 hours.
+                Good luck.
+            </div>
+            <div class = "hidden" id = "introQuiz">
+                <iframe
+                src="https://kahoot.it/challenge/01822152?challenge-id=f4024f95-6f91-4152-960c-44a99e4f5152_1679495142441"
+                width="550" height="275" frameborder="0">
+                </iframe>
+            </div>
+            
+            <div id="nav">
+                <button id ="quizButton" class = "hidden">quiz</button>
+                <button id="continue">continue &#8680;</button>
+                <button id ="back" class = "hidden">&#8678; back</button>
+            </div>
+        </div>
+        <div class="gameTracker"></div>
+    </div>
+   
+    <script
+			src="{{ url_for('static', filename='script.js')}}"
+			async
+			defer
+		></script>
+</body>
+</html>
