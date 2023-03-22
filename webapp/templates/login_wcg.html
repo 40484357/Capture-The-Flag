@@ -107,17 +107,16 @@
 		</form>
 		
 		<script defer>
-			var redirect = {{ redir }}
-			var challengetext = {{challengeText|tojson}}
-			var challengeCheck = {{challenge3}}
-			var text2 = {{challengeText2|tojson}}
+			let redirect = {{ redir }}
+			let challengetext = {{challengeText|tojson}}
+			let challengeCheck = {{challenge3}}
+			let text2 = {{challengeText2|tojson}}
 			
 			
 			function checkChallenge(){
 				if(challengeCheck == true){
 					var terminal_response = document.getElementById('terminal_response')
 					terminal_response.classList.add('hidden')
-					console.log('challenge Checked fuck you')
 					const terminal_body = document.getElementById('terminalBody')
 					let i = 0;
 					for(i; i<challengetext.length; i++){
@@ -151,27 +150,9 @@
 					function complete(){
 						clearInterval(timer);
 						timer = null;
-						document.addEventListener('keypress', ()=>{
-							if(event.key == 'Enter'){
-								
-								
-								
-
 								window.open(text2[0], '_blank')
 								terminal_body.innerHTML+=
-
 								`
-								<div class="terminal_row terminal">
-								<div class="termianl_address terminal">
-									10.0.0.1
-								</div>
-								<div class="terminal-split">
-									- -
-								</div>
-								<div class="terminal_response terminal">
-									${text2[1]}
-								</div>
-								</div>
 
 								<div class="terminal_row terminal "id = 'terminal_response'>
 								<div class="terminal_address terminal">
@@ -187,10 +168,8 @@
 								</div>
 								</div>
 								`
-							}
 
-
-						})
+						
 					}
 				}
 			}
@@ -260,8 +239,6 @@
 		
 					
 			}
-
-			
 			
 			check_state()
 

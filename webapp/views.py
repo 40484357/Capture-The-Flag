@@ -8,7 +8,7 @@ from .utils import timeChange
 from flask import Blueprint, render_template, request, redirect, url_for, flash, Markup
 import hashlib, random, time, webbrowser
 passwords = []
-with open('webapp\static\cyberA-Z.txt') as f:
+with open('CaptureTheFlag\webapp\static\cyberA-Z.txt') as f:
     words = f.readlines()
     passwords = [x.strip().lower() for x in words]
 
@@ -259,23 +259,25 @@ def phoneHome():
 def server():
     return render_template('server.html')
 
-
-
-
 @views.route('/login_wcg', methods = ['GET', 'POST'])
 def login_wcg():
     flag = 'FLAG = static/robots.txt'
     redir = "false"
     challenge3 = 'false'
+    challengeText = ""
+    challengeText2 = ""
     name = request.cookies.get('user')
     challengeState = db.session.query(server_challenge.challengeState).filter_by(user_id = current_user.id).first()
     if(challengeState[0] == 1):
-        return redirect('/wcg')
+        return redirect('/wickedcybergames')
     elif(challengeState[0] == 3 and name == 'admin'):
-        challengeText = ['admin permissions verified', 'press enter to continue']
-        challengeText2 = ['http://127.0.0.1:5000/static/cookie_admin.txt','please verify flag']
+        challengeText = ['admin permissions verified', 'please verify flag']
+        challengeText2 = ['http://127.0.0.1:5000/static/cookie_admin.txt']
         challenge3 = 'true'
         response = 'verifying admin permissions'
+        userChallenge = server_challenge.query.get_or_404(current_user.id)
+        userChallenge.challengeState = 4
+        db.session.commit()
         return render_template('login_wcg.html', flag = flag, redir = redir, challengeText = challengeText,  challengeText2 = challengeText2, challenge3 = challenge3)
     elif(challengeState[0] == 3):
         print(name)
@@ -283,7 +285,7 @@ def login_wcg():
         challengeText = ['Admin not verified...','cookie user type None', 'Please verify admin state and refresh to continue']
         flash(response)
         redir = "true"
-        return render_template('login_wcg.html', flag = flag, response = response, redir = redir, challengeText = challengeText, challenge3 = challenge3)
+        return render_template('login_wcg.html', flag = flag, response = response, redir = redir, challengeText = challengeText, challenge3 = challenge3, challengeText2 = challengeText2)
     else:
         userChallenge = server_challenge.query.get_or_404(current_user.id)
         userChallenge.startTime = datetime.now()
@@ -291,13 +293,7 @@ def login_wcg():
         db.session.commit()
     
     if request.method == 'POST':
-        if request.form['flag_response'] != 'install':
-            response = 'incorrect flag, keep looking'
-            answer = request.form['flag_response']
-            flash(response)
-            flash(answer)
-            return render_template('login_wcg.html', flag = flag, response = response, answer = answer)
-        else: 
+        if request.form['flag_response'] == 'install':
             response = 'flag found, verify admin permissions... press enter to continue'
             answer = request.form['flag_response']
             challengeText = ['Admin not verified...','Checking cookie state...','user type None...' , 'Please verify admin state and refresh to continue']
@@ -312,11 +308,35 @@ def login_wcg():
             newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
             userPoints.pointsTotal = newPoints #add new points total to DB
             userChallenge.startTime = datetime.now()
+            userChallenge.hints = 0
             userChallenge.challengeState = 3
             db.session.commit()
-            return render_template('login_wcg.html', flag = flag, response = response, answer = answer, redir = redir, challengeText = challengeText)
+            return render_template('login_wcg.html', flag = flag, response = response, answer = answer, redir = redir, challengeText = challengeText, challengeText2 = challengeText2)
+        elif request.form['flag_response'] == 'plugin':
+            response = 'flag found, press enter to continue'
+            challengeText = ['Flag 1: install', 'Flag 2: plugin', 'continue to splunk with flags', 'splunk link']
+            flash(response)
+            redir = 'true'
+            userChallenge = server_challenge.query.get_or_404(current_user.id)
+            userPoints = points.query.get_or_404(current_user.id)
+            hintsUsed = db.session.query(server_challenge.hints).filter_by(user_id = current_user.id).first()
+            time = db.session.query(server_challenge.startTime).filter_by(user_id = current_user.id).first()
+            totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
+            newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+            userPoints.pointsTotal = newPoints #add new points total to DB
+            userChallenge.startTime = datetime.now()
+            userChallenge.challengeState = 4
+            db.session.commit()
+            return render_template('login_wcg.html', redir = redir, flag = flag, response = response, challenge3 = challenge3, challengeText = challengeText, challengeText2 = challengeText2)
+        else: 
+            response = 'incorrect flag, keep looking'
+            answer = request.form['flag_response']
+            print(answer)
+            flash(response)
+            flash(answer)
+            return render_template('login_wcg.html', flag = flag, response = response, answer = answer, challengeText = challengeText, challengeText2 = challengeText2)
 
-    return render_template('login_wcg.html', flag = flag, redir = redir)
+    return render_template('login_wcg.html', flag = flag, redir = redir, challenge3 = challenge3, challengeText = challengeText, challengeText2 = challengeText2)
 
 
 @views.route('/wickedcybergames' , methods=['GET','POST'])
@@ -330,7 +350,7 @@ def wickedcybergames():
         elif(challengeState[0] == 2 | 3):
             return redirect('/login_wcg')
         elif(challengeState[0] == 4):
-            return redirect('/adminCheck')
+            return redirect('/login_wcg')
     else:
         new_server_challenge = server_challenge(user_id = current_user.id, challengeState = 1, startTime = datetime.now(), hints = 0)
         db.session.add(new_server_challenge)
@@ -342,12 +362,14 @@ def wickedcybergames():
             if request.form['password'] == 'IloveWickedGames2023':
                 userChallenge = server_challenge.query.get_or_404(current_user.id)
                 userPoints = points.query.get_or_404(current_user.id)
+                print(userPoints)
                 hintsUsed = db.session.query(server_challenge.hints).filter_by(user_id = current_user.id).first()
                 time = db.session.query(server_challenge.startTime).filter_by(user_id = current_user.id).first()
                 totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
                 newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
                 userPoints.pointsTotal = newPoints #add new points total to DB
                 userChallenge.startTime = datetime.now()
+                userChallenge.hints = 0
                 userChallenge.challengeState = 2
                 db.session.commit()
                 return redirect('/login_wcg')
