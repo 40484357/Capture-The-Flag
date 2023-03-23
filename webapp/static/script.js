@@ -1,4 +1,6 @@
 var continueButton = document.getElementById('continue')
+var back = document.getElementById('back')
+var quizButton = document.getElementById('quizButton')
 var firstScene = document.getElementById('firstScene')
 var secondScene = document.getElementById('secondScene')
 
@@ -39,7 +41,7 @@ continueButton.addEventListener('click', ()=>{
         var descript = document.getElementById('descriptText')
         descript.innerHTML="Now, are you ready to begin? If so, click continue to begin the challenge."
         quiz.classList.add('hidden')
-        quizbtn.classList.remove('hidden')
+        //quizbtn.classList.remove('hidden')
         backButton.classList.remove('hidden')
         descript.classList.remove('hidden')
         state = 2
@@ -137,6 +139,14 @@ function copyTextToClipboard(hash){
 	navigator.clipboard.writeText(hash.textContent);
   alert('Copied text to clipboard!');
 } // Copies hash to clipboard
+
+function goToEvidence(){
+    window.location.href = '/cyberescape'
+} //goes to evidence
+
+function goToWeb(){
+    window.location.href = '/'
+} //goes to web
 
 let Time_Limit = 86400;
 let timePassed = 0;
