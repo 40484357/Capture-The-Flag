@@ -63,7 +63,7 @@ back.addEventListener('click', ()=>{
         var quizButton = document.getElementById('quizButton')
         var backButton = document.getElementById('back')
 
-        descript.innerHTML="Scotland Yard has asked you to gather digital evidence against Laundromats Incorporated who are being investigated for money laundering. We have gathered three pieces of crucial evidence, the system administrators laptop, cell phone and server. Complete challenges attached to each piece of evidence to help us expose Laundromats Inc., we are only able to hold the evidence for 24 hours. Good luck."
+        descript.innerHTML="Laundromats Inc. are involved in money laundering. You have been given three pieces of evidence -1) a laptop  2) a mobile phone 3) a server. You have 24 hours to forensically analyse the evidence by solving the challenges."
         quizButton.classList.add('hidden')
         backButton.classList.add('hidden')
 

@@ -450,6 +450,10 @@ body {
     cursor: pointer;
 }
 
+#phone:hover{
+    cursor: pointer;
+}
+
 .descriptText {
     width: 1000px;
     margin: auto;
