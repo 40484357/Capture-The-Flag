@@ -1,6 +1,13 @@
 var continueButton = document.getElementById('continue')
 var firstScene = document.getElementById('firstScene')
 var secondScene = document.getElementById('secondScene')
+var backButton = document.getElementById('backButton')
+
+if(backButton != null){
+    backButton.addEventListener('click', () => {
+        window.location = '/'
+    })
+}
 
 if(continueButton != null){
 continueButton.addEventListener('click', ()=>{

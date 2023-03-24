@@ -369,7 +369,7 @@ body {
 }
 .challengeInfo{
  color:white;
-  font-size: 24px;
+  font-size: 32px;
   text-align: center;
 }
 .gameCard:hover .cardOverlay{
@@ -420,7 +420,7 @@ body {
     font-family: 'NATS';
     font-style: normal;
     font-weight: 400;
-    font-size: 64px;
+    font-size: 92px;
     line-height: 135px;
     letter-spacing: 0.31em;
     color: rgba(204, 101, 57, 0.24);
@@ -457,17 +457,17 @@ body {
     ;
     border-radius: 14px;
     padding: 1em;
-    font-family: 'Inter';
+    font-family: 'public sans';
     font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: 32px;
     line-height: 193.9%;
     /* or 50px */
     color: #FFFFFF;
 }
 
 #continue {
-    margin-top: 1em;
+    margin: 1em auto;
     background: rgba(204, 101, 57, 0.65);
     border-radius: 11px;
     position: relative;
@@ -477,7 +477,7 @@ body {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 28px;
     line-height: 193.9%;
     /* or 50px */
     color: #FFFFFF;
@@ -739,7 +739,7 @@ body {
     position: absolute;
     background-color: white;
     color: black;
-    width: auto;
+    width: 75%;
     margin-right:25%;
     margin-left:15%;
     height: 75%;

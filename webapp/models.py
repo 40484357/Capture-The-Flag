@@ -4,7 +4,7 @@ from datetime import datetime, date
 
 class users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    user_name = db.Column(db.String(1000))
+    user_name = db.Column(db.String(1000), unique=True)
     password = db.Column(db.String(1000))
     admin = db.Column(db.String(100))
     #lecturerId = db.Column(db.Integer)

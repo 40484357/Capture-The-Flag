@@ -19,7 +19,6 @@
     box-sizing: border-box;
     outline: none; border:none;
     text-decoration: none;
-    text-transform: capitalize;
     transition: .2s linear;
 	box-sizing: border-box;
 }
@@ -549,6 +548,7 @@ img {
     background-color:#010103;
     color:white;
     font-size: 2rem;
+    text-transform: lowercase;
 }
 
 .hidden{
