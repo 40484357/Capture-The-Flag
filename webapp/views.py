@@ -143,6 +143,10 @@ def points():
         
     return render_template('Points_Logic.html', response= response)
 
+@views.route('/intro')
+def intro():
+    return render_template('intro.html')
+
 @views.route('/')
 def home():
     return render_template('index.html')

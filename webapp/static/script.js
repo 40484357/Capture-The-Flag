@@ -1,12 +1,118 @@
 var continueButton = document.getElementById('continue')
+var back = document.getElementById('back')
+var quizButton = document.getElementById('quizButton')
 var firstScene = document.getElementById('firstScene')
 var secondScene = document.getElementById('secondScene')
 
+var state = 0
+/* states
+0 = story intro
+1 = asking user to take quiz
+2 = asking user if they are ready to begin
+3 = quiz
+*/
+
 if(continueButton != null){
 continueButton.addEventListener('click', ()=>{
-    hideScene(firstScene)
-    showScene(secondScene)
-    startTimer();
+    if(state==0){
+        var descript = document.getElementById('descriptText')
+        var quizButton = document.getElementById('quizButton')
+        var backButton = document.getElementById('back')
+
+        descript.innerHTML="We need to make sure you're the right person for the job. Test your eligibility by taking this short quiz."
+        quizButton.classList.remove('hidden')
+        backButton.classList.remove('hidden')
+
+        state = 1
+        return
+    }
+    if(state==1){
+        var quizButton = document.getElementById('quizButton')
+        quizButton.classList.add('hidden')
+        var descript = document.getElementById('descriptText')
+        descript.innerHTML="Now, are you ready to begin? If so, click continue to begin the challenge."
+        state = 2
+        return
+    }
+    if(state==3){
+        var quiz = document.getElementById('introQuiz')
+        var backButton = document.getElementById('back')
+        var quizbtn = document.getElementById('quizButton')
+        var descript = document.getElementById('descriptText')
+        descript.innerHTML="Now, are you ready to begin? If so, click continue to begin the challenge."
+        quiz.classList.add('hidden')
+        //quizbtn.classList.remove('hidden')
+        backButton.classList.remove('hidden')
+        descript.classList.remove('hidden')
+        state = 2
+        return
+    }
+    if(state==2){
+        startTimer();
+        window.location.href='/cyberescape'
+    }
+
+    
+})}
+
+if(back != null){
+back.addEventListener('click', ()=>{
+    if(state==1)
+    {
+        var descript = document.getElementById('descriptText')
+        var quizButton = document.getElementById('quizButton')
+        var backButton = document.getElementById('back')
+
+        descript.innerHTML="Laundromats Inc. are involved in money laundering. You have been given three pieces of evidence -1) a laptop  2) a mobile phone 3) a server. You have 24 hours to forensically analyse the evidence by solving the challenges."
+        quizButton.classList.add('hidden')
+        backButton.classList.add('hidden')
+
+        state = 0
+        return
+    }
+    if(state==2)
+    {
+        var descript = document.getElementById('descriptText')
+        var quizButton = document.getElementById('quizButton')
+        var backButton = document.getElementById('back')
+
+        descript.innerHTML="We need to make sure you're the right person for the job. Test your eligibility by taking this short quiz."
+        quizButton.classList.remove('hidden')
+        backButton.classList.remove('hidden')
+
+        state = 1
+        return
+    }
+    if(state==3)
+    {
+        var descript = document.getElementById('descriptText')
+        var quiz = document.getElementById('introQuiz')
+        var backButton = document.getElementById('back')
+        var quizbtn = document.getElementById('quizButton')
+
+        descript.innerHTML="We need to make sure you're the right person for the job. Test your eligibility by taking this short quiz."
+        quiz.classList.add('hidden')
+        quizbtn.classList.remove('hidden')
+        backButton.classList.remove('hidden')
+        descript.classList.remove('hidden')
+
+        state = 1
+        return
+    }
+
+})}
+
+if(quizButton != null){
+quizButton.addEventListener('click', ()=>{
+    state = 3
+    // window.open('https://kahoot.it/challenge/01822152?challenge-id=f4024f95-6f91-4152-960c-44a99e4f5152_1679495142441', '_blank')
+    var descript = document.getElementById('descriptText')
+    var quizbtn = document.getElementById('quizButton')
+    var quiz = document.getElementById('introQuiz')
+    descript.classList.add('hidden')
+    quizbtn.classList.add('hidden')
+    quiz.classList.remove('hidden')
+
 })}
 
 
@@ -33,6 +139,14 @@ function copyTextToClipboard(hash){
 	navigator.clipboard.writeText(hash.textContent);
   alert('Copied text to clipboard!');
 } // Copies hash to clipboard
+
+function goToEvidence(){
+    window.location.href = '/cyberescape'
+} //goes to evidence
+
+function goToWeb(){
+    window.location.href = '/'
+} //goes to web
 
 let Time_Limit = 86400;
 let timePassed = 0;
