@@ -63,7 +63,7 @@ back.addEventListener('click', ()=>{
         var quizButton = document.getElementById('quizButton')
         var backButton = document.getElementById('back')
 
-        descript.innerHTML="Laundromats Inc. are involved in money laundering. You have been given three pieces of evidence -1) a laptop  2) a mobile phone 3) a server. You have 24 hours to forensically analyse the evidence by solving the challenges."
+        descript.innerHTML="<p>Laundromats Inc. are involved in money laundering. You have been given three pieces of evidence</p><ol><li>a laptop</li><li>a mobile phone</li><li>a server</li></ol><p>You have 24 hours to forensically analyse the evidence by solving the challenges.</p>"
         quizButton.classList.add('hidden')
         backButton.classList.add('hidden')
 
