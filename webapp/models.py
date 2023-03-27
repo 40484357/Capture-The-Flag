@@ -29,6 +29,8 @@ class phone_challenge(db.Model):
     phonePrime2 = db.Column(db.Integer)
     startTime = db.Column(db.String)
     hints = db.Column(db.Integer)
+    stegChallenge = db.Column(db.Integer)
+    aesChallenge = db.Column(db.Integer)
 
 class server_challenge(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key = True)

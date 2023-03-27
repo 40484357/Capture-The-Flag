@@ -16,32 +16,12 @@
 		/>
 	</head>
 	<body>
-		<div class="gameLauncher" id="firstScene">
-			<!-- game launcher intro scene, with game description, image and continue button. All corresponding scenes should maybe be wrapped in a div which is shrunk down so it's not full screen?-->
-			<div class="introHeader">
-				<div class="title">
-					<h1 class="mainTitle">CSI:</h1>
-				</div>
-			</div>
-			<div class="gameBody">
-				<div class="descriptText">
-					<p>Laundromats Inc. are involved in money laundering. You have been given three pieces of evidence</p>
-					<ol>
-						<li>a laptop</li>
-						<li>a mobile phone</li>
-						<li>a server</li>
-					</ol>
-					<p>You have 24 hours to forensically analyse the evidence by solving the challenges.</p>
-				</div>
-				<button id="continue">continue &#8680;</button>
-			</div>
-			<div class="gameTracker"></div>
-		</div>
-		<div class="hidden" id="secondScene">
+		
+		<div class="gameLauncher" id="secondScene">
 			<!-- second scene, contains clickable elements, a navigation menu (which has time and room title), as well as a tracker for challenges and score-->
 			<div class="gameHeader">
 				<!-- contains nav menu (maybe just exit game, or return to main room), room title and time-->
-				<div class="navButton">Exit</div>
+				<div class="navButton" onclick="goToWeb()">Exit</div>
 				<div class="roomTitle">Evidence Room</div>
 				<div id="clock"></div>
 			</div>
@@ -457,7 +437,7 @@
 						</defs>
 					</svg>
 				</div>
-				<div id="server">
+				<div id="server" onclick="goToServer()">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="282"
@@ -1997,6 +1977,7 @@
 						</defs>
 					</svg>
 				</div>
+				{{keyValidator}}
 			</div>
 			<div class="trackerElements">
 				<!-- contains checklist for challenges and scores -->

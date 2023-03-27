@@ -111,9 +111,11 @@ def desktop():
     challengeStateCheck = db.session.query(laptop_challenge.challengeState).filter_by(user_id = current_user.id).first()
     if(challengeStateCheck[0] == 1):
         return redirect('/laptop')
-    elif(challengeStateCheck[0] == 4):
-        return redirect('/')
+    elif(challengeStateCheck[0] >= 3):
+        userChallenge.startTime = datetime.now()
+        db.session.commit()
     else:
+        userChallenge.challengeState = 3
         userChallenge.hints = 0
         userChallenge.startTime = datetime.now()
         db.session.commit()
@@ -128,9 +130,9 @@ def desktop():
         else:
             response = "That's the IP, but where does it go? " + ip
             completed = 'true'
-            if(challengeStateCheck[0] ==2):
+            if(challengeStateCheck[0] ==3):
                 userPoints = points.query.get_or_404(current_user.id)
-                userChallenge.challengeState = 3
+                userChallenge.challengeState = 4
                 hintsUsed = db.session.query(laptop_challenge.hints).filter_by(user_id = current_user.id).first()
                 time = db.session.query(laptop_challenge.startTime).filter_by(user_id = current_user.id).first()
                 totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
@@ -185,7 +187,7 @@ def phone():
         print("A: ", A)
         print("B: ", B)
         print("Secret Key: ", secretKey)
-        new_phone_challenge = phone_challenge(user_id = current_user.id, challengeState = 1, phonePrime1 = a, phonePrime2 = b, hints = 0, startTime = datetime.now() )
+        new_phone_challenge = phone_challenge(user_id = current_user.id, challengeState = 1, phonePrime1 = a, phonePrime2 = b, hints = 0, startTime = datetime.now(), stegChallenge = 0, aesChallenge = 0 )
         db.session.add(new_phone_challenge)
         db.session.commit()
 
@@ -219,12 +221,18 @@ def phoneHome():
     challengeState = db.session.query(phone_challenge.challengeState).filter_by(user_id = current_user.id).first()
     userChallenge = phone_challenge.query.get_or_404(current_user.id)
     userPoints = points.query.get_or_404(current_user.id)
+    stegChallengeCheck = db.session.query(phone_challenge.stegChallenge).filter_by(user_id = current_user.id).first()
+
     if (challengeState == 1):
         return redirect('/phone')
-    elif (challengeState == 3):
-        return redirect('/')
     else: 
         userChallenge.startTime = datetime.now()
+
+    aesState = 'false'
+
+    if(stegChallengeCheck[0] == 1):
+        aesState = 'true'
+    
 
     response = None
     # Doing this because of two forms on one view, checks which one was used
@@ -235,32 +243,41 @@ def phoneHome():
                 flash(response)
             else:
                 # assign chall 2 points, steganography
-                hintsUsed = db.session.query(phone_challenge.hints).filter_by(user_id = current_user.id).first()
-                time = db.session.query(phone_challenge.startTime).filter_by(user_id = current_user.id).first()
-                totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
-                newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
-                userPoints.pointsTotal = newPoints #add new points total to DB
-                userChallenge.hints = 0
-                userChallenge.startTime = datetime.now()
-                db.session.commit()
+                
+                if(stegChallengeCheck[0] == 0):
+                    hintsUsed = db.session.query(phone_challenge.hints).filter_by(user_id = current_user.id).first()
+                    time = db.session.query(phone_challenge.startTime).filter_by(user_id = current_user.id).first()
+                    totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
+                    newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+                    userPoints.pointsTotal = newPoints #add new points total to DB
+                    userChallenge.hints = 0
+                    userChallenge.startTime = datetime.now()
+                    userChallenge.stegChallenge = 1
+                    db.session.commit()
                 response = 'Correct Ciphertext.' 
                 flash(response)
         elif "aes" in request.form:
             if request.form['password'] != "check_user.php":
                 response = 'Incorrect password'
                 flash(response)
+                print('fail')
             else:
                 # assign chall 3 points, aes
                 response = Markup("Correct password.<br>Access Splunk <a href ='http://52.1.222.178:8000' target='_blank'>here</a><br>Username: ctf<br>Password: EscapeEscap3")
-                hintsUsed = db.session.query(phone_challenge.hints).filter_by(user_id = current_user.id).first()
-                time = db.session.query(phone_challenge.startTime).filter_by(user_id = current_user.id).first()
-                totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
-                newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
-                userPoints.pointsTotal = newPoints #add new points total to DB
-                db.session.commit()
+                aesChallengeCheck = db.session.query(phone_challenge.aesChallenge).filter_by(user_id = current_user.id).first()
+                if(aesChallengeCheck[0] == 0):
+                    print('success')
+                    hintsUsed = db.session.query(phone_challenge.hints).filter_by(user_id = current_user.id).first()
+                    time = db.session.query(phone_challenge.startTime).filter_by(user_id = current_user.id).first()
+                    totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
+                    newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+                    userPoints.pointsTotal = newPoints #add new points total to DB
+                    userChallenge.aesChallenge = 1
+                    userChallenge.challengeState = 3
+                    db.session.commit()
                 flash(response)
 
-    return render_template('phoneHome.html')     
+    return render_template('phoneHome.html', aesState = aesState)     
 
 @views.route('/server')
 def server():
@@ -417,5 +434,11 @@ def adminCheck():
         p1Text = 'Error: Unverified Admin Login'
         p2Text = 'Cookies Display NoneType User...Please Check Details And Refresh The Page'
     
+@views.route('/intro')
+def intro():
+    user_points = db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
+    if user_points:
+        return redirect('/cyberescape')
+    return render_template('intro.html')
+
     
-    return render_template('admin_check.html', p1Text = p1Text, p2Text = p2Text)

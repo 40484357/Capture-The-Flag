@@ -17,7 +17,7 @@
 <body>
 	<div class="gameLauncher" id="phoneChallenges">
 		<div class="gameHeader">
-			<div class="navButton">Back</div>
+			<div class="navButton"onclick="goToEvidence()">Back</div>
 			<div class="roomTitle">Evidence Room</div>
 			<div id="clock"></div>
 		</div>
@@ -35,7 +35,7 @@
 				</form>
 
 			</div>
-			<div id="aesFileButton" onclick="openAesApp()"></div>
+			<div class = "hidden" id="aesFileButton" onclick="openAesApp()"></div>
 			<div id="notesButton" onclick="openNotesApp()"></div>
 			<a href = "https://asecuritysite.com/aes/openssl_full_d" target="_blank" >
 				<div id="decodeButton"></div>
@@ -86,7 +86,15 @@
 
 
 	</div>
-	<script src="{{ url_for('static', filename='script.js')}}" async defer></script>
+	
 </body>
+<script>
+	var aesCheck = {{aesState}}
+	var aesFile = document.getElementById('aesFileButton')
+	if(aesCheck == true){
+		aesFile.classList.remove('hidden')
+	}
 
+</script>
+<script src="{{ url_for('static', filename='script.js')}}" async defer></script>
 </html>
