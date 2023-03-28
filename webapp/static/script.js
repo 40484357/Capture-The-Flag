@@ -63,7 +63,7 @@ back.addEventListener('click', ()=>{
         var quizButton = document.getElementById('quizButton')
         var backButton = document.getElementById('back')
 
-        descript.innerHTML="Laundromats Inc. are involved in money laundering. You have been given three pieces of evidence -1) a laptop  2) a mobile phone 3) a server. You have 24 hours to forensically analyse the evidence by solving the challenges."
+        descript.innerHTML="<p>Laundromats Inc. are involved in money laundering. You have been given three pieces of evidence</p><ol><li>a laptop</li><li>a mobile phone</li><li>a server</li></ol><p>You have 24 hours to forensically analyse the evidence by solving the challenges.</p>"
         quizButton.classList.add('hidden')
         backButton.classList.add('hidden')
 
@@ -220,6 +220,55 @@ function timerCountdown(time){
     return `${hours}:${minutes}:${seconds}`;
 }
 
+challengeHints = [
+    {
+        challengeNumber: 1,
+        challengeHint: 'I am a common hash algorithm prone to collisions.'
+    },
+    {
+        challengeNumber: 2,
+        challengeHint: 'I am in a base with 2^^6'
+    },
+    {
+        challengeNumber: 3,
+        challengeHint: 'I am used for secure key-exchange'
+    },
+    {
+        challengeNumber: 4,
+        challengeHint: 'The hint lies in the image '
+    },
+    {
+        challenge: 5,
+        challengeHint: 'I am an Advanced Encryption Standard'
+    },
+    {
+        challenge: 6,
+        challengeHint: 'we are Base64 and vigenere ciphers'
+    }
+]
+
+function getHint(challenge){
+    let currentHint
+    var hintBox = document.getElementById('hintDiv')
+    hintText = document.getElementById('hintText')
+    if(window.location.href.indexOf("laptop") > -1){
+        currentHint = challengeHints[0].challengeHint
+    }
+    else if(window.location.href.indexOf("desktop") > -1){
+        currentHint = challengeHints[1].challengeHint
+    }
+
+    hintText.innerHTML = currentHint
+    hintBox.classList.remove('hidden')
+
+    const request = new XMLHttpRequest()
+    request.open('POST',`/update_hints/${challenge}`)
+}
+
+function closeHint(){
+    var hintBox = document.getElementById('hintDiv')
+    hintBox.classList.add('hidden')
+}
 
 
 function startTimer(){

@@ -51,7 +51,6 @@ def sign_up():
         user = users.query.filter_by(email=email).first()
         usernameCheck = users.query.filter_by(user_name = username)
 
-
         if usernameCheck:
             number = usernameCheck.length + 1
             newUsername = username + number

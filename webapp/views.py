@@ -4,7 +4,7 @@ from . import db
 from flask_login import login_user, login_required, current_user
 from .models import users, phone_challenge, laptop_challenge, server_challenge, points
 from datetime import date, datetime
-from .utils import timeChange
+from .utils import timeChange, pointsLogic
 from flask import Blueprint, render_template, request, redirect, url_for, flash, Markup
 import hashlib, random, time, webbrowser
 passwords = []
@@ -44,17 +44,6 @@ print("Secret Key: ", secretKey)
 
 views = Blueprint('views', __name__)
 
-def pointsLogic(hintsUsed, userTime, totalPoints):
-    basePoints = 50
-    #timeLPenalty = (24 - round(timeLeft /3600))*500
-    timeTaken = timeChange(userTime)
-    timeTPenalty = timeTaken * 0.005
-    hintPenalty = 0
-    if(hintsUsed > 0):
-        hintPenalty = basePoints - ((basePoints-timeTPenalty) * (1-(hintsUsed * 0.08)))
-    finalPoints = basePoints - (hintPenalty + timeTPenalty)
-    newPoints = math.ceil(totalPoints + finalPoints)
-    return(newPoints)
 
 @views.route('/laptop', methods=['GET', 'POST'])
 def laptop():
@@ -62,6 +51,9 @@ def laptop():
     passkey = db.session.query(laptop_challenge.laptopPassword).filter_by(user_id = current_user.id).first()
     challengeState = db.session.query(laptop_challenge.challengeState).filter_by(user_id = current_user.id).first()
     #checks challenge state, if it's 2 it will redirect the user to second challenge
+    challengeHint = 'I am a common hash algorithm prone to collisions'
+
+
     if challengeState:
         if challengeState[0] > 1:
             return redirect('/desktop')
@@ -92,11 +84,9 @@ def laptop():
             userChallenge = laptop_challenge.query.get_or_404(current_user.id)
             userChallenge.challengeState = 2
             userPoints = points.query.get_or_404(current_user.id)
-            hintsUsed = db.session.query(laptop_challenge.hints).filter_by(user_id = current_user.id).first()
-            time = db.session.query(laptop_challenge.startTime).filter_by(user_id = current_user.id).first()
-            totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
 
-            newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+            #newPoints = newPointsLogic( hintsUsed[0],time[0], totalPoints[0])
+            newPoints = pointsLogic(laptop_challenge)
             userPoints.pointsTotal = newPoints #add new points total to DB
             db.session.commit()
             return redirect('/desktop')
@@ -133,10 +123,7 @@ def desktop():
             if(challengeStateCheck[0] ==3):
                 userPoints = points.query.get_or_404(current_user.id)
                 userChallenge.challengeState = 4
-                hintsUsed = db.session.query(laptop_challenge.hints).filter_by(user_id = current_user.id).first()
-                time = db.session.query(laptop_challenge.startTime).filter_by(user_id = current_user.id).first()
-                totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
-                newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+                newPoints = pointsLogic(laptop_challenge)
                 userPoints.pointsTotal = newPoints #add new points total to DB
                 db.session.commit()
             flash(response)
@@ -153,7 +140,7 @@ def phone():
     challengeState = db.session.query(phone_challenge.challengeState).filter_by(user_id = current_user.id).first()
 
     if(challengeState):
-        if(challengeState[0] == 2):
+        if(challengeState[0] >= 2):
             return redirect('/phoneHome')
 
     if primeA:
@@ -203,10 +190,7 @@ def phone():
             userChallenge = phone_challenge.query.get_or_404(current_user.id)
             userChallenge.challengeState = 2
             userPoints = points.query.get_or_404(current_user.id)
-            hintsUsed = db.session.query(phone_challenge.hints).filter_by(user_id = current_user.id).first()
-            time = db.session.query(phone_challenge.startTime).filter_by(user_id = current_user.id).first()
-            totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
-            newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+            newPoints = pointsLogic(phone_challenge)
             userPoints.pointsTotal = newPoints #add new points total to DB
             userChallenge.hints = 0
             db.session.commit()
@@ -245,10 +229,8 @@ def phoneHome():
                 # assign chall 2 points, steganography
                 
                 if(stegChallengeCheck[0] == 0):
-                    hintsUsed = db.session.query(phone_challenge.hints).filter_by(user_id = current_user.id).first()
-                    time = db.session.query(phone_challenge.startTime).filter_by(user_id = current_user.id).first()
-                    totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
-                    newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+                    
+                    newPoints = pointsLogic(phone_challenge)
                     userPoints.pointsTotal = newPoints #add new points total to DB
                     userChallenge.hints = 0
                     userChallenge.startTime = datetime.now()
@@ -267,10 +249,7 @@ def phoneHome():
                 aesChallengeCheck = db.session.query(phone_challenge.aesChallenge).filter_by(user_id = current_user.id).first()
                 if(aesChallengeCheck[0] == 0):
                     print('success')
-                    hintsUsed = db.session.query(phone_challenge.hints).filter_by(user_id = current_user.id).first()
-                    time = db.session.query(phone_challenge.startTime).filter_by(user_id = current_user.id).first()
-                    totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
-                    newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+                    newPoints = pointsLogic(phone_challenge)
                     userPoints.pointsTotal = newPoints #add new points total to DB
                     userChallenge.aesChallenge = 1
                     userChallenge.challengeState = 3
@@ -326,10 +305,7 @@ def login_wcg():
             redir = "true"
             userChallenge = server_challenge.query.get_or_404(current_user.id)
             userPoints = points.query.get_or_404(current_user.id)
-            hintsUsed = db.session.query(server_challenge.hints).filter_by(user_id = current_user.id).first()
-            time = db.session.query(server_challenge.startTime).filter_by(user_id = current_user.id).first()
-            totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
-            newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+            newPoints = pointsLogic(server_challenge)
             userPoints.pointsTotal = newPoints #add new points total to DB
             userChallenge.startTime = datetime.now()
             userChallenge.hints = 0
@@ -343,10 +319,7 @@ def login_wcg():
             redir = 'true'
             userChallenge = server_challenge.query.get_or_404(current_user.id)
             userPoints = points.query.get_or_404(current_user.id)
-            hintsUsed = db.session.query(server_challenge.hints).filter_by(user_id = current_user.id).first()
-            time = db.session.query(server_challenge.startTime).filter_by(user_id = current_user.id).first()
-            totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
-            newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+            newPoints = pointsLogic(server_challenge)
             userPoints.pointsTotal = newPoints #add new points total to DB
             userChallenge.startTime = datetime.now()
             userChallenge.challengeState = 4
@@ -386,11 +359,7 @@ def wickedcybergames():
             if request.form['password'] == 'IloveWickedGames2023':
                 userChallenge = server_challenge.query.get_or_404(current_user.id)
                 userPoints = points.query.get_or_404(current_user.id)
-                print(userPoints)
-                hintsUsed = db.session.query(server_challenge.hints).filter_by(user_id = current_user.id).first()
-                time = db.session.query(server_challenge.startTime).filter_by(user_id = current_user.id).first()
-                totalPoints= db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
-                newPoints = pointsLogic( hintsUsed[0],time[0], totalPoints[0])
+                newPoints = pointsLogic(server_challenge)
                 userPoints.pointsTotal = newPoints #add new points total to DB
                 userChallenge.startTime = datetime.now()
                 userChallenge.hints = 0
@@ -407,33 +376,6 @@ def wickedcybergames():
 
     return render_template('wickedcybergames.html')
 
-@views.route('/adminCheck', methods = ['GET', 'POST'])
-def adminCheck():
-    p1Text = None
-    p2Text = None
-    name = request.cookies.get('user')
-    if request.method == 'POST':
-        name = 'done'
-        if request.form['username'] == 'admin':
-            if request.form['password'] == 'plugin':
-                print('successful login')
-                p1Text = 'all details verified, game complete'
-                p2Text = 'congratulations!'
-            else: 
-                p2Text = 'wrong password, try again'
-        else:
-            p1Text = 'wrong username or password, try again'
-
-    if(name == 'admin'):
-         p1Text = 'Admin Verified'
-         p2Text = 'Please login with password to continue'
-         webbrowser.open_new_tab('http://127.0.0.1:5000/static/cookie_admin.txt')
-    elif(name == 'done'):
-        print('done')
-    else:
-        p1Text = 'Error: Unverified Admin Login'
-        p2Text = 'Cookies Display NoneType User...Please Check Details And Refresh The Page'
-    
 @views.route('/intro')
 def intro():
     user_points = db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()

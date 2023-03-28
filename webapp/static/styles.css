@@ -446,12 +446,80 @@ body {
     flex-direction: column;
 }
 
-#laptop:hover {
+.evidenceRoom{
+    width: 100%;
+    height:80%;
+    margin: auto;
+    position: absolute;
+    background:url(./evidenceRoom.svg);
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.laptopPic{
+    position: relative;
+    background:url(./laptopPic.png);
+    background-size: contain;
+    height:15vb;
+    width: 23vb;
+    left: 22%;
+    bottom: -27%;
+    position: relative;
+}
+.phonePic{
+    position: relative;
+    background:url(./phonePic.png);
+    background-size: contain;
+    height:9vb;
+    width: 9vb;
+    left: 53%;
+    bottom: -35%;
+    position: relative;
+}
+.serverPic{
+    -moz-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+    
+    position: relative;
+    background:url(./serverPic.png);
+    background-size: contain;
+
+    height:30vb;
+    width: 21vb;
+    left: 72%;
+    bottom: -13%;
+    position: relative;
+}
+.laptopPic:hover {
     cursor: pointer;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+    -moz-box-shadow:    0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+    box-shadow:         0px 0px 30px 0px rgba(0, 255, 0, 0.67);
 }
 
-#phone:hover{
+.phonePic:hover{
     cursor: pointer;
+    cursor: pointer;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 25px;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+    -moz-box-shadow:    0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+    box-shadow:         0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+}
+.serverPic:hover{
+    cursor: pointer;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+    -moz-box-shadow:    0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+    box-shadow:         0px 0px 30px 0px rgba(0, 255, 0, 0.67);
 }
 
 #server:hover{
@@ -1416,3 +1484,22 @@ body {
 .aesMessage a {
     color:blue;
 }
+
+#hintDiv{
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 20%;
+    flex-direction: column;
+    padding: 1em;
+    border-radius: 10px;
+    background-color: white;
+
+}
+
+.hintNav{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-bottom: 5px;
+}
+
