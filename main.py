@@ -1,7 +1,7 @@
 from webapp import create_app
 from flask import render_template, redirect, url_for, request, Markup
 from flask_login import login_user, login_required, current_user
-import atexit
+import atexit, json
 from webapp import db
 from webapp.models import users, phone_challenge, laptop_challenge, server_challenge, points
 from datetime import date, datetime
@@ -67,6 +67,37 @@ def landing():
     atexit.register(lambda: scheduler.shutdown())"""
     return render_template('cyberescape.html', user = current_user, userPoints = userPoints, userTime = timeLeft)
 
+@app.route('/hints')
+def hints():
+    challengeHints = {
+            "hint1" : {
+                "name" : "laptopHint",
+                "hint": "I am a common hash algorithm prone to collisions."
+            },
+            "hint2" : {
+                "name" : "desktopHint",
+                "hint" : "I am in a base with 2^^6"
+            },
+            "hint3" : {
+                "name" : "phoneHint",
+                "hint" : "I am used for secure key-exchange"
+            },
+            "hint4" : {
+                "name" : "phoneHomeHint",
+                "hint" : "The hint lies in the image"
+            },
+            "hint5" : {
+                "name" : "phoneHomeHint2",
+                "hint" : "I am an Advanced Encryption Standard"
+            },
+            "hint6" : {
+                "name" : "serverHint",
+                "hint" : "we are Base64 and vigenere ciphers"
+            }
+    }
+
+
+    return challengeHints
 
 if __name__ == '__main__':
     app.run(debug=True)

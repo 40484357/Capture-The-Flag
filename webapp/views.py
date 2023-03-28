@@ -8,7 +8,7 @@ from .utils import timeChange, pointsLogic
 from flask import Blueprint, render_template, request, redirect, url_for, flash, Markup
 import hashlib, random, time, webbrowser
 passwords = []
-with open('CaptureTheFlag\webapp\static\cyberA-Z.txt') as f:
+with open('webapp\static\cyberA-Z.txt') as f:
     words = f.readlines()
     passwords = [x.strip().lower() for x in words]
 

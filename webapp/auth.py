@@ -6,7 +6,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 import random
 auth = Blueprint('auth', __name__)
 
-with open(r'CaptureTheFlag\webapp\static\usernames.txt') as l:
+with open(r'webapp\static\usernames.txt') as l:
     words = l.readlines()
     usernames = [x.strip().lower() for x in words]
 

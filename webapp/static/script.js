@@ -174,7 +174,7 @@ const COLOUR_CODES = {
         colour: "red",
         threshold: Alert_threshold
     }
-};
+}
 
 let remainingPathColor = COLOUR_CODES.info.colour;
 
@@ -220,49 +220,31 @@ function timerCountdown(time){
     return `${hours}:${minutes}:${seconds}`;
 }
 
-challengeHints = [
-    {
-        challengeNumber: 1,
-        challengeHint: 'I am a common hash algorithm prone to collisions.'
-    },
-    {
-        challengeNumber: 2,
-        challengeHint: 'I am in a base with 2^^6'
-    },
-    {
-        challengeNumber: 3,
-        challengeHint: 'I am used for secure key-exchange'
-    },
-    {
-        challengeNumber: 4,
-        challengeHint: 'The hint lies in the image '
-    },
-    {
-        challenge: 5,
-        challengeHint: 'I am an Advanced Encryption Standard'
-    },
-    {
-        challenge: 6,
-        challengeHint: 'we are Base64 and vigenere ciphers'
-    }
-]
 
 function getHint(challenge){
-    let currentHint
+    let currentHint = ""
     var hintBox = document.getElementById('hintDiv')
-    hintText = document.getElementById('hintText')
-    if(window.location.href.indexOf("laptop") > -1){
-        currentHint = challengeHints[0].challengeHint
-    }
-    else if(window.location.href.indexOf("desktop") > -1){
-        currentHint = challengeHints[1].challengeHint
-    }
+    var hintText = document.getElementById('hintText')
+    
+    const url = 'http://127.0.0.1:5000/hints'
 
-    hintText.innerHTML = currentHint
+    fetch(url)
+    .then(response => response.json())
+    .then((jsonData) =>{
+        for(const[key, value] of Object.entries(jsonData)){
+            if(value.name === challenge){
+                currentHint = value.hint
+                hintText.innerHTML = currentHint
+            }
+        }
+
+    })
+
+    
+   
     hintBox.classList.remove('hidden')
 
-    const request = new XMLHttpRequest()
-    request.open('POST',`/update_hints/${challenge}`)
+    
 }
 
 function closeHint(){
