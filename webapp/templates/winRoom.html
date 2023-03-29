@@ -19,6 +19,7 @@
 	<body onload="confettiExplode()">
         <script>
             function confettiExplode(){
+                const jsConfetti = new JSConfetti()
                 if ("{{ flash_message }}" == "True") {
                     jsConfetti.addConfetti({
                         confettiRadius: 7,

@@ -3,7 +3,6 @@ var back = document.getElementById('back')
 var quizButton = document.getElementById('quizButton')
 var firstScene = document.getElementById('firstScene')
 var secondScene = document.getElementById('secondScene')
-var confetti = document.getElementById('confetti')
 
 var state = 0
 /* states
@@ -12,9 +11,6 @@ var state = 0
 2 = asking user if they are ready to begin
 3 = quiz
 */
-
-
-const jsConfetti = new JSConfetti()
 
 if(continueButton != null){
 continueButton.addEventListener('click', ()=>{
