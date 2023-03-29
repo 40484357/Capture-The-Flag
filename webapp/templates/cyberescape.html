@@ -21,7 +21,12 @@
 			<!-- second scene, contains clickable elements, a navigation menu (which has time and room title), as well as a tracker for challenges and score-->
 			<div class="gameHeader">
 				<!-- contains nav menu (maybe just exit game, or return to main room), room title and time-->
-				<div class="navButton" onclick="goToWeb()">Exit</div>
+				<div class="nav_buttons">
+					<div class="navButton" onclick="goToWeb()">Exit</div>
+					<div class="splunkKeys">
+						<button class="splunkKeyButton" onclick="goToSplunk()">Splunk Keys</button>
+					</div>
+				</div>
 				<div class="roomTitle">Evidence Room</div>
 				<div id="clock"></div>
 			</div>

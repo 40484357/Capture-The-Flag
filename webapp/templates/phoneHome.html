@@ -12,6 +12,10 @@
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}" />
+	<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+			rel="stylesheet"
+		/>
 </head>
 
 <body>
@@ -20,6 +24,22 @@
 			<div class="navButton"onclick="goToEvidence()">Back</div>
 			<div class="roomTitle">Evidence Room</div>
 			<div id="clock"></div>
+		</div>
+		<div class="buttonContainer tooltip" id="phoneHintButton">
+			<button class="buttonHelp" onclick="getHint('{{hint}}')" >
+				<span class="material-icons-outlined md-30">&#xE79A;</span>
+			</button>
+			<span class="tooltiptext">Use a hint!</span>
+		</div>
+		<div class="hidden" id="hintDiv">
+			<div class="hintNav">
+				<button id="closeHint" onclick="closeHint()">
+					&#10006;
+				</button>
+			</div>
+			<div id="hintText">
+
+			</div>
 		</div>
 
 		<div class="phoneHome" id="phoneHome">

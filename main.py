@@ -96,8 +96,22 @@ def hints():
             }
     }
 
-
     return challengeHints
+
+@app.route('/updateHints/<string:challenge>', methods = ['GET', 'POST'])
+def updateHints(challenge):
+    if challenge == 'laptopHint' or challenge == 'desktopHint':
+        updateHint = laptop_challenge.query.get_or_404(current_user.id)
+        updateHint.hints = 1
+    elif challenge == 'phoneHint' or challenge == 'phoneHomeHint' or challenge == 'phoneHomeHint2':
+        updateHint = phone_challenge.query.get_or_404(current_user.id)
+        updateHint.hints = 1
+    elif challenge == 'serverHint':
+        updateHint = server_challenge.query.get_or_404(current_user.id)
+        updateHint.hints = 1
+    db.session.commit()
+    return 'success', 202
+
 
 if __name__ == '__main__':
     app.run(debug=True)

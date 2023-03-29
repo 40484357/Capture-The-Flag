@@ -206,7 +206,7 @@ def phoneHome():
     userChallenge = phone_challenge.query.get_or_404(current_user.id)
     userPoints = points.query.get_or_404(current_user.id)
     stegChallengeCheck = db.session.query(phone_challenge.stegChallenge).filter_by(user_id = current_user.id).first()
-
+    hint = 'phoneHomeHint'
     if (challengeState == 1):
         return redirect('/phone')
     else: 
@@ -216,6 +216,7 @@ def phoneHome():
 
     if(stegChallengeCheck[0] == 1):
         aesState = 'true'
+        hint = 'phoneHomeHint2'
     
 
     response = None
@@ -235,6 +236,8 @@ def phoneHome():
                     userChallenge.hints = 0
                     userChallenge.startTime = datetime.now()
                     userChallenge.stegChallenge = 1
+                    aesState = 'true'
+                    hint = 'phoneHomeHint2'
                     db.session.commit()
                 response = 'Correct Ciphertext.' 
                 flash(response)
@@ -256,7 +259,7 @@ def phoneHome():
                     db.session.commit()
                 flash(response)
 
-    return render_template('phoneHome.html', aesState = aesState)     
+    return render_template('phoneHome.html', aesState = aesState, hint = hint)     
 
 @views.route('/server')
 def server():

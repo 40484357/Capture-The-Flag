@@ -241,9 +241,17 @@ function getHint(challenge){
     })
 
     
+
+    const request = new XMLHttpRequest()
+    request.open('POST', `updateHints/${challenge}`)
+    request.send()
    
     hintBox.classList.remove('hidden')
 
+    
+}
+
+function goToSplunk(){
     
 }
 

@@ -629,6 +629,7 @@ body {
 
 .gameHeader {
     display: flex;
+    align-items: top;
     justify-content: space-between;
 }
 
@@ -638,9 +639,21 @@ body {
     color: white;
 }
 
+.nav_buttons{
+    display: flex;
+    flex-direction: row;
+}
 .navButton {
     cursor: pointer;
+    margin-left: 1em;
 }
+
+
+#clock{
+    position: relative;
+    right: 1em;
+}
+
 
 .hidden {
     display: none !important;
@@ -1489,7 +1502,8 @@ body {
     display: flex;
     position: absolute;
     right: 10px;
-    top: 20%;
+    top: 25%;
+    z-index: 1;
     flex-direction: column;
     padding: 1em;
     border-radius: 10px;
@@ -1503,3 +1517,19 @@ body {
     padding-bottom: 5px;
 }
 
+.splunkKeyButton{
+    background-image: linear-gradient(45deg, #ED2064, #F37F21);
+    padding: 0.5em;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: 16px;
+    margin-left: 3em;
+}
+
+.splunkKeyButton:hover{
+    cursor: pointer;
+    background-image: linear-gradient(45deg, #b91c51, #bd641c);
+}
