@@ -147,6 +147,26 @@ def points():
 def intro():
     return render_template('intro.html')
 
+@views.route('/winroom', methods=['GET', 'POST'])
+def winroom():
+    response = None
+    if request.method=='POST':
+        code1=request.form.get('code1',type=int)
+        code2=request.form.get('code2',type=int)
+        code3=request.form.get('code3',type=int)
+        print(code1)
+        print(code2)
+        print(code3)
+        if(code1==1 and code2==2 and code3==3):
+            response = 'Correct code'
+            flash(response)
+            return render_template('winroom.html',flash_message="True")
+        else:
+            response = 'Incorrect code'
+            flash(response)
+        
+    return render_template('winroom.html',flash_message="False")
+
 @views.route('/')
 def home():
     return render_template('index.html')

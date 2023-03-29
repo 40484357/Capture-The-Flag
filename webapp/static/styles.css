@@ -456,6 +456,97 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+.safe{
+    width: 100%;
+    height:80%;
+    margin: auto;
+    position: absolute;
+    background:url(./safe.svg);
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+.safeDescript{
+   /* nice bright text */
+   bottom:-15vb;
+   left:50vb;
+   position: relative;
+   color: rgb(0, 0, 0);
+   font-size: 35px;
+   font-weight: bold;
+   text-align: center;
+   margin: 0.5em;
+   grid-column: 1;
+   grid-row: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 50%;
+   height: 100%;
+   flex-direction: column;
+
+}
+.safeCode{
+    /* nice bright text */
+    bottom:-17vb;
+    left:50vb;
+    position: relative;
+    color: rgb(0, 0, 0);
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 4em;
+    margin-right:4em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    display:inline;
+}
+.safeForm input[type = "text"]{
+    margin-left: 4em;
+    margin-right:3em;
+    margin-top: 3em;
+    width:20vb;
+    font-size: 22px;
+   left:50vb;
+   top:15vb;
+   position: relative;
+   z-index: 1;
+   display:inline;
+   text-align: center;
+}
+.safeForm ::placeholder {
+    text-align: center; 
+ }
+
+ .safeForm input[type="submit"]{
+   
+    width:20vb;
+    font-size: 22px;
+   left:-8vb;
+   top:22vb;
+   position: relative;
+   z-index: 1;
+   display:inline;
+ }
+ .safeMessage{
+    position: absolute;
+    left: 60vb;
+    top: 65vb;
+    color: rgb(0, 0, 0);
+    font-size: 45px;
+    font-weight: bold;
+ }
+
+ #confetti{
+    position: relative;
+   
+    color: rgb(0, 0, 0);
+    font-size: 45px;
+    font-weight: bold;
+ }
 .laptopPic{
     position: relative;
     background:url(./laptopPic.png);

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title></title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='styles.css')}}"
+		/>
+        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+	</head>
+	<body onload="confettiExplode()">
+        <script>
+            function confettiExplode(){
+                if ("{{ flash_message }}" == "True") {
+                    jsConfetti.addConfetti({
+                        confettiRadius: 7,
+                        confettiNumber: 400,
+                    })
+                }
+            }
+        </script>
+		
+		<div class="gameLauncher" id="secondScene">
+			<!-- second scene, contains clickable elements, a navigation menu (which has time and room title), as well as a tracker for challenges and score-->
+			<div class="gameHeader">
+				<!-- contains nav menu (maybe just exit game, or return to main room), room title and time-->
+				<div class="navButton" onclick="goToEvidence()">Back</div>
+				<div class="roomTitle">Evidence Room</div>
+				<div id="clock"></div>
+                
+			</div>
+            <div class="safe"></div>
+			<div class="safeDescript">We think the final piece of evidence we need is inside this safe. It requires three separate codes to unlock. Have you got them?</div>
+            <div class ="safeCode">Code 1: </div>
+            <div class ="safeCode">Code 2: </div>
+            <div class ="safeCode">Code 3: </div>
+            
+            <form class="safeForm" action="" method="POST">
+                <input
+                    type="text"
+                    name="code1"
+                    id="code1"
+                    class="codeBox"
+                    placeholder="code1"
+                />
+                <input
+                    type="text"
+                    name="code2"
+                    id="code2"
+                    class="codeBox"
+                    placeholder="code2"
+                />
+                <input
+                    type="text"
+                    name="code3"
+                    id="code3"
+                    class="codeBox"
+                    placeholder="code3"
+                />
+                <input
+                    type="submit"
+                    id="submitAnswer"
+                    class="answer"
+                    value="Unlock"
+                />
+            </form>
+            {% with messages = get_flashed_messages() %} {% if messages %}
+			<div class="safeFlash">
+				{% for message in messages %}
+				<div class="safeMessage" id="safeMessage">{{message}}</div>
+				{% endfor %}
+			</div>
+			{% endif %} {% endwith %}
+		</div>
+        
+       
+		<script
+			src="{{ url_for('static', filename='script.js')}}"
+			async
+			defer
+		></script>
+       
+	</body>
+</html>
