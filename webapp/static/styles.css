@@ -662,7 +662,6 @@ body {
 .gameBox {
 
     background-color: #F1F2F4;
-    margin-top: 3em;
     border-radius: 5px;
     margin-left: 32.5%;
     margin-right: 32.5%;
@@ -1532,4 +1531,59 @@ body {
 .splunkKeyButton:hover{
     cursor: pointer;
     background-image: linear-gradient(45deg, #b91c51, #bd641c);
+}
+
+.splunk_instructions, .splunk_challenges{
+    display: flex;
+    flex-direction: column;
+    padding: 1em 1em 0 1em;
+    background: white;
+    margin: auto;
+    width: 50%;
+    border-radius: 5px;
+}
+.splunk_instructions>*{
+    padding: 0.25em;
+}
+
+.splunk_points>*{
+    padding: 0.25em;
+}
+
+.splunk_challenges{
+    margin-top: 1em;
+    padding: 1em 1em 1em 1em;
+}
+
+.splunk_form{
+    display: flex;
+    flex-direction: column;
+}
+
+.splunk_form>input{
+    width: 25%;
+    margin-top: 1em;
+}
+
+.splunk_challenge{
+    margin-top: 1em;
+}
+
+.splunk_challenges>h2{
+    margin: 0;
+}
+
+.splunk_challenge>*{
+    margin-top: 0.5em;
+}
+
+/*leaderboard styling */
+
+.leaderboard_table{
+    color: white;
+}
+
+
+.usersRank{
+    background-color: #cc653989;
 }

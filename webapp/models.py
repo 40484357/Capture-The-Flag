@@ -14,6 +14,7 @@ class users(db.Model, UserMixin):
     laptop_challenge = db.relationship('laptop_challenge')
     phone_challenge = db.relationship('phone_challenge')
     server_challenge = db.relationship('server_challenge')
+    splunk_challenges = db.relationship('splunk_challenges')
 
 class laptop_challenge(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
@@ -44,6 +45,13 @@ class points(db.Model):
     timeLeft = db.Column(db.Integer)
     startGameTime = db.Column(db.String(1000))
     #leaderBoard = db.relationship('leaderboard')
+
+class splunk_challenges(db.Model):
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    challengeState = db.Column(db.Integer)
+    key_one = db.Column(db.Integer)
+    key_two = db.Column(db.Integer)
+    key_three = db.Column(db.Integer)
 
 """class leaderboard(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key = True)

@@ -49,10 +49,10 @@ def sign_up():
         password2 = request.form.get('password2')
         username = selectUsername()
         user = users.query.filter_by(email=email).first()
-        usernameCheck = users.query.filter_by(user_name = username)
+        usernameCheck = users.query.filter_by(user_name = username).all()
 
         if usernameCheck:
-            number = usernameCheck.length + 1
+            number = usernameCheck.len + 1
             newUsername = username + number
             username = newUsername
         elif user:

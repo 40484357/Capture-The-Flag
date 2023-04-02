@@ -3,7 +3,7 @@ from flask import render_template, redirect, url_for, request, Markup
 from flask_login import login_user, login_required, current_user
 import atexit, json
 from webapp import db
-from webapp.models import users, phone_challenge, laptop_challenge, server_challenge, points
+from webapp.models import users, phone_challenge, laptop_challenge, server_challenge, points, splunk_challenges
 from datetime import date, datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 from webapp.utils import timeChange
@@ -31,6 +31,8 @@ def landing():
         userPoints = 100
         timeLeft = 86400
         new_user_points = points(id = current_user.id, pointsTotal = 0, startGameTime = datetime.now())
+        new_splunk_state = splunk_challenges(user_id = current_user.id, challengeState = 0, key_one = 0, key_two = 0, key_three = 0 )
+        db.session.add(new_splunk_state)
         db.session.add(new_user_points)
         db.session.commit()
 
@@ -38,33 +40,7 @@ def landing():
         if(laptopChallenge[0] == 4 and phoneChallenge[0] == 3 and serverChallenge[0] == 4):
             keyValidator = Markup(constructKeyValidator)
             return render_template('cyberescape.html', user=current_user, userPoints = userPoints, userTime = timeLeft, keyValidator = keyValidator)
-    id = current_user.id
-    """def update_timeLeft():
-        with app.app_context():
-            print(id)
-            timeLeft = db.session.query(points.timeLeft).filter_by(id = id).first()
-            lastActive = db.session.query(points.lastActive).filter_by(id = id).first()
-            print(timeLeft)
-            print(lastActive)
-            if timeLeft:
-                lastActiveDate = lastActive[0]
-                t = datetime.strptime(lastActiveDate, '%Y-%m-%d %H:%M:%S.%f')
-                t2 = datetime.now()
-                delta = t2-t 
-                timeChange = delta.seconds
-                timeLeftSeconds = timeLeft[0]
-                timeLeftNew = timeLeftSeconds - timeChange
-                updateTime = points.query.get_or_404(id)
-                updateTime.timeLeft = timeLeftNew
-                updateTime.lastActive = t2
-                db.session.commit()
     
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(func = update_timeLeft, trigger="interval", seconds=10)
-
-    scheduler.start()
-    
-    atexit.register(lambda: scheduler.shutdown())"""
     return render_template('cyberescape.html', user = current_user, userPoints = userPoints, userTime = timeLeft)
 
 @app.route('/hints')

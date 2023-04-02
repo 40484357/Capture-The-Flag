@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title></title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='styles.css')}}"
+		/>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="gameLauncher" id="challengeOne">
+			<div class="gameHeader">
+				<div class="navButton" onclick="goToEvidence()">Back</div>
+				<div class="roomTitle">Splunk Keys</div>
+				<div id="clock"></div>
+			</div>
+
+            <!-- <div class="splunk_instructions">
+                <div class="link">
+                    Follow this link to access the splunk server: <a href="http://52.1.222.178:8000">http://52.1.222.178:8000</a>
+                </div>
+                <div class="username">
+                    Username: ctf
+                </div>
+                <div class="password">
+                    Password: EscapeEscap3
+                </div>
+                <div class="setUp">
+                    <p>To set up your splunk follow these instructions</p>
+                    <ul class="splunk_points">
+                        <li>Once logged in click search & report</li>
+                        <li>Enter: source="ctf_dataset.log"</li>
+                        <li>Change "last 24 hours" to "All time" on search bar</li>
+                        <li>Once the splunk is setup at the end of each evidence piece you will be presented with a flag</li>
+                        <li>Use the flag as a key to answer the Splunk related questions below, there will be 3 questions</li>
+                        <li>Each question will unlock when the room containing the flag is completed</li>
+                        <li>When you find the answer to the question you will be given a set of digits</li>
+                        <li>These digits will be important later on, and will be stored on this page for later reference</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="splunk_challenges">
+                <h2>Splunk Challenges</h2>
+                <div class="splunk_challenge">
+                    <form action="" method="post" class="splunk_form">
+                        <label for="challenge_one">1. How many log entries are there for the malicious actor's IP address?</label>
+                        <input type="text" name="challenge_one" id="challenge_one">
+                    </form>
+                </div>
+                <div class="splunk_challenge">
+                    <form action="" method="post" class="splunk_form">
+                        <label for="challenge_two">2. What is the input malicious actor used in the password field for sql injection?</label>
+                        <input type="text" name="challenge_two" id="challenge_two">
+                    </form>
+                </div>
+                <div class="splunk_challenge">
+                    <form action="" method="post" class="splunk_form">
+                        <label for="challenge_three">3. Which plug-in was installed and activated by the malicious actor?
+                        </label>
+                        <input type="text" name="challenge_three" id="challenge_three">
+                    </form>
+                </div>
+            </div> -->
+			{{response}}
+			{{message}}
+		</div>
+
+		<script
+			src="{{ url_for('static', filename='script.js')}}"
+			async
+			defer
+		></script>
+	</body>
+</html>

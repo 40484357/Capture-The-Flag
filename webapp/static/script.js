@@ -252,7 +252,7 @@ function getHint(challenge){
 }
 
 function goToSplunk(){
-    
+    window.location.href = '/splunk'
 }
 
 function closeHint(){

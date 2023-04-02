@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-import hashlib, random, time, math
+import hashlib, random, time, math, pandas as pd
 from . import db
 from flask_login import login_user, login_required, current_user
-from .models import users, phone_challenge, laptop_challenge, server_challenge, points
+from .models import users, phone_challenge, laptop_challenge, server_challenge, points, splunk_challenges
 from datetime import date, datetime
-from .utils import timeChange, pointsLogic
+from .utils import timeChange, pointsLogic, splunk_markup
 from flask import Blueprint, render_template, request, redirect, url_for, flash, Markup
 import hashlib, random, time, webbrowser
 passwords = []
@@ -124,6 +124,8 @@ def desktop():
                 userPoints = points.query.get_or_404(current_user.id)
                 userChallenge.challengeState = 4
                 newPoints = pointsLogic(laptop_challenge)
+                splunkState = splunk_challenges.query.get_or_404(current_user.id)
+                splunkState.challengeState = 1
                 userPoints.pointsTotal = newPoints #add new points total to DB
                 db.session.commit()
             flash(response)
@@ -256,6 +258,8 @@ def phoneHome():
                     userPoints.pointsTotal = newPoints #add new points total to DB
                     userChallenge.aesChallenge = 1
                     userChallenge.challengeState = 3
+                    splunkChallengeState = splunk_challenges.query.get_or_404(current_user.id)
+                    splunkChallengeState.challengeState = 3
                     db.session.commit()
                 flash(response)
 
@@ -326,6 +330,8 @@ def login_wcg():
             userPoints.pointsTotal = newPoints #add new points total to DB
             userChallenge.startTime = datetime.now()
             userChallenge.challengeState = 4
+            splunkChallengeState = splunk_challenges.query.get_or_404(current_user.id)
+            splunkChallengeState.challengeState = 5
             db.session.commit()
             return render_template('login_wcg.html', redir = redir, flag = flag, response = response, challenge3 = challenge3, challengeText = challengeText, challengeText2 = challengeText2)
         else: 
@@ -385,5 +391,87 @@ def intro():
     if user_points:
         return redirect('/cyberescape')
     return render_template('intro.html')
+
+@views.route('/splunk', methods = ['GET', 'POST'])
+def splunkKey():
+    splunk_State = db.session.query(splunk_challenges.challengeState).filter_by(user_id = current_user.id).first()
+    response = None
+    message = Markup('<div class="splunk_challenges">wrong answer, look again</div>')
+    print(splunk_State)
+    if(splunk_State[0] == 0):
+        getMarkUp = splunk_markup(0)
+        response = Markup(getMarkUp)
+    elif(splunk_State[0] == 1):
+        getMarkUp = splunk_markup(1)
+        response = Markup(getMarkUp)
+    elif(splunk_State[0] == 2):
+        getMarkUp = splunk_markup(2)
+        response = Markup(getMarkUp)
+    elif(splunk_State[0] ==3):
+        getMarkUp = splunk_markup(3)
+        response = Markup(getMarkUp)
+    elif(splunk_State[0] == 4):
+        getMarkUp =splunk_markup(4)
+        response = Markup(getMarkUp)
+    elif(splunk_State[0] == 5):
+        getMarkUp = splunk_markup(5)
+        response = Markup(getMarkUp)
+    elif(splunk_State[0] == 6):
+        getMarkUp = splunk_markup(6)
+
+    if request.method == 'POST':
+        if "challenge_one" in request.form:
+            if request.form['challenge_one'] != '17':
+                
+                return render_template('splunk.html', response = response, message = message)
+            else:
+                new_digits = 63
+                splunkUpdate = splunk_challenges.query.get_or_404(current_user.id)
+                splunkUpdate.key_one = new_digits
+                splunkUpdate.challengeState = 2
+                getMarkUp = splunk_markup(2)
+                response = Markup(getMarkUp)
+                db.session.commit()
+        elif "challenge_two" in request.form:
+            if request.form['challenge_two'] != 'or 1=1-- LIMIT 1':
+                print('wrong answer')
+                return render_template('splunk.html', response = response, message = message)
+            else:
+                new_digits = 34
+                splunkUpdate = splunk_challenges.query.get_or_404(current_user.id)
+                splunkUpdate.key_two = new_digits
+                splunkUpdate.challengeState = 4
+                getMarkUp = splunk_markup(4)
+                response = Markup(getMarkUp)
+                db.session.commit()
+        elif "challenge_three" in request.form:
+            if request.form['challenge_three'] != 'File-manager':
+                return render_template('splunk.html', response = response, message = message)
+            else:
+                new_digits = 11
+                splunkUpdate = splunk_challenges.query.get_or_404(current_user.id)
+                splunkUpdate.key_three = new_digits
+                splunkUpdate.challengeState = 6
+                getMarkUp = splunk_markup(6)
+                response = Markup(getMarkUp)
+                db.session.commit()
+
+    
+    return render_template('splunk.html', response = response)
+
+@views.route('/leaderboard')
+def leaderBoard():
+    leaders = db.session.query(users.user_name, points.pointsTotal).join(points).order_by(points.pointsTotal.desc()).all()
+    user = db.session.query(users.user_name).filter_by(id = current_user.id).first()
+    userPoints = db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
+    index = 0
+    for index, item in enumerate(leaders):
+        if user[0] == item[0]:
+            leaderLength = round(len(leaders) / 2)
+            del leaders[-leaderLength:]
+            userName = user[0]
+            userpoints = userPoints[0]
+            return render_template('leaderboard.html', leaders=leaders, index = index, userName = userName, userpoints = userpoints)
+           
 
     
