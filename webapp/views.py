@@ -157,7 +157,7 @@ def winroom():
         print(code1)
         print(code2)
         print(code3)
-        if(code1==1 and code2==2 and code3==3):
+        if(code1==63 and code2==34 and code3==11):
             response = 'Correct code'
             flash(response)
             return render_template('winroom.html',flash_message="True")
