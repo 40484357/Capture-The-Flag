@@ -433,7 +433,7 @@ def splunkKey():
                 response = Markup(getMarkUp)
                 db.session.commit()
         elif "challenge_two" in request.form:
-            if request.form['challenge_two'] != 'or 1=1-- LIMIT 1':
+            if request.form['challenge_two'] != '1=1--':
                 print('wrong answer')
                 return render_template('splunk.html', response = response, message = message)
             else:
