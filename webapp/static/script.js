@@ -134,6 +134,10 @@ function goToPhone(){
     window.location.href = '/phone'
 } //goes to phone
 
+function goToWinroom(){
+    window.location.href = '/winroom'
+} //goes to winroom
+
 
 function copyTextToClipboard(hash){
 	navigator.clipboard.writeText(hash.textContent);

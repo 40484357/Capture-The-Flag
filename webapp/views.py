@@ -154,11 +154,8 @@ def winroom():
         code1=request.form.get('code1',type=int)
         code2=request.form.get('code2',type=int)
         code3=request.form.get('code3',type=int)
-        print(code1)
-        print(code2)
-        print(code3)
         if(code1==63 and code2==34 and code3==11):
-            response = 'Correct code'
+            response = Markup("Correct code<br>Congratulations!")
             flash(response)
             return render_template('winroom.html',flash_message="True")
         else:
