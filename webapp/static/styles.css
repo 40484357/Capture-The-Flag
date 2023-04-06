@@ -1601,9 +1601,56 @@ body {
 /*leaderboard styling */
 
 .leaderboard_table{
-    color: white;
+    border-collapse: collapse;
+    border-radius: 10px 10px 0 0;
+    table-layout: fixed;
+    width: 35%;
+    margin: 25px 0;
+    font-size:2.0em;
+    min-width: 600px;
+    background-color: #ffffff;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
 }
 
-.usersRank{
-    background-color: #cc653989;
+.leaderboard_table thead tr{
+    border-radius: 6px;
+    background-color: #08b391;
+    color: #ffffff;
+    text-align: center;
 }
+
+/* Users rank styling */
+.usersRank{
+    background-color: #f1c76589;
+    
+}
+
+.leaderboard_table th,
+.leaderboard_table td{
+    padding: 15px 15px;
+    
+}
+
+/* Add a bottom border to all table rows */
+.leaderboard_table tbody tr {
+    border-bottom: thin solid #dddddd;
+}
+
+/* Every other row will have a different color for better readability */
+.leaderboard_table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+/* Little bit of colour at the bottom of the table */
+.leaderboard_table tbody tr:last-of-type {
+    border-bottom: 2px solid #08b391;
+    border-radius: 10px;
+}
+
+
+
+
+
