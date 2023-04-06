@@ -157,9 +157,11 @@
 			</svg>
 
 			<ul class="Signups">
-				<li><a href="#">Login</a></li>
+				<li><a href="{{url_for('auth.login')}}">Login</a></li>
 				<li>
-					<a href="#"><button class="SignupBtn">Sign-Up</button></a>
+					<a href="{{url_for('auth.sign_up')}}"
+						><button class="SignupBtn">Sign-Up</button></a
+					>
 				</li>
 			</ul>
 		</header>

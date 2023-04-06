@@ -472,6 +472,10 @@ def leaderBoard():
             userName = user[0]
             userpoints = userPoints[0]
             return render_template('leaderboard.html', leaders=leaders, index = index, userName = userName, userpoints = userpoints)
-           
+
+@views.route('/')
+def landing():
+    return render_template('index.html')
+
 
     

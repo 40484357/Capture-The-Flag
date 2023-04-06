@@ -403,9 +403,6 @@ body {
     background-repeat: no-repeat;
     background-color: rgba(0, 0, 0, 0.4);
     background-blend-mode: multiply;
-
-
-
     padding: 2em;
 }
 
@@ -1400,68 +1397,86 @@ body {
  /* register page css */ 
 
  .login-page-container{
-    background-image: url("background_img.jpg");
-    height: 100vh;
+    background-image: url("./loginBG.jpg");
+    height: auto;
     width: 100vw;
     background-size: cover;
     background-position: center;
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .login-title{
-    margin: 0;
+    margin-top: 2em;
     text-align: center;
-    font-size: 2rem;
-    font-weight: normal;
-    color: black;
-
+    font-size: 24px;
+    padding: 5%;
+    font-family: 'Merriweather';
+    font-weight: 700;
+    color: white;
 }
 
+
 .login-container{
-    background-color: #ffc573bd;
-    box-shadow: 0 0 15px 0 #ffc57332;
-    padding: 2em 1em;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 20px;
+    background-color: black;
+    box-shadow: 0 0 15px 5px black;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 70%;
+}
+.sign-up-container{
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: grayscale(100%);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 30%;
 }
 
 .login-form{
     display: flex;
     flex-direction: column;
-    gap: 1em;
-    margin-top: 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    margin-top: 10px;
 }
 
 .input-group{
     display: flex;
     flex-direction: column;
-    gap: 7px;
-    font-weight:600;
+    margin-top:1em;
+    width:100%;
+    font-weight:700;
 }
 
 .input-group label{
-    color: black;
+    color: white;
+    font-family: "Merriweather";
+    font-size: 18px;
 }
 
 .input-group input{
-    font-size: 1.25rem;
     padding: .5em;
-    background-color: #f8d29c9c;
+    font-size:18px;
+    background-color: white;
     border: none;
     outline: none;
-    border-radius: .25em;
+    margin-top:.5em;
+    padding-right:5em;
+    border-radius: 5px;
+    transition: box-shadow 0.5s;
     color: black;
 }
 
 .input-group input:focus{
-    box-shadow: 0 0 0 2px #f7b250;
+    box-shadow: 0 0 5px 3px #ec131a;
 }
 
 .input-group.success input{
-    box-shadow: 0 0 0 2px #6ae95794;
+    box-shadow: 0 0 5px 3px #6ae95794;
 }
 
 .input-group .msg{
@@ -1470,6 +1485,7 @@ body {
 
 .input-group.success .msg{
     display: block;
+    color:white;
 }
 
 .input-group.error .msg{
@@ -1477,21 +1493,26 @@ body {
     color: red;
 }
 
+
 .login-button{
-    padding: .5em 1em;
-    font-size: 1.5rem;
-    font-weight: lighter;
-    color: black;
-    background-color: #E6CEAC;
-    border: 1px solid #AD864E;
-    border-radius: .25em;
-    outline: none;
+    font-weight:700;
+    font-size: 24px;
+    border-radius: 5px;
+    margin-top:.5em;
+    margin-bottom:40px;
+    border:none;
+    padding:7px 35px;
+    cursor:pointer;
+    z-index:2;
+    transition:background-color 1s, color 1s;
+    font-family: 'Merriweather';
     cursor: pointer;
 }
 
 .login-button:hover,
 .login-button:focus{
-    background-color: #ad854e98;
+    background-color: #ec131a;
+    color:white;
 }
 .aesMessage a {
     color:blue;
