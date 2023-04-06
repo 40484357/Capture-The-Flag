@@ -13,16 +13,18 @@
 <body><div class="gameLauncher" id="challengeOne">
     <div class="gameHeader">
         <div class="navButton" onclick="goToEvidence()">Back</div>
-        <div class="roomTitle">Evidence Room</div>
+        <div class="roomTitle">Leaderboard</div>
         <div id="clock"></div>
     </div>
     <div class="leaderboard">
     <table class="leaderboard_table">
-        <tr>
-            <th>Rank</th>
-            <th>Username</th>
-            <th>Points</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Points</th>
+            </tr>
+        </thead>
         <tr class="usersRank">
             <td>{{index}}</td>
             <td>{{userName}}</td>
