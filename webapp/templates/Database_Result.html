@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>Database data.</h1>
+
+		<table class="table">
+			<tr>
+				<th>ID</th>
+				<th>Username</th>
+				<th>Password</th>
+				<th>Email</th>
+				<th>Lecturer Status</th>
+				<th>Lecturer ID</th>
+				<th>Lecturer Code</th>
+				<th>Admin</th>
+			</tr>
+			{% for users in values %}
+			<tr>
+				<td>{{ users.id }}</td>
+				<td>{{ users.user_name }}</td>
+				<td>${{ users.password }}</td>
+				<td>{{ users.email }}</td>
+				<td>{{ users.lecturerStatus }}</td>
+				<td>{{ users.lecturerId }}</td>
+				<td>{{ users.lecturerCode }}</td>
+				<td>{{ users.admin }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</body>
+</html>

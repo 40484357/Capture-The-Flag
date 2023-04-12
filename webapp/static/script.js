@@ -504,4 +504,19 @@ function backspace(){
     var passcode = document.getElementById('phoneAnswer')
     passcode.value = passcode.value.slice(0, -1)
 }
+function selectAccountType(){
+    var student = document.getElementById('student')
+    var lecturer = document.getElementById('lecturer')
+    var studentForm = document.getElementById('student-form')
+    var lecturerForm = document.getElementById('lecturer-form')
 
+    if(lecturer.checked == true){
+        studentForm.classList.add("hidden");
+        lecturerForm.classList.remove("hidden");
+    }
+    else if(student.checked == true){
+        lecturerForm.classList.add("hidden");
+        studentForm.classList.remove("hidden");
+    }
+
+}

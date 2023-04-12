@@ -477,5 +477,9 @@ def leaderBoard():
 def landing():
     return render_template('index.html')
 
+@views.route('/Database_Result')
+def results():
+        return render_template('Database_Result.html', values=users.query.all())
+
 
     

@@ -1395,30 +1395,42 @@ body {
     font-size: 25px;
 }
  /* register page css */ 
-
- .login-page-container{
-    background-image: url("./loginBG.jpg");
+.login-page-container{
+    height:100vh;
+    width: 100vw;
+    background-size: contain;
+    background-position: -20%;
+    display: flex;
+}
+ .sign-up-page-container{
     height: auto;
     width: 100vw;
-    background-size: cover;
-    background-position: center;
+    background-size: 60% 100vh;
+    background-repeat: no-repeat;
+    background-position: 155%;
     display: flex;
+}
+.login-image{
+    background-image: url("./loginBG.jpg");
+}
+.sign-up-image{
+    background-image: url("./Sign-upBG.jpg");
+    background-attachment: fixed;
 }
 
 .login-title{
-    margin-top: 2em;
     text-align: center;
+    margin-top:3em;
+    margin-bottom:2em;
     font-size: 24px;
-    padding: 5%;
     font-family: 'Merriweather';
     font-weight: 700;
     color: white;
 }
 
-
 .login-container{
     background-color: black;
-    box-shadow: 0 0 15px 5px black;
+    box-shadow: 0 0 25px 5px black;
     display:flex;
     align-items: center;
     justify-content: center;
@@ -1428,10 +1440,14 @@ body {
 .sign-up-container{
     background-color: rgba(0,0,0,0.5);
     backdrop-filter: grayscale(100%);
+    top:0;
+    left:70%;
+    position:fixed;
     display:flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    height:100vh;
     width: 30%;
 }
 
@@ -1443,7 +1459,60 @@ body {
     gap: 2em;
     margin-top: 10px;
 }
-
+ .input-group.radio-group{
+    width: 50%;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.radio-container {
+    position:relative;
+    padding-left: 40px;
+    margin-bottom: 2em;
+    cursor: pointer;
+    font-size: 24px;
+  }
+  .radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  .radio-container .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: white;
+    border-radius: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow .5s;
+  }
+  .radio-container input:checked ~ .checkmark{
+    box-shadow: 0px 0px 5px 3px #ec131a;
+  }
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    opacity:0;
+    transition: opacity .5s;
+  }
+  .radio-container .checkmark:after {
+   width: 18px;
+   height: 18px;
+   border-radius: 50%;
+   background-color: #ec131a;
+   
+}
+.radio-container input:checked ~ .checkmark:after {
+    opacity:1;
+    
+  }
 .input-group{
     display: flex;
     flex-direction: column;
@@ -1490,7 +1559,7 @@ body {
 
 .input-group.error .msg{
     display: block;
-    color: red;
+    color: white;
 }
 
 

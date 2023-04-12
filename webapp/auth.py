@@ -43,36 +43,85 @@ def login():
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
+  
     if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        password2 = request.form.get('password2')
-        username = selectUsername()
-        user = users.query.filter_by(email=email).first()
-        usernameCheck = users.query.filter_by(user_name = username).all()
+     
+        if request.form['account-type'] == 'studentAccount':
 
-        if usernameCheck:
-            number = usernameCheck.len + 1
-            newUsername = username + number
-            username = newUsername
-        elif user:
-            flash('email already exists.', category='error')
-        elif len(email) < 8:
-            flash('Email must be greater than 7 characters', category='error')
-            pass
-        elif len(password) < 7:
-            flash('Password must be greater than 7 characters', category='error')
-            pass
-        elif password != password2:
-          flash('Passwords don\'t match', category='error')
-          pass
-        else:
-            new_user = users(email=email, password=generate_password_hash(password, method='sha256'), user_name = username)
-            db.session.add(new_user)
-            db.session.commit()
-            flash('Account created', category='success')
-            login_user(new_user, remember=True) 
-            return redirect(url_for('landing'))
+            studentEmail = request.form.get('student-email')
+            studentPassword = request.form.get('student-password')
+            studentPassword2 = request.form.get('student-password2')
+            lecturerCode = request.form.get('student-code')
+            username = selectUsername()
+            studentUser = users.query.filter_by(email=studentEmail).first()
+            usernameCheck = users.query.filter_by(user_name = username).all()
+            codeCheck = users.query.filter_by(lecturerId=lecturerCode).first()
+
+            if studentUser:
+                flash('email already exists.', category='error')
+              
+            elif len(studentEmail) < 8:
+                flash('Email must be greater than 7 characters', category='error')
+               
+            elif len(studentPassword) < 7:
+                flash('Password must be greater than 7 characters', category='error')
+              
+            elif studentPassword != studentPassword2:
+                flash('Passwords don\'t match', category='error')
+                
+            else:
+
+                if  usernameCheck:
+                    number = usernameCheck.len + 1
+                    newUsername = username + number
+                    username = newUsername
+
+                if codeCheck == None:
+                    flash('Code does not exist.', category='error')
+                    lecturerCode=None
+
+                new_user = users(lecturerStatus = 0, email=studentEmail, password=generate_password_hash(studentPassword, method='sha256'), user_name = username, lecturerCode = lecturerCode)
+                db.session.add(new_user)
+                db.session.commit()
+                flash('Account created', category='success')
+                login_user(new_user, remember=True) 
+                return redirect(url_for('landing'))
+
+        if request.form['account-type'] == 'lecturerAccount':
+            
+            lecturerEmail = request.form.get('lecturer-email')
+            lecturerPassword = request.form.get('lecturer-password')
+            lecturerPassword2 = request.form.get('lecturer-password2')
+            username = selectUsername()
+            lecturerUser = users.query.filter_by(email=lecturerEmail).first()
+            usernameCheck = users.query.filter_by(user_name = username).all()
+            lecturerId = random.randint(100000,999999)  
+         
+            if lecturerUser:
+                flash('email already exists.', category='error')
+             
+            elif len(lecturerEmail) < 8:
+                flash('Email must be greater than 7 characters', category='error')
+             
+            elif len(lecturerPassword) < 7:
+                flash('Password must be greater than 7 characters', category='error')
+            
+            elif lecturerPassword != lecturerPassword2:
+                flash('Passwords don\'t match', category='error')
+            
+
+            else:
+                if  usernameCheck:
+                    number = usernameCheck.len + 1
+                    newUsername = username + number
+                    username = newUsername
+
+                new_user = users(lecturerStatus = 1, lecturerId = lecturerId, email=lecturerEmail, password=generate_password_hash(lecturerPassword, method='sha256'), user_name = username, lecturerCode = lecturerId)
+                db.session.add(new_user)
+                db.session.commit()
+                flash('Account created', category='success')
+                login_user(new_user, remember=True) 
+                return redirect(url_for('landing'))
 
 
     return render_template("register.html")
