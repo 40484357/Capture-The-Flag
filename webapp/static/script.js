@@ -520,3 +520,19 @@ function selectAccountType(){
     }
 
 }
+function openProfile() {
+    document.getElementById("side-profile-background").style.left = "0";
+    document.getElementById("side-profile-background").style.opacity = "1";
+    document.getElementById("side-profile").style.right = "0";
+
+
+  
+}
+function closeProfile(){
+    document.getElementById("side-profile-background").style.opacity = "0";
+    setTimeout(slideLeft, 500);
+    document.getElementById("side-profile").style.right = "-30%";
+}
+function slideLeft(){
+    document.getElementById("side-profile-background").style.left = "100%";
+}

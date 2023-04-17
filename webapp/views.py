@@ -475,11 +475,39 @@ def leaderBoard():
 
 @views.route('/')
 def landing():
-    return render_template('index.html')
+    if current_user.is_authenticated:
+        return redirect(url_for('views.logged_in'))
+    else:
+        return render_template('index.html')
+
+@views.route('/logged_in', methods = ['GET', 'POST'])
+@login_required
+def logged_in():
+    if request.method == 'POST':
+        if request.form['code'] == 'Submit':
+
+            lecturerCode2 = request.form.get('student-code2')
+            codeCheck = users.query.filter_by(lecturerId=lecturerCode2).first()
+
+            if codeCheck == None:
+                flash('Code does not exist.', category='error')
+                lecturerCode2=None
+
+            current_user.lecturerCode = lecturerCode2
+            db.session.commit()
+
+        if request.form['code'] == 'Leave':
+            current_user.lecturerCode = None
+            db.session.commit()
+        
+
+    return render_template('loggedhome.html',user_name=current_user.user_name, lecturer_name = users.query.filter_by(lecturerId=current_user.lecturerCode).all())
 
 @views.route('/Database_Result')
 def results():
         return render_template('Database_Result.html', values=users.query.all())
 
-
+@views.route('/resources')
+def resources():
+    return render_template('resources.html')
     

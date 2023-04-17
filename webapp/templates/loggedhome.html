@@ -1,0 +1,66 @@
+{% extends 'homebase.html'%} {%block side_profile%}
+<div class="user-menu" onclick="openProfile()">
+	<p class="bar-container">{{user_name}}</p>
+	<div class="bar-container">
+		<div class="bar"></div>
+		<div class="bar"></div>
+		<div class="bar"></div>
+	</div>
+</div>
+<div id="side-profile" class="side-profile">
+	<div class="profile-header">
+		<p>{{user_name}}</p>
+		<div class="close-profile" onclick="closeProfile()">
+			<div class="bar-container">
+				<div class="bar rotate1"></div>
+				<div class="bar rotate2"></div>
+			</div>
+		</div>
+	</div>
+	<div class="profile-section">
+		<a class="" href="{{url_for('views.logged_in')}}">Home</a>
+		<a href="{{url_for('views.resources')}}">Resources</a>
+	</div>
+	<div class="profile-section">
+		{%if current_user.lecturerCode == None%}
+		<form method="POST">
+			<div class="input-group profile-form">
+				<label>Lecturer Code:</label>
+				<input
+					class
+					type="text"
+					id="student-code2"
+					name="student-code2"
+					placeholder="Enter lecturer code."
+				/>
+			</div>
+			<button
+				class="playBtn"
+				name="code"
+				type="submit"
+				id="submit-code"
+				value="Submit"
+			>
+				Submit
+			</button>
+		</form>
+		{%elif current_user.lecturerCode:%}{%for users in lecturer_name%}
+		<div class="classroom">
+			<p>You are in {{users.user_name}}'s class.</p>
+			{%endfor%}
+			<form method="POST">
+				<span
+					><input type="submit" name="code" class="playBtn" value="Leave"
+				/></span>
+			</form>
+		</div>
+
+		<a href="{{url_for('views.leaderBoard')}}">Leaderboard</a>
+		{%endif%}
+	</div>
+	<div class="profile-section">
+		<a href="{{url_for('auth.logout')}}">Log Out</a>
+	</div>
+</div>
+<div id="side-profile-background" class="side-profile-background"></div>
+{%endblock%} {%block name%}, {{user_name}}{%endblock%}
