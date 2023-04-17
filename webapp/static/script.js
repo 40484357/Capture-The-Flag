@@ -134,16 +134,13 @@ function goToPhone(){
     window.location.href = '/phone'
 } //goes to phone
 
-<<<<<<< HEAD
 function goToWinroom(){
     window.location.href = '/winroom'
 } //goes to winroom
 
-=======
 function goToServer(){
     window.location.href = '/server'
 }
->>>>>>> testBranch
 
 function copyTextToClipboard(hash){
 	navigator.clipboard.writeText(hash.textContent);

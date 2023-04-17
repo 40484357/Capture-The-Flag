@@ -392,7 +392,6 @@ def intro():
         return redirect('/cyberescape')
     return render_template('intro.html')
 
-<<<<<<< HEAD
 @views.route('/winroom', methods=['GET', 'POST'])
 def winroom():
     response = None
@@ -409,7 +408,6 @@ def winroom():
             flash(response)
         
     return render_template('winroom.html',flash_message="False")
-=======
 @views.route('/splunk', methods = ['GET', 'POST'])
 def splunkKey():
     splunk_State = db.session.query(splunk_challenges.challengeState).filter_by(user_id = current_user.id).first()
@@ -436,6 +434,7 @@ def splunkKey():
         response = Markup(getMarkUp)
     elif(splunk_State[0] == 6):
         getMarkUp = splunk_markup(6)
+        response = Markup(getMarkUp)
 
     if request.method == 'POST':
         if "challenge_one" in request.form:
@@ -490,7 +489,6 @@ def leaderBoard():
             userName = user[0]
             userpoints = userPoints[0]
             return render_template('leaderboard.html', leaders=leaders, index = index, userName = userName, userpoints = userpoints)
->>>>>>> testBranch
 
 @views.route('/')
 def landing():
