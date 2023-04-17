@@ -28,10 +28,20 @@
 			</div>
 
 			<div class="buttonContainer tooltip">
-				<button class="buttonHelp">
+				<button class="buttonHelp" onclick="getHint('laptopHint')">
 					<span class="material-icons-outlined md-30">&#xE79A;</span>
 				</button>
 				<span class="tooltiptext">Use a hint!</span>
+			</div>
+			<div class="hidden" id="hintDiv">
+				<div class="hintNav">
+					<button id="closeHint" onclick="closeHint()">
+						&#10006;
+					</button>
+				</div>
+				<div id="hintText">
+
+				</div>
 			</div>
 
 			<div class="gameBox">

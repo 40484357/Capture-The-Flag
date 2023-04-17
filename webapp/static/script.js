@@ -134,10 +134,16 @@ function goToPhone(){
     window.location.href = '/phone'
 } //goes to phone
 
+<<<<<<< HEAD
 function goToWinroom(){
     window.location.href = '/winroom'
 } //goes to winroom
 
+=======
+function goToServer(){
+    window.location.href = '/server'
+}
+>>>>>>> testBranch
 
 function copyTextToClipboard(hash){
 	navigator.clipboard.writeText(hash.textContent);
@@ -153,6 +159,10 @@ function goToWeb(){
 } //goes to web
 
 let Time_Limit = 86400;
+function getTimeLimit(timeLimit){
+    Time_Limit = timeLimit
+    localStorage.setItem('timeLeft', Time_Limit)
+}
 let timePassed = 0;
 let timeLeft = Time_Limit;
 const FULL_DASH_ARRAY = 283;
@@ -171,7 +181,7 @@ const COLOUR_CODES = {
         colour: "red",
         threshold: Alert_threshold
     }
-};
+}
 
 let remainingPathColor = COLOUR_CODES.info.colour;
 
@@ -217,13 +227,45 @@ function timerCountdown(time){
     return `${hours}:${minutes}:${seconds}`;
 }
 
-function checkTimer(){
-    if(localStorage.getItem('timerStatus') == 'true'){
-        startTimer();
-    }
+
+function getHint(challenge){
+    let currentHint = ""
+    var hintBox = document.getElementById('hintDiv')
+    var hintText = document.getElementById('hintText')
+    
+    const url = 'http://127.0.0.1:5000/hints'
+
+    fetch(url)
+    .then(response => response.json())
+    .then((jsonData) =>{
+        for(const[key, value] of Object.entries(jsonData)){
+            if(value.name === challenge){
+                currentHint = value.hint
+                hintText.innerHTML = currentHint
+            }
+        }
+
+    })
+
+    
+
+    const request = new XMLHttpRequest()
+    request.open('POST', `updateHints/${challenge}`)
+    request.send()
+   
+    hintBox.classList.remove('hidden')
+
+    
 }
 
-checkTimer();
+function goToSplunk(){
+    window.location.href = '/splunk'
+}
+
+function closeHint(){
+    var hintBox = document.getElementById('hintDiv')
+    hintBox.classList.add('hidden')
+}
 
 
 function startTimer(){
@@ -232,24 +274,21 @@ function startTimer(){
     } else {
         Time_Limit = localStorage.getItem('timeLeft')
     }
-
-    if(localStorage.getItem('timerStatus') == null){
-        localStorage.setItem('timerStatus', true)
-    }
-    
     timerInterval = setInterval(()=>{
         timePassed = timePassed += 1;
         timeLeft = Time_Limit - timePassed;
+        localStorage.setItem('timeLeft', timeLeft)
         document.getElementById('clockBase_timer_label').innerHTML = timerCountdown(timeLeft);
         setCircleDasharray();
         setRemainingPathColour(timeLeft);
-        localStorage.setItem('timeLeft', timeLeft)
         if(timeLeft == 0){
             onTimesUp();
         }
 
     }, 1000)
 }
+
+startTimer();
 
 function setRemainingPathColour(timeLeft){
     const {alert, warning, info} = COLOUR_CODES;
@@ -340,18 +379,20 @@ var modal = document.getElementById("steganoModal");
 var img = document.getElementById("photosButton");
 var modalImg = document.getElementById("forensicimage.png");
 var captionText = document.getElementById("caption");
+if(img){
 img.onclick = function(){
   modal.style.display = "block";
   captionText.innerHTML = "Looks like a normal image... or is it?";
-}
+}}
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
+if(span){
 span.onclick = function() {
   modal.style.display = "none";
-}
+}}
 
 
 //script for base64 
@@ -365,21 +406,23 @@ var minimizeIP = document.getElementById('minimize_IP')
 var closeIP = document.getElementById('close_IP')
 var ipTab = document.getElementById('ip_tab')
 
+if(file){
 file.addEventListener('click', () => {
    
     openBase64.classList.remove('hidden')
     txt_file_tab.classList.remove('hidden')
     ipCheck.classList.add('hidden')
-})
+})}
 
 var close_file = document.getElementById('close_file')
 
-
+if(close_file){
 close_file.addEventListener('click', ()=>{
     openBase64.classList.add('hidden')
     txt_file_tab.classList.add('hidden')    
-})
+})}
 
+if(txt_file_tab){
 txt_file_tab.addEventListener('click', ()=>{
     if (openBase64.classList.contains('hidden')){
         openBase64.classList.remove('hidden')
@@ -387,33 +430,36 @@ txt_file_tab.addEventListener('click', ()=>{
     } else {
         openBase64.classList.add('hidden')
     }
-})
+})}
 
 var minimize_file = document.getElementById('minimize_file')
+if(minimize_file){
 minimize_file.addEventListener('click', () =>{
     openBase64.classList.add('hidden')
-})
+})}
 
-
-
+if(openIP){
 openIP.addEventListener('click', ()=>{
     ipCheck.classList.remove('hidden')
     openBase64.classList.add('hidden')
     ipTab.classList.remove('hidden')
     localStorage.setItem('openIP', 'true')
-})
+})}
 
+if(minimizeIP){
 minimizeIP.addEventListener('click', ()=>{
     ipCheck.classList.add('hidden')
     localStorage.setItem('openIP', 'false')
-})
+})}
 
+if(closeIP){
 closeIP.addEventListener('click', () => {
     ipCheck.classList.add('hidden')
     ipTab.classList.add('hidden')
     localStorage.setItem('openIP', 'false')
-})
+})}
 
+if(ipTab){
 ipTab.addEventListener('click', () => {
     if(ipCheck.classList.contains('hidden')){
         ipCheck.classList.remove('hidden')
@@ -423,11 +469,13 @@ ipTab.addEventListener('click', () => {
         ipCheck.classList.add('hidden')
         localStorage.setItem('openIP', 'true')
     }
-})
+})}
 
 function checkOpenIp(){
     if(localStorage.getItem('openIP') == 'true'){
+        if(ipCheck){
         ipCheck.classList.remove('hidden')
+        }
     }
 }
 
@@ -444,18 +492,54 @@ function fade(element){
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity='+ op * 100 + ')';
         op -= op * 0.1;
-    }, 75);
+    }, 110);
 }
 
+if(toast){
 fade(toast)
+}
+
+
 function dial(number){
     //add number to passcode form
     var passcode = document.getElementById('phoneAnswer')
     passcode.value += number
+    console.log(number)
 }
 function backspace(){
     //remove last number from passcode form
     var passcode = document.getElementById('phoneAnswer')
     passcode.value = passcode.value.slice(0, -1)
 }
+function selectAccountType(){
+    var student = document.getElementById('student')
+    var lecturer = document.getElementById('lecturer')
+    var studentForm = document.getElementById('student-form')
+    var lecturerForm = document.getElementById('lecturer-form')
 
+    if(lecturer.checked == true){
+        studentForm.classList.add("hidden");
+        lecturerForm.classList.remove("hidden");
+    }
+    else if(student.checked == true){
+        lecturerForm.classList.add("hidden");
+        studentForm.classList.remove("hidden");
+    }
+
+}
+function openProfile() {
+    document.getElementById("side-profile-background").style.left = "0";
+    document.getElementById("side-profile-background").style.opacity = "1";
+    document.getElementById("side-profile").style.right = "0";
+
+
+  
+}
+function closeProfile(){
+    document.getElementById("side-profile-background").style.opacity = "0";
+    setTimeout(slideLeft, 500);
+    document.getElementById("side-profile").style.right = "-30%";
+}
+function slideLeft(){
+    document.getElementById("side-profile-background").style.left = "100%";
+}

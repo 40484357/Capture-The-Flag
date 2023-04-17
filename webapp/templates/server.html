@@ -1,0 +1,13 @@
+{% extends "gamebase.html" %} {% block title %}Laptop{% endblock %}
+{% block instruction %}Laundromats Inc. recently acquired a gaming organisation. Their website looks vulnerable, look through the source code and see what you can find.{% endblock %}
+{% block password %}http://127.0.0.1:5000/wickedcybergames{% endblock %}
+{% block button %}
+
+{% endblock %}
+{% block game_ui %}
+<a href ="{{url_for('views.wickedcybergames')}}" target="_blank">
+<button class="copyClip"  >
+    visit site
+</button>
+</a>
+{% endblock %}

@@ -28,18 +28,34 @@
 			</div>
 
 			<div class="buttonContainer tooltip">
-				<button class="buttonHelp">
+				<button class="buttonHelp" onclick="getHint({% block hint %}{% endblock %})">
 					<span class="material-icons-outlined md-30">&#xE79A;</span>
 				</button>
 				<span class="tooltiptext">Use a hint!</span>
 			</div>
+			<div class="hidden" id="hintDiv">
+				<div class="hintNav">
+					<button id="closeHint" onclick="closeHint()">
+						&#10006;
+					</button>
+				</div>
+				<div id="hintText">
+
+				</div>
+			</div>
 
 			<div class="gameBox">
-				<p class="hashDescript">{% block instruction %} {% endblock %}</p>
-				<div id="hash" class="hash">{{password}}</div>
+				<p class="hashDescript">
+					{% block instruction %} {% endblock %}
+				</p>
+				{% block hash %}
+				<div id="hash" class="hash">{% block password %}{% endblock %}</div>
+				{% endblock %}
+				{% block button %}
 				<button class="copyClip" onclick="copyTextToClipboard(hash)">
 					Copy to Clipboard
 				</button>
+				{% endblock %}
 			</div>
 			{% block game_ui %} {% endblock %}
 		</div>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='styles.css')}}"
+		/>
+    <title>Leaderboard</title>
+</head>
+<body><div class="gameLauncher" id="challengeOne">
+    <div class="gameHeader">
+        <div class="navButton" onclick="goToEvidence()">Back</div>
+        <div class="roomTitle">Leaderboard</div>
+        <div id="clock"></div>
+    </div>
+    <div class="leaderboard">
+    <table class="leaderboard_table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tr class="usersRank">
+            <td>{{index}}</td>
+            <td>{{userName}}</td>
+            <td>{{userpoints}}</td>
+
+        </tr>
+        {% for leaders in leaders %}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{leaders[0]}}</td>
+            <td>{{leaders[1]}}</td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+        
+    </div>
+</div>
+    <script
+			src="{{ url_for('static', filename='script.js')}}"
+			async
+			defer
+		></script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Login Page</title>
+
+		<!-- font awesome cdn link  -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+		<!-- custom css file link  -->
+		<link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}">
+
+	</head>
+
+	<body>
+	
+		<!-- HINT: Important file to look at  -->
+		
+		<script src="{{ url_for('static', filename='secure.js')}}"></script>
+		<div class="terminal_body terminal" id="terminalBody">
+			<div class="terminal_header terminal">
+				TERMINAL
+			</div>
+			<div class="terminal_row terminal ">
+				<div class="termianl_address terminal">
+					10.0.0.1
+				</div>
+				<div class="terminal-split">
+					- -
+				</div>
+				<div class="terminal_response terminal">
+					"{{flag}}"
+				</div>
+			</div>
+			<div class="terminal_row terminal ">
+				<div class="termianl_address terminal">
+					10.0.0.1
+				</div>
+				<div class="terminal-split">
+					- -
+				</div>
+				<div class="terminal_response terminal">
+					awaiting new flag...
+				</div>
+			</div>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<div class="terminal_row terminal ">
+				<div class="termianl_address terminal">
+					10.0.0.1
+				</div>
+				<div class="terminal-split">
+					- -
+				</div>
+				<div class="terminal_response terminal">
+					{{answer}}
+				</div>
+			</div>
+			{% endif %}
+			{% endwith %}
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<div class="terminal_row terminal ">
+				<div class="termianl_address terminal">
+					10.0.0.1
+				</div>
+				<div class="terminal-split">
+					- -
+				</div>
+				<div class="terminal_response terminal">
+					{{response}}
+				</div>
+			</div>
+			{% endif %}
+			{% endwith %}
+			<div class="terminal_row terminal "id = 'terminal_response'>
+				<div class="termianl_address terminal">
+					10.0.0.1
+				</div>
+				<div class="terminal-split">
+					- -
+				</div>
+				<div class="terminal_response" >
+					<form action="" method="post" class="terminal_form">
+						<input type="text" name="flag_response" class="terminal_form_response">
+					</form>
+				</div>
+				<div class="hidden" id="continue">
+					<div class="terminal_address terminal">
+						10.0.0.1
+					</div>
+					<div class="terminal-split">
+						- -
+					</div>
+					<div class="terminal_response">
+						press enter to continue
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<form hidden action="admin.php" method="post" id="hiddenAdminForm">
+		  <input type="text" name="hash" required id="adminFormHash">
+		</form>
+		
+		<script defer>
+			let redirect = {{ redir }}
+			let challengetext = {{challengeText|tojson}}
+			let challengeCheck = {{challenge3}}
+			let text2 = {{challengeText2|tojson}}
+			
+			
+			function checkChallenge(){
+				if(challengeCheck == true){
+					var terminal_response = document.getElementById('terminal_response')
+					terminal_response.classList.add('hidden')
+					const terminal_body = document.getElementById('terminalBody')
+					let i = 0;
+					for(i; i<challengetext.length; i++){
+					terminal_body.innerHTML+=
+						`<div class="dark terminal_row terminal">
+							<div class="termianl_address terminal">
+								10.0.0.1
+							</div>
+							<div class="terminal-split">
+								- -
+							</div>
+							<div class="terminal_response terminal">
+								${challengetext[i]}
+							</div>
+						</div> `
+					}
+					if(i == challengetext.length){
+					let char = 0;
+					let timer = setInterval(onTick, 1000);
+					function onTick(){
+						console.log(char)
+						const dark = document.querySelectorAll('.dark')[char]
+						dark.classList.add('fade')
+						char++
+						if(char === challengetext.length){
+							complete();
+							return;
+						}
+
+					}
+					function complete(){
+						clearInterval(timer);
+						timer = null;
+								window.open(text2[0], '_blank')
+								terminal_body.innerHTML+=
+								`
+
+								<div class="terminal_row terminal "id = 'terminal_response'>
+								<div class="terminal_address terminal">
+									10.0.0.1
+								</div>
+								<div class="terminal-split">
+									- -
+								</div>
+								<div class="terminal_response" >
+									<form action="" method="post" class="terminal_form">
+										<input type="text" name="flag_response" class="terminal_form_response">
+									</form>
+								</div>
+								</div>
+								`
+
+						
+					}
+				}
+			}
+			}
+
+			function check_state(){
+				
+				
+				if (redirect == true){
+					var terminal_response = document.getElementById('terminal_response')
+					terminal_response.classList.add('hidden')
+					var continueDiv = document.getElementById('continue')
+					continueDiv.classList.remove('hidden')
+					continueDiv.classList.add('terminal')
+					continueDiv.classList.add('terminal_response')
+
+					document.addEventListener('keypress', () => {
+						if(event.key == "Enter"){
+							var terminal_body = document.getElementById('terminalBody')
+							let i = 0;
+							document.cookie = 'user = None'
+							for(i; i<challengetext.length; i++){
+							terminal_body.innerHTML+=
+								`<div class="dark terminal_row terminal">
+									<div class="termianl_address terminal">
+										10.0.0.1
+									</div>
+									<div class="terminal-split">
+										- -
+									</div>
+									<div class="terminal_response terminal">
+										${challengetext[i]}
+									</div>
+								</div> `
+							}
+							if(i == challengetext.length){
+							let char = 0;
+							let timer = setInterval(onTick, 1000);
+							function onTick(){
+								console.log(char)
+								const dark = document.querySelectorAll('.dark')[char]
+								dark.classList.add('fade')
+								char++
+								
+								if(char === challengetext.length){
+									complete();
+									return;
+								}
+
+							}
+
+							function complete(){
+								clearInterval(timer);
+								timer = null;
+								document.removeEventListener('keypress')
+							}
+							}
+						}
+					})
+
+					
+				}
+				else{
+					checkChallenge()
+				}
+				
+		
+					
+			}
+			
+			check_state()
+
+
+		</script>
+    
+		<!-- <script type="text/javascript">
+		  function filter(string) {
+			filterPassed = true;
+			for (let i =0; i < string.length; i++){
+			  cc = string.charCodeAt(i);
+			  
+			  if ( (cc >= 48 && cc <= 57) ||
+				   (cc >= 65 && cc <= 90) ||
+				   (cc >= 97 && cc <= 122) )
+			  {
+				filterPassed = true;     
+			  }
+			  else
+			  {
+				return false;
+			  }
+			}
+			
+			return true;
+		  }
+		
+		  window.username = "";
+		  window.password = "";
+		  
+		  usernameFilterPassed = filter(window.username);
+		  passwordFilterPassed = filter(window.password);
+		  
+		  if ( usernameFilterPassed && passwordFilterPassed ) {
+		  
+			loggedIn = checkPassword(window.username, window.password);
+			
+			if(loggedIn)
+			{
+			  document.getElementById('msg').innerHTML = "Log In Successful";
+			  document.getElementById('adminFormHash').value = "2196812e91c29df34f5e217cfd639881";
+			  document.getElementById('hiddenAdminForm').submit();
+			}
+			else
+			{
+			  document.getElementById('msg').innerHTML = "Log In Failed";
+			}
+		  }
+		  else {
+			document.getElementById('msg').innerHTML = "Illegal character in username or password."
+		  }
+		</script> -->
+	 </body>
+</html>
