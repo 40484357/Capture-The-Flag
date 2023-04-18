@@ -16,7 +16,6 @@
 		/>
 	</head>
 	<body>
-		
 		<div class="gameLauncher" id="secondScene">
 			<!-- second scene, contains clickable elements, a navigation menu (which has time and room title), as well as a tracker for challenges and score-->
 			<div class="gameHeader">
@@ -24,22 +23,20 @@
 				<div class="nav_buttons">
 					<div class="navButton" onclick="goToWeb()">Exit</div>
 					<div class="splunkKeys">
-						<button class="splunkKeyButton" onclick="goToSplunk()">Splunk Keys</button>
+						<button class="splunkKeyButton" onclick="goToSplunk()">
+							Splunk Keys
+						</button>
 					</div>
 				</div>
 				<div class="roomTitle">Evidence Room</div>
 				<div id="clock"></div>
 			</div>
-		
+
 			<div class="evidenceRoom">
 				<div class="laptopPic" onclick="goToLaptop()"></div>
 				<div class="phonePic" onclick="goToPhone()"></div>
-<<<<<<< HEAD
-				<div class="serverPic" onclick="alert('server redirect here')"></div>
 				<div class="safePic" onclick="goToWinroom()"></div>
-=======
 				<div class="serverPic" onclick="goToServer()"></div>
->>>>>>> testBranch
 			</div>
 			<div class="trackerElements">
 				<!-- contains checklist for challenges and scores -->
@@ -48,9 +45,7 @@
 				<div class="checklist" id="checkList3"></div>
 			</div>
 		</div>
-		<script
-			src="{{ url_for('static', filename='script.js')}}"
-		></script>
+		<script src="{{ url_for('static', filename='script.js')}}"></script>
 		<script>
 			myVar = getTimeLimit({{userTime}})
 		</script>
