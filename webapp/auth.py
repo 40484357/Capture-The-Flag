@@ -53,6 +53,7 @@ def sign_up():
         if request.method == 'POST':
         
             if request.form['account-type'] == 'studentAccount':
+                
 
                 studentEmail = request.form.get('student-email')
                 studentPassword = request.form.get('student-password')
@@ -62,6 +63,8 @@ def sign_up():
                 studentUser = users.query.filter_by(email=studentEmail).first()
                 usernameCheck = users.query.filter_by(user_name = username).all()
                 codeCheck = users.query.filter_by(lecturerId=lecturerCode).first()
+                number = 0
+                
 
                 if studentUser:
                     flash('email already exists.', category='error')
@@ -77,10 +80,14 @@ def sign_up():
                     
                 else:
 
-                    if  usernameCheck:
-                        number = usernameCheck.len + 1
-                        newUsername = username + number
+                    while usernameCheck:
+                        if number != 0:
+                            username = username.rstrip(username[-1])
+                        number += 1
+                        newUsername = username + str(number)
                         username = newUsername
+                        usernameCheck = users.query.filter_by(user_name = username).all()
+                       
 
                     if codeCheck == None:
                         flash('Code does not exist.', category='error')
@@ -101,7 +108,8 @@ def sign_up():
                 username = selectUsername()
                 lecturerUser = users.query.filter_by(email=lecturerEmail).first()
                 usernameCheck = users.query.filter_by(user_name = username).all()
-                lecturerId = random.randint(100000,999999)  
+                lecturerId = random.randint(100000,999999)
+                number = 0  
             
                 if lecturerUser:
                     flash('email already exists.', category='error')
@@ -117,10 +125,13 @@ def sign_up():
                 
 
                 else:
-                    if  usernameCheck:
-                        number = usernameCheck.len + 1
-                        newUsername = username + number
+                    while usernameCheck:
+                        if number != 0:
+                            username = username.rstrip(username[-1])
+                        number += 1
+                        newUsername = username + str(number)
                         username = newUsername
+                        usernameCheck = users.query.filter_by(user_name = username).all()
 
                     new_user = users(lecturerStatus = 1, lecturerId = lecturerId, email=lecturerEmail, password=generate_password_hash(lecturerPassword, method='sha256'), user_name = username, lecturerCode = lecturerId)
                     db.session.add(new_user)
