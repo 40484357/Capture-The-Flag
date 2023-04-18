@@ -250,7 +250,7 @@ def phoneHome():
                 print('fail')
             else:
                 # assign chall 3 points, aes
-                response = Markup("Correct password.<br>Access Splunk <a href ='http://52.1.222.178:8000' target='_blank'>here</a><br>Username: ctf<br>Password: EscapeEscap3")
+                response = Markup("Correct password.<br>Access Splunk <a href ='/splunk' target='_blank'>here</a><br>and use that filter in there.")
                 aesChallengeCheck = db.session.query(phone_challenge.aesChallenge).filter_by(user_id = current_user.id).first()
                 if(aesChallengeCheck[0] == 0):
                     print('success')
