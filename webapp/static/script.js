@@ -479,6 +479,7 @@ function checkOpenIp(){
 checkOpenIp()
 var toast = document.getElementById('toast')
 
+
 function fade(element){
     var op = 1; 
     var timer = setInterval(function (){
@@ -539,4 +540,35 @@ function closeProfile(){
 }
 function slideLeft(){
     document.getElementById("side-profile-background").style.left = "100%";
+}
+function codeDisplay(){
+    document.getElementById("code-popup-bg").style.left = "0";
+    document.getElementById("code-popup-bg").style.opacity = "1";
+    document.getElementById("code-popup").style.left = "35%";
+    document.getElementById("code-popup").style.top = "30%";
+}
+function codeHide(){
+    document.getElementById("code-popup-bg").style.opacity = "0";
+    setTimeout(hidePopup, 500);
+    document.getElementById("code-popup").style.right = "0";
+    document.getElementById("code-popup").style.bottom = "0";
+
+   
+    
+   
+}
+function hidePopup(){
+   
+    document.getElementById("code-popup-bg").style.left = "100%";
+}
+
+function disappear(){
+    setTimeout(none, 2000)
+    setTimeout(none2,3000)
+   }
+   function none(){
+       document.getElementById('account-success').style.opacity = '0';
+   }
+   function none2(){
+    document.getElementById('account-success').style.left = '100%';
 }

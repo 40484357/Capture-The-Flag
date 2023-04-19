@@ -188,7 +188,6 @@
 							id="student-email"
 							placeholder="Enter email."
 						/>
-						<span class="msg">Valid Email</span>
 					</div>
 					<div class="input-group">
 						<label for="student-password">Password:</label>
@@ -216,15 +215,14 @@
 							id="student-code"
 							placeholder="Enter lecturer code."
 						/>
-						<span class="msg">Incorrect Code</span>
 					</div>
 
 					{% with messages = get_flashed_messages(with_categories=true) %} {% if
 					messages %} {% for category, message in messages %} {% if category ==
 					'error' %}
-					<div>{{ message }}</div>
+					<div class="aboutPara">{{ message }}</div>
 					{% else %}
-					<div>{{ message }}</div>
+					<div class="aboutPara">{{ message }}</div>
 					{% endif %} {% endfor %} {% endif %} {% endwith %}
 					<input
 						type="radio"
@@ -254,7 +252,6 @@
 							id="lecturer-email"
 							placeholder="Enter email."
 						/>
-						<span class="msg">Valid Email</span>
 					</div>
 					<div class="input-group">
 						<label for="lecturer-password">Password:</label>
@@ -278,9 +275,9 @@
 					{% with messages = get_flashed_messages(with_categories=true) %} {% if
 					messages %} {% for category, message in messages %} {% if category ==
 					'error' %}
-					<div>{{ message }}</div>
+					<div class="aboutPara">{{ message }}</div>
 					{% else %}
-					<div>{{ message }}</div>
+					<div class="aboutPara">{{ message }}</div>
 					{% endif %} {% endfor %} {% endif %} {% endwith %}
 					<input
 						type="radio"

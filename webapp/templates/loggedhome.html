@@ -1,4 +1,7 @@
-{% extends 'homebase.html'%} {%block side_profile%}
+{% extends 'homebase.html'%}{%block msg%} {% with messages =
+get_flashed_messages() %} {% if messages %} {% for message in messages %}
+<div id="account-success" class="aboutPara2">{{ message }}</div>
+{% endfor %} {% endif %} {% endwith %}{%endblock%} {%block side_profile%}
 <div class="user-menu" onclick="openProfile()">
 	<p class="bar-container">{{user_name}}</p>
 	<div class="bar-container">
@@ -18,16 +21,16 @@
 		</div>
 	</div>
 	<div class="profile-section">
-		<a class="" href="{{url_for('views.logged_in')}}">Home</a>
+		<a href="{{url_for('views.logged_in')}}">Home</a>
 		<a href="{{url_for('views.resources')}}">Resources</a>
 	</div>
 	<div class="profile-section">
-		{%if current_user.lecturerCode == None%}
+		{%if current_user.lecturerStatus == 0%} {%if current_user.lecturerCode ==
+		None%}
 		<form method="POST">
 			<div class="input-group profile-form">
 				<label>Lecturer Code:</label>
 				<input
-					class
 					type="text"
 					id="student-code2"
 					name="student-code2"
@@ -44,7 +47,10 @@
 				Submit
 			</button>
 		</form>
-		{%elif current_user.lecturerCode:%}{%for users in lecturer_name%}
+		{%if points:%}
+		<a href="{{url_for('views.leaderBoard')}}">Leaderboard</a>
+		{%else:%} {%endif%} {%elif current_user.lecturerCode:%} {%for users in
+		lecturer_name%}
 		<div class="classroom">
 			<p>You are in {{users.user_name}}'s class.</p>
 			{%endfor%}
@@ -54,9 +60,27 @@
 				/></span>
 			</form>
 		</div>
-
+		{%if points:%}
 		<a href="{{url_for('views.leaderBoard')}}">Leaderboard</a>
-		{%endif%}
+		{%else:%} {%endif%} {%endif%} {%else:%}
+		<a href="JavaScript:Void(0)" onclick="codeDisplay()">Show Lecturer Code</a>
+		<div id="code-popup-bg" class="code-popup-bg">
+			<div id="code-popup" class="code-popup">
+				<div class="heading-code">
+					<p class="para-code">Your code is:</p>
+					<div class="close-profile" onclick="codeHide()">
+						<div class="bar-container">
+							<div class="bar rotate1"></div>
+							<div class="bar rotate2"></div>
+						</div>
+					</div>
+				</div>
+				<h1 class="bold-code">{{current_user.lecturerId}}</h1>
+			</div>
+		</div>
+		{%if points:%}
+		<a href="{{url_for('views.leaderBoard')}}">Leaderboard</a>
+		{%else:%} {%endif%} {%endif%}
 	</div>
 	<div class="profile-section">
 		<a href="{{url_for('auth.logout')}}">Log Out</a>

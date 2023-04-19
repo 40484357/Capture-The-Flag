@@ -17,7 +17,7 @@
 		<title>Home Page</title>
 	</head>
 
-	<body>
+	<body onload="disappear()">
 		<header class="landingNav">
 			<svg
 				class="logoImg"
@@ -167,6 +167,7 @@
 					<li><a href="#games">Games</a></li>
 					<li><a href="#about">About</a></li>
 				</ul>
+				{%block msg%}{%endblock%}
 				<h1 class="huge">Welcome to Cyberescape{%block name%}{%endblock%}.</h1>
 				<p class="tagline">
 					Come and test your cyber security skills with our escape room

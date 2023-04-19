@@ -478,17 +478,29 @@ def splunkKey():
 
 @views.route('/leaderboard')
 def leaderBoard():
-    leaders = db.session.query(users.user_name, points.pointsTotal).join(points).order_by(points.pointsTotal.desc()).all()
-    user = db.session.query(users.user_name).filter_by(id = current_user.id).first()
+    leaders = db.session.query(users.user_name, points.pointsTotal, users.lecturerCode).filter_by(lecturerCode = current_user.lecturerCode).join(points).order_by(points.pointsTotal.desc()).all()
+    user = db.session.query(users.user_name, users.lecturerId).filter_by(id = current_user.id).first()
     userPoints = db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()
     index = 0
-    for index, item in enumerate(leaders):
-        if user[0] == item[0]:
-            leaderLength = round(len(leaders) / 2)
-            del leaders[-leaderLength:]
-            userName = user[0]
-            userpoints = userPoints[0]
-            return render_template('leaderboard.html', leaders=leaders, index = index, userName = userName, userpoints = userpoints)
+
+    if current_user.lecturerStatus == 1:
+        for index, item in enumerate(leaders): 
+            if user[0] == item[0]:
+                userName = user[0]
+                userpoints = userPoints[0]
+                return render_template('leaderboard.html', leaders=leaders, index = index, userName = userName, userpoints = userpoints)
+    elif current_user.lecturerStatus == 0:
+        for index, item in enumerate(leaders): 
+            if user[0] == item[0]:
+                leaderLength = round(len(leaders) / 2)
+                del leaders[-leaderLength:]
+                userName = user[0]
+                userpoints = userPoints[0]
+                return render_template('leaderboard.html', leaders=leaders, index = index, userName = userName, userpoints = userpoints)
+    if not userPoints:
+        return render_template('leaderboard.html',index=index, userName= user[0], userpoints = 0)
+
+    return render_template('leaderboard.html',index=index, userName= user[0], userpoints = userPoints[0])
 
 @views.route('/')
 def landing():
@@ -509,16 +521,19 @@ def logged_in():
             if codeCheck == None:
                 flash('Code does not exist.', category='error')
                 lecturerCode2=None
-
-            current_user.lecturerCode = lecturerCode2
-            db.session.commit()
+                db.session.commit()
+            elif codeCheck:
+                current_user.lecturerCode = lecturerCode2
+                flash('You have entered a class.', category='success')
+                db.session.commit()
 
         if request.form['code'] == 'Leave':
             current_user.lecturerCode = None
+            flash('You have left a class.', category='success')
             db.session.commit()
         
 
-    return render_template('loggedhome.html',user_name=current_user.user_name, lecturer_name = users.query.filter_by(lecturerId=current_user.lecturerCode).all())
+    return render_template('loggedhome.html',user_name=current_user.user_name, lecturer_name = users.query.filter_by(lecturerId=current_user.lecturerCode).all(), points = points.query.filter_by(id=current_user.id).all())
 
 @views.route('/Database_Result')
 def results():
