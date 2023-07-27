@@ -654,10 +654,10 @@ body {
 .descriptText {
     width: 1000px;
     margin: auto;
-    background: rgba(204, 101, 57, 0.38);
+    background: rgba(18, 15, 14, 0.9);
     ;
     border-radius: 14px;
-    padding: 1em;
+    padding:2em;
     font-family: 'public sans';
     font-style: normal;
     font-weight: 400;
@@ -666,6 +666,66 @@ body {
     /* or 50px */
     color: #FFFFFF;
 }
+
+.descriptText button {
+    height: 40px;
+    width: 200px;
+    outline: none;
+    background: white;
+    border: black solid 2px;
+}
+#score, #scoreText{ /*styling of the score box*/
+    float:inline-start;
+    margin: 0.1em;
+    font-size: 30px;
+    font-family: 'public sans';
+    color: #ffffff;
+}
+
+.answerBoxes{ /*spacing of the answer boxes*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding: 1em;
+    gap: 1em;
+}
+#answerA,#answerB,#answerC,#answerD{ /*styling of the answer boxes*/
+    background: rgba(204, 101, 57, 1);
+    border-radius: 14px;
+    padding: 1em;
+    font-family: 'public sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 193.9%;
+    color: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+#retry{
+    background: rgba(204, 101, 57, 1);
+    border-radius: 14px;
+    padding: 1em;
+    font-family: 'public sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 193.9%;
+    color: #FFFFFF;
+    width: 40%;
+    height: 100%;
+    text-align: center;
+}
+#answerA:hover,#answerB:hover,#answerC:hover,#answerD:hover,#retry:hover{ /*hover styling of the answer boxes*/
+    background: rgba(204, 101, 57, 0.65);
+    cursor: pointer;
+}
+
 
 #nav {
     display: flex;
@@ -735,12 +795,11 @@ body {
     cursor: pointer;
 }
 #introQuiz {
+    width: 1000px;
     margin: auto;
-    text-align:center;
-    position: relative;
-    width: 80%;
-    height: 0;
-    padding-bottom: 40%; /* The height of the item will now be 56.25% of the width. */
+    text-align: center;
+    border-radius: 14px;
+  
 }
 
   /* Adjust the iframe so it's rendered in the outer-width and outer-height of it's parent */

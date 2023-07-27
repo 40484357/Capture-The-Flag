@@ -1,62 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			rel="stylesheet"
-			href="{{ url_for('static', filename='styles.css')}}"
-		/>
-		<title>Introduction</title>
-	</head>
-	<body>
-		<div class="gameLauncher" id="firstScene">
-			<!-- game launcher intro scene, with game description, image and continue button. All corresponding scenes should maybe be wrapped in a div which is shrunk down so it's not full screen?-->
-			<div class="introHeader">
-				<div class="title">
-					<h1 class="mainTitle">CSI:</h1>
-				</div>
-			</div>
-			<div class="gameBody">
-				<div class="descriptText" id="descriptText">
-					<p>
-						Laundromats Inc. are involved in money laundering. You have been
-						given three pieces of evidence
-					</p>
-					<ol>
-						<li>a laptop</li>
-						<li>a mobile phone</li>
-						<li>a server</li>
-					</ol>
-					<p>
-						You have 24 hours to forensically analyse the evidence by solving
-						the challenges.
-					</p>
-				</div>
-				<div class="hidden" id="introQuiz">
-					<iframe
-						src="https://kahoot.it/challenge/0107605?challenge-id=f4024f95-6f91-4152-960c-44a99e4f5152_1680810923265"
-						width="550"
-						height="275"
-						frameborder="0"
-					>
-					</iframe>
-				</div>
 
-				<div id="nav">
-					<button id="quizButton" class="hidden">quiz</button>
-					<button id="continue">continue &#8680;</button>
-					<button id="back" class="hidden">&#8678; back</button>
-				</div>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}" />
+	<title>Introduction</title>
+</head>
+
+<body>
+	<div class="gameLauncher" id="firstScene">
+		<!-- game launcher intro scene, with game description, image and continue button. All corresponding scenes should maybe be wrapped in a div which is shrunk down so it's not full screen?-->
+		<div class="introHeader">
+			<div class="title">
+				<h1 class="mainTitle">CSI:</h1>
 			</div>
-			<div class="gameTracker"></div>
 		</div>
+		<div class="gameBody">
+			<div class="descriptText" id="descriptText">
+				<p>
+					Laundromats Inc. are involved in money laundering. You have been
+					given three pieces of evidence
+				</p>
+				<ol>
+					<li>a laptop</li>
+					<li>a mobile phone</li>
+					<li>a server</li>
+				</ol>
+				<p>
+					You have 24 hours to forensically analyse the evidence by solving
+					the challenges.
+				</p>
+			</div>
+			<div class="hidden" id="introQuiz">
+				<div id ="scoreText">Score:</div>
+				<div id="score" >0</div>
+				<div class="descriptText" id="quizText">
+					<div id="question" class="field"></div>
+					<div class="answerBoxes">
+						<button id="answerA" onclick="answerA_clicked()"></button>
+						<button id="answerB" onclick="answerB_clicked()"></button>
+						<button id="answerC" onclick="answerC_clicked()"></button>
+						<button id="answerD" onclick="answerD_clicked()"></button>
+						<button id="retry" onclick="location.reload()"class = hidden>Retry</button>
+					</div>
+				</div>
+			</div>
 
-		<script
-			src="{{ url_for('static', filename='script.js')}}"
-			async
-			defer
-		></script>
-	</body>
+			<div id="nav">
+				<button id="quizButton" class="hidden">quiz</button>
+				<button id="continue">continue &#8680;</button>
+				<button id="back" class="hidden">&#8678; back</button>
+			</div>
+		</div>
+		<div class="gameTracker"></div>
+	</div>
+
+	<script src="{{ url_for('static', filename='script.js')}}" async defer></script>
+</body>
+
 </html>
