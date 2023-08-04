@@ -2143,3 +2143,134 @@ background-color: #ec131a;
     padding-bottom:10px;
 }
 
+.virtualBrowser{
+    border: 3px solid #f1f1f1;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    width: 60%;
+    align-items: center;
+    position: absolute;
+    transform: translate(30%, 0%);
+}
+
+.addressBar {
+    padding: 10px;
+    background: #f1f1f1;
+  }
+
+.column {
+  float: left;
+}
+
+.left {
+  width: 15%;
+}
+
+.right {
+  width: 10%;
+}
+
+.middle {
+  width: 75%;
+}
+
+
+.addressBar:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Three dots */
+  .dot {
+    margin-top: 4px;
+    height: 12px;
+    width: 12px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  /* Style the input field */
+  input[type=text] {
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    background-color: white;
+    margin-top: -8px;
+    height: 25px;
+    color: #666;
+    padding: 5px;
+  }
+  
+  
+  .browserContent {
+    padding: 10px;
+    background-image: linear-gradient(rgb(105,88,156), rgb(40, 37, 107));
+    color: white;
+  }
+
+  .browserContent h1{
+    font-size: 50px;
+    font-weight: 600;
+    text-shadow: 0px 0px 5px #5cfac8, 0px 0px 10px #b393d3, 0px 0px 10px #b393d3,
+      0px 0px 20px #b393d3;
+    text-align: center;
+    color: #572cf5;
+    margin-bottom: 20px;
+  }
+
+  .loginPanel {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 50%;
+    padding: 40px;
+    margin:30px;
+    border:#0B0909 3px solid;
+    border-radius: 30px;
+    /*center the box*/
+    top: 50%;
+    left: 23%;
+    background-color: white;
+  }
+  input[id="ccUsername"], input[id="ccPassword"]{
+    position: relative;
+    width: 50%;
+    left:25%;
+    background: transparent;
+    border: black 1px solid;
+    border-radius: 5px;
+    
+    
+  }
+    input[id="ccUsername"]:focus, input[id="ccPassword"]:focus{
+        outline: none;
+        border: rgb(18, 94, 215) 1px solid;
+    }
+    ::placeholder {
+        color: rgb(18, 94, 215);
+        opacity: 0.7;
+    }
+    label[for=ccUsername], label[for=ccPassword]{
+        position: relative;
+        left: 25%;
+        color: rgb(18, 94, 215);
+        line-height: 40px;
+    }
+    input[id="ccSubmit"]{
+        position: relative;
+        padding: 1em;
+        border-radius: 5px;
+        color:rgb(18, 94, 215);
+        left: 40%;
+        background:transparent;
+    }
+    input[id="ccSubmit"]:hover{
+        /*glow effect*/
+        box-shadow: 0px 0px 10px 0px rgb(18, 94, 215);
+    }
+    .ccMessage{
+        color:rgb(18, 94, 215);
+    }

@@ -42,6 +42,10 @@ print("A: ", A)
 print("B: ", B)
 print("Secret Key: ", secretKey)
 
+# List of passwords for web challenge
+passwords = ["pass1234 or 1=1--","pass1234 or 1=1","pass1234 or 1=1 #","pass1234 or true--","'pass1234' or true-- +","pass1234 OR ‘’ = ‘","pass1234 OR 'x'='x","pass1234 or '1'='1'/*",
+             "pass1234 OR 1=1 LIMIT 1--","pass1234 or 1=1 LIMIT 1#","pass1234 or true LIMIT 1--","pass1234 or true LIMIT 1#"]
+
 views = Blueprint('views', __name__)
 
 
@@ -384,6 +388,19 @@ def wickedcybergames():
 
 
     return render_template('wickedcybergames.html')
+
+@views.route('/cryptocartel' , methods=['GET','POST'])
+def cryptocartel():
+    # Needs backend stuff
+    response = None
+    if request.method=='POST':
+        # Check if user enters admin + any of the passwords
+        if request.form['ccUsername'] == "admin" and request.form['ccPassword'] in passwords:
+            return redirect('/desktop')
+        else:
+            response = 'Incorrect username or password, please try again.'
+            flash(response)
+    return render_template('web_chall.html')  
 
 @views.route('/intro')
 def intro():

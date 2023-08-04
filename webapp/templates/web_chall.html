@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title></title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}" />
+	<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+			rel="stylesheet"
+		/>
+</head>
+
+<body>
+	<div class="gameLauncher" id="phoneChallenges">
+		<div class="gameHeader">
+			<div class="navButton"onclick="goToEvidence()">Back</div>
+			<div class="roomTitle">Evidence Room</div>
+			<div id="clock"></div>
+		</div>
+		<div class="buttonContainer tooltip" id="phoneHintButton">
+			<button class="buttonHelp" onclick="getHint('{{hint}}')" >
+				<span class="material-icons-outlined md-30">&#xE79A;</span>
+			</button>
+			<span class="tooltiptext">Use a hint!</span>
+		</div>
+		<div class="hidden" id="hintDiv">
+			<div class="hintNav">
+				<button id="closeHint" onclick="closeHint()">
+					&#10006;
+				</button>
+			</div>
+			<div id="hintText">
+
+			</div>
+		</div>
+
+        <div class="virtualBrowser">
+            <div class="addressBar">
+              <div class="column left">
+                <span class="dot" style="background:#ED594A;"></span>
+                <span class="dot" style="background:#FDD800;"></span>
+                <span class="dot" style="background:#5AC05A;"></span>
+              </div>
+              <div class="column middle">
+                <input type="text" value="http://www.cryptocartel.com">
+              </div>
+             
+            </div>
+          
+            <div class="browserContent">
+				
+				<div class = "loginPanel">
+					<h1>Crypto Cartel</h1><br>
+					<form class="ccLoginForm" action="" method="POST">
+						<label for="ccUsername">Username:</label><br>
+						<input type="text" id="ccUsername" name="ccUsername" value="admin"><br>
+						<br>
+						<label for="ccPassword">Password:</label><br>
+						<input type="text" id="ccPassword" name="ccPassword" value="pass1234"><br><br>
+						<input type="submit" id="ccSubmit" value="Login">
+				  	</form> 
+				
+					{% with messages = get_flashed_messages() %} {% if messages %}
+					<ul class="ccLoginFlash">
+						{% for message in messages %}
+						<div class="ccMessage">{{message}}</div>
+						{% endfor %}
+					</ul>
+					{% endif %} {% endwith %}
+				</div>
+            </div>
+          </div>
+
+
+	</div>
+	
+</body>
+<script>
+</script>
+<script src="{{ url_for('static', filename='script.js')}}" async defer></script>
+</html>
