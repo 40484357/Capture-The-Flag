@@ -43,8 +43,8 @@ print("B: ", B)
 print("Secret Key: ", secretKey)
 
 # List of passwords for web challenge
-passwords = ["pass1234 or 1=1--","pass1234 or 1=1","pass1234 or 1=1 #","pass1234 or true--","'pass1234' or true-- +","pass1234 OR ‘’ = ‘","pass1234 OR 'x'='x","pass1234 or '1'='1'/*",
-             "pass1234 OR 1=1 LIMIT 1--","pass1234 or 1=1 LIMIT 1#","pass1234 or true LIMIT 1--","pass1234 or true LIMIT 1#"]
+passwords = ["'pass1234' or 1=1--","'pass1234' or 1=1","'pass1234' or 1=1 #","'pass1234' or true--","'pass1234' or true-- +","'pass1234' OR ‘’ = ‘","'pass1234' OR 'x'='x","'pass1234' or '1'='1'/*",
+             "'pass1234' OR 1=1 LIMIT 1--","'pass1234' or 1=1 LIMIT 1#","'pass1234' or true LIMIT 1--","'pass1234' or true LIMIT 1#"]
 
 views = Blueprint('views', __name__)
 

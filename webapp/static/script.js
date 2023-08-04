@@ -670,3 +670,12 @@ function disappear(){
    function none2(){
     document.getElementById('account-success').style.left = '100%';
 }
+
+function showHelp(){
+    if(document.getElementById('helpOverlay').classList.contains('hidden')){
+        document.getElementById('helpOverlay').classList.remove('hidden');
+    }
+    else{
+        document.getElementById('helpOverlay').classList.add('hidden');
+    }
+}

@@ -42,6 +42,14 @@
 			</div>
 		</div>
 
+		<div class = "helpOverlayButton" onclick="showHelp()">i
+			<div class = "hidden" id="helpOverlay">
+				<h1>Challenge instructions</h1>
+				<p>The administrator of this site can view account details, use SQL injection to hack into the administrators overview.</p>
+			</div>
+		
+		</div>
+
         <div class="virtualBrowser">
             <div class="addressBar">
               <div class="column left">
@@ -64,7 +72,7 @@
 						<input type="text" id="ccUsername" name="ccUsername" value="admin"><br>
 						<br>
 						<label for="ccPassword">Password:</label><br>
-						<input type="text" id="ccPassword" name="ccPassword" value="pass1234"><br><br>
+						<input type="text" id="ccPassword" name="ccPassword" value="'pass1234'"><br><br>
 						<input type="submit" id="ccSubmit" value="Login">
 				  	</form> 
 				
