@@ -679,3 +679,18 @@ function showHelp(){
         document.getElementById('helpOverlay').classList.add('hidden');
     }
 }
+function copyScript(){
+    navigator.clipboard.writeText("PGltZyBzcmM9eCBvbmVlcnJvcj1hbGVydChkb2N1bWVudC5jb29raWUpPg==");
+    alert('Copied data to clipboard!');
+}
+function scriptPanel(){
+    if(document.getElementById('browserBottom').classList.contains('hidden')){
+        document.getElementById('browserBottom').classList.remove('hidden');
+    }
+    else{
+        document.getElementById('browserBottom').classList.add('hidden');
+    }
+}
+function closeAlert(){
+    document.getElementById('popupAlert').classList.add('hidden');
+}

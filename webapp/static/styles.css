@@ -2159,11 +2159,13 @@ background-color: #ec131a;
     cursor: pointer;
 }
 #helpOverlay{
+    float: left;
     width: 250px;
     border: white solid 2px;
     border-radius: 10px;
     background-color: white;
-    margin-top:20px;
+    margin-top:70px;
+    margin-left:-50px;
 }
 #helpOverlay h1{
     color: black;
@@ -2172,6 +2174,18 @@ background-color: #ec131a;
 #helpOverlay p{
     color: black;
     font-size: 20px;
+}
+#helpOverlay #copyScript{
+    color: black;
+    font-size: 20px;
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: black solid 2px;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    
 }
 
 
@@ -2307,3 +2321,124 @@ background-color: #ec131a;
     .ccMessage{
         color:rgb(18, 94, 215);
     }
+    /* Challenge 2  CSS start*/
+
+    .browserContent2 {
+        padding: 10px;
+        background-image: linear-gradient(rgb(105,88,156), rgb(40, 37, 107));
+        color: white;
+      }
+    
+    .browserContent2 h1{
+        display: flex;
+        font-size: 30px;
+        text-shadow: 0px 0px 5px #5cfac8, 0px 0px 10px #b393d3, 0px 0px 10px #b393d3,
+          0px 0px 20px #b393d3;
+        text-align: left;
+        color: #572cf5;
+        margin-bottom: 0px;
+        margin-top: -5px;
+    }
+    .browserContent2 h2 {
+        display:flex;
+        float:right;
+        margin-top: -27px;
+        margin-right: 10px;
+        font-size: 20px;
+    }
+
+    label[for=ccSessionID]{
+        position: relative;
+        left: 16%;
+        color: rgb(18, 94, 215);
+        line-height: 40px;
+    }
+    input[id="ccSession"]{
+        position: relative;
+        width: 70%;
+        left:15%;
+        background: transparent;
+        border: black 1px solid;
+        border-radius: 5px;
+    }
+      
+    .mainPanel {
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 50%;
+        padding: 40px;
+        margin:30px;
+        border:#0B0909 3px solid;
+        border-radius: 30px;
+        /*center the box*/
+        top: 50%;
+        left: 23%;
+        background-color: white;
+    }
+    .mainPanel h3{
+        color:rgb(18, 94, 215);
+        text-align: center;
+        font-size: 30px;
+    }
+    #scriptPanel{
+        position: relative;
+        padding: 1em;
+        border-radius: 5px;
+        color:black;
+       
+    }
+    #browserBottom{
+        margin-top: -10px;
+        background-color: #f1f1f1;
+        border: black 1px solid;
+    }
+    #browserBottom p{
+        position: relative;
+        left:2%;
+    }
+    input[id="ccScript"]{
+        position: relative;
+        width: 50%;
+        left:2%;
+        background: transparent;
+        border: black 1px solid;
+        border-radius: 5px;
+    }
+    #ccScriptSubmit{
+        position: relative;
+        left:2%;
+        margin-bottom: 10px;
+    }
+    input[id="ccScript"]:focus{
+        outline: none;
+        border: rgb(18, 94, 215) 1px solid;
+    }
+    .popupAlert{
+        position: relative;
+        width: 40%;
+        left:30%;
+        background: white;
+        border: black 1px solid;
+        border-radius: 5px;
+        color:rgb(18, 94, 215);
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .popupAlert button{
+        position: relative;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        background: transparent;
+        border: black 1px solid;
+        border-radius: 5px;
+        color:rgb(18, 94, 215);
+    }
+    .popupAlert button:hover{
+        cursor: pointer;
+    }
+
+    
+     
+ 

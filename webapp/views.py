@@ -402,6 +402,20 @@ def cryptocartel():
             flash(response)
     return render_template('web_chall.html')  
 
+@views.route('/cryptocartel/loggedin' , methods=['GET','POST'])
+def cryptocartel_loggedin():
+    response = None
+    if request.method =='POST':
+        if "script" in request.form:
+            if(request.form['ccScript'] == "<img src=x oneerror=alert(document.cookie)>"):
+                response = "Session ID = tcbd7x3q8k1690833065130"
+                flash(response)
+                return render_template('web_chall_2.html')
+        elif "session" in request.form:
+            if(request.form['ccSession']== "tcbd7x3q8k1690833065130"):
+                return redirect('/cyberescape')
+    return render_template('web_chall_2.html')
+
 @views.route('/intro')
 def intro():
     user_points = db.session.query(points.pointsTotal).filter_by(id = current_user.id).first()

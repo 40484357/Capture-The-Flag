@@ -19,6 +19,7 @@
 </head>
 
 <body>
+   
 	<div class="gameLauncher" id="phoneChallenges">
 		<div class="gameHeader">
 			<div class="navButton"onclick="goToEvidence()">Back</div>
@@ -43,11 +44,14 @@
 		</div>
 
 		<div class = "helpOverlayButton" onclick="showHelp()">i</div>
-		<div class = "hidden" id="helpOverlay">
+		<div id="helpOverlay">
 			<h1>Challenge instructions</h1>
-			<p>The administrator of this site can view account details, use SQL injection to hack into the administrators overview.</p>
+			<p>In order to gain access to John's wallet, you need to hijack his browser session. His session ID is within the browser's cookies.</p>
+            <p>Try decoding this script and using it:<br><br> PGltZyBzcmM9eCBvbmVl<br>cnJvcj1hbGVydChkb2N1<br>bWVudC5jb29raWUpPg==</p>
+            <button id = "copyScript" onclick="copyScript()">Copy Script</button>
 		</div>
-	
+		
+		
 
         <div class="virtualBrowser">
             <div class="addressBar">
@@ -62,27 +66,39 @@
              
             </div>
           
-            <div class="browserContent">
-				
-				<div class = "loginPanel">
-					<h1>Crypto Cartel</h1><br>
-					<form class="ccLoginForm" action="" method="POST">
-						<label for="ccUsername">Username:</label><br>
-						<input type="text" id="ccUsername" name="ccUsername" value="admin"><br>
-						<br>
-						<label for="ccPassword">Password:</label><br>
-						<input type="text" id="ccPassword" name="ccPassword" value="'pass1234'"><br><br>
-						<input type="submit" id="ccSubmit" value="Login">
+            <div class="browserContent2">
+				<h1>Crypto Cartel</h1>
+                <h2>Admin Overview</h2>
+                {% with messages = get_flashed_messages() %} {% if messages %}
+						{% for message in messages %}
+        
+						    <div class = "popupAlert" id = "popupAlert">
+                                <p>Alert!</p>
+                                {{message}}<br><br>
+                                <button id = "closeAlert" onclick="closeAlert()">Close</button>
+                            </div>
+						{% endfor %}
+				{% endif %} {% endwith %}
+				<div class = "mainPanel">
+                    <h3>John's Wallet</h3>
+                    <form class="ccLoginForm" action="" method="POST">
+						<label for="ccSessionID">Session ID:</label><br>
+						<input type="text" id="ccSession" name="ccSession"><br><br>
+						<input type="submit" name = "session" id="ccSubmit" value="Login">
 				  	</form> 
 				
-					{% with messages = get_flashed_messages() %} {% if messages %}
-					<ul class="ccLoginFlash">
-						{% for message in messages %}
-						<div class="ccMessage">{{message}}</div>
-						{% endfor %}
-					</ul>
-					{% endif %} {% endwith %}
+					
+                    
 				</div>
+                <button id = "scriptPanel" onclick="scriptPanel()">Script Panel</button>
+            </div>
+           
+            <div class = "hidden" id = "browserBottom">
+                <p>Execute browser script</p>
+                <form class = "ccScriptForm" action="" method="POST">
+                    <input type="text" id="ccScript" name="ccScript"><br><br>
+                    <input type="submit" name = "script" id="ccScriptSubmit" value="Execute">
+                </form>
             </div>
           </div>
 
@@ -90,7 +106,5 @@
 	</div>
 	
 </body>
-<script>
-</script>
 <script src="{{ url_for('static', filename='script.js')}}" async defer></script>
 </html>
