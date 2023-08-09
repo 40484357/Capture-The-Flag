@@ -2197,6 +2197,7 @@ background-color: #ec131a;
     align-items: center;
     position: absolute;
     transform: translate(30%, 0%);
+    margin-top:-30px;
 }
 
 .addressBar {
@@ -2346,42 +2347,172 @@ background-color: #ec131a;
         margin-right: 10px;
         font-size: 20px;
     }
+    .ccSessionForm{
+       display:none;
+    }
 
     label[for=ccSessionID]{
         position: relative;
-        left: 16%;
+        left: 45%;
         color: rgb(18, 94, 215);
         line-height: 40px;
     }
     input[id="ccSession"]{
         position: relative;
-        width: 70%;
-        left:15%;
+        width: 30%;
+        left:35%;
         background: transparent;
         border: black 1px solid;
+        border-radius: 5px;  
+    }
+    input[id="ccView"]{
+        display:block;
+        position: relative;
+        padding: 1em;
         border-radius: 5px;
+        color:rgb(18, 94, 215);
+        top: -55px;
+        left: -28%;
+        float:right;
+        background:transparent;
     }
       
     .mainPanel {
-        position: relative;
+       position: relative;  
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        width: 50%;
+        width: 90%;
         padding: 40px;
         margin:30px;
         border:#0B0909 3px solid;
         border-radius: 30px;
         /*center the box*/
         top: 50%;
-        left: 23%;
+        left: 2%;
         background-color: white;
     }
     .mainPanel h3{
         color:rgb(18, 94, 215);
-        text-align: center;
         font-size: 30px;
+       text-align: center;
+       margin:0px;
+       margin-bottom: 10px;
+
     }
+    .grid1{
+        display:grid;
+        column-gap:-10px;
+        row-gap: 0px;   
+    }
+    .grid1 h3{
+        color:rgb(18, 94, 215);
+        font-size: 25px;
+       text-align: left;
+    }
+    .grid1 h4{
+        color:rgb(18, 94, 215);
+        text-align: left;
+        font-size: 20px;
+        margin:10px;
+    }
+    .grid1 .leftColumn{
+      grid-row-start: 2;
+      grid-row-end:2;
+    }
+    .grid1 .rightColumn{
+        grid-column-start: 2;
+        grid-row-start: 2;
+    }
+    .transactionSection{
+        grid-row-start:3;
+    }
+    .transactionSection h3{
+        color:rgb(18, 94, 215);
+        font-size: 25px;
+       text-align: left;
+    }
+    .transactionSection h4{
+        color:rgb(18, 94, 215);
+        font-size: 17px;
+       text-align: left;
+    }
+    .transactionSection mark{
+        color:rgb(18, 94, 215);
+        font-size: 19px;
+        background-color: wheat;
+        border: rgb(18, 94, 215) 2px solid;
+        padding:2px;
+        border-radius: 5px;
+    }
+    .grid2{
+        display:grid;
+        column-gap: 3em;
+        justify-content: start;
+    }
+    .grid2 h4{
+        color:rgb(18, 94, 215);
+        font-size: 15px;
+    }
+    .grid2 .firstColumn{
+        grid-row-start: 1;
+        grid-column-start: 1;
+    }
+    .grid2 .secondColumn{
+        grid-row-start: 1;
+        grid-column-start: 2;
+    }
+    .grid2 .thirdColumn{
+        grid-row-start: 1;
+        grid-column-start: 3;
+    }
+
+    .grid3{
+        display:grid;
+    }
+    .grid3 h4{
+        color:rgb(18, 94, 215);
+        font-size: 15px;
+       text-align: left;
+    }
+    .grid3 .firstColumn{
+        grid-row-start: 1;
+        grid-column-start: 1;
+    }
+    .grid3 .secondColumn{
+        grid-row-start: 1;
+        grid-column-start: 2;
+    }
+    .grid3 .thirdColumn{
+        grid-row-start: 1;
+        grid-column-start: 3;
+    }
+    .grid3 .fourthColumn{
+        grid-row-start: 1;
+        grid-column-start: 4;
+    }
+    .grid3 .fifthColumn{
+        grid-row-start: 1;
+        grid-column-start: 5;
+    }
+    .grid3 .sixthColumn{
+        grid-row-start: 1;
+        grid-column-start: 6;
+    }
+    .grid3 .seventhColumn{
+        grid-row-start: 1;
+        grid-column-start:7;
+    }
+    .grid3 .seventhColumn button {
+        position: relative;
+        left: 25%;
+        top:45%;
+        padding: 1em;
+        border-radius: 5px;
+        color:rgb(18, 94, 215);
+        background:transparent;
+    }
+  
     #scriptPanel{
         position: relative;
         padding: 1em;
@@ -2416,7 +2547,9 @@ background-color: #ec131a;
         border: rgb(18, 94, 215) 1px solid;
     }
     .popupAlert{
-        position: relative;
+        position: fixed;
+        font-size: 20px;
+        z-index: 1;
         width: 40%;
         left:30%;
         background: white;

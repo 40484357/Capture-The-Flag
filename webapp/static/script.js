@@ -694,3 +694,11 @@ function scriptPanel(){
 function closeAlert(){
     document.getElementById('popupAlert').classList.add('hidden');
 }
+function openSessionForm(){
+    if(document.getElementById('ccSessionForm').classList.contains('hidden')){
+        document.getElementById('ccSessionForm').classList.remove('hidden');
+    }
+    else{
+        document.getElementById('ccSessionForm').classList.add('hidden');
+    }
+}

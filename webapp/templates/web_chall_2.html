@@ -46,7 +46,7 @@
 		<div class = "helpOverlayButton" onclick="showHelp()">i</div>
 		<div id="helpOverlay">
 			<h1>Challenge instructions</h1>
-			<p>In order to gain access to John's wallet, you need to hijack his browser session. His session ID is within the browser's cookies.</p>
+			<p>In order to gain access to John's transaction, you need to hijack his browser session. His session ID is within the browser's cookies.</p>
             <p>Try decoding this script and using it:<br><br> PGltZyBzcmM9eCBvbmVl<br>cnJvcj1hbGVydChkb2N1<br>bWVudC5jb29raWUpPg==</p>
             <button id = "copyScript" onclick="copyScript()">Copy Script</button>
 		</div>
@@ -73,22 +73,80 @@
 						{% for message in messages %}
         
 						    <div class = "popupAlert" id = "popupAlert">
-                                <p>Alert!</p>
+                                <p>This page says</p>
                                 {{message}}<br><br>
                                 <button id = "closeAlert" onclick="closeAlert()">Close</button>
                             </div>
 						{% endfor %}
 				{% endif %} {% endwith %}
+				
 				<div class = "mainPanel">
-                    <h3>John's Wallet</h3>
-                    <form class="ccLoginForm" action="" method="POST">
+					<h3>John's Wallet</h3>
+					<div class = grid1>
+						<div class = "leftColumn">
+							<h4>Wallet Overview</h4>	
+							<h4>139.75 BTC</h4>
+							<h4>$4,091,729.10</h4>
+						</div>
+						<div class = "rightColumn">
+							<h4>Today</h4>
+							<h4>-0.26%</h4>
+							<h4>-$10840</h4>
+						</div>
+					</div>
+					<div class = "transactionSection">
+						<h3>Transaction history</h3>
+						<h4><mark>Crypto</mark>&emsp;Fiat&emsp;Transfer&emsp;Distribution&emsp;CC convert&emsp;Loan</h4>
+					</div>
+					<div class = "grid2">
+						<div class = "firstColumn">
+							<h4>Type</h4>
+							<h4>Withdrawl</h4>
+						</div>
+						<div class = "secondColumn">
+							<h4>Time</h4>
+							<h4>All time</h4>
+						</div>
+						<div class = "thirdColumn">
+							<h4>Asset</h4>
+							<h4>All</h4>
+						</div>
+					</div>
+					<div class = "grid3">
+						<div class = "firstColumn">
+							<h4>Time</h4>
+							<h4>2023-07-22</h4>
+						</div>
+						<div class = "secondColumn">
+							<h4>Type</h4>
+							<h4>Withdrawl</h4>
+						</div>
+						<div class = "thirdColumn">
+							<h4>Asset</h4>
+							<h4>BTC</h4>
+						</div>
+						<div class = "fourthColumn">
+							<h4>Amount</h4>
+							<h4>115.15223</h4>
+						</div>
+						<div class = "fifthColumn">
+							<h4>Destination</h4>
+							<h4>be1q6...6y4j2</h4>
+						</div>
+						<div class = "sixthColumn">
+							<h4>Status</h4>
+							<h4>Completed</h4>
+						</div>
+						<div class = "seventhColumn">
+							<button id = "view" onclick="openSessionForm()">View</button>
+						</div>
+					</div>
+					<form class="hidden" id="ccSessionForm" action="" method="POST">
 						<label for="ccSessionID">Session ID:</label><br>
 						<input type="text" id="ccSession" name="ccSession"><br><br>
-						<input type="submit" name = "session" id="ccSubmit" value="Login">
+						<input type="submit" name = "session" id="ccView" value="Enter">
 				  	</form> 
-				
 					
-                    
 				</div>
                 <button id = "scriptPanel" onclick="scriptPanel()">Script Panel</button>
             </div>

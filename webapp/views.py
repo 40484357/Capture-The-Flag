@@ -396,7 +396,7 @@ def cryptocartel():
     if request.method=='POST':
         # Check if user enters admin + any of the passwords
         if request.form['ccUsername'] == "admin" and request.form['ccPassword'] in passwords:
-            return redirect('/desktop')
+            return redirect('/cryptocartel/loggedin')
         else:
             response = 'Incorrect username or password, please try again.'
             flash(response)
