@@ -16,6 +16,9 @@
 			href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
 			rel="stylesheet"
 		/>
+	<script>
+		var walletAddress = "{{walletAddress}}";
+	</script>
 </head>
 
 <body>
@@ -46,9 +49,7 @@
 		<div class = "helpOverlayButton" onclick="showHelp()">i</div>
 		<div id="helpOverlay">
 			<h1>Challenge instructions</h1>
-			<p>In order to gain access to John's transaction, you need to hijack his browser session. His session ID is within the browser's cookies.</p>
-            <p>Try decoding this script and using it:<br><br> PGltZyBzcmM9eCBvbmVl<br>cnJvcj1hbGVydChkb2N1<br>bWVudC5jb29raWUpPg==</p>
-            <button id = "copyScript" onclick="copyScript()">Copy Script</button>
+			<p>You have accessed the transaction... Now see if you can decode anything within.</p>
 		</div>
 		
 		
@@ -79,6 +80,58 @@
                             </div>
 						{% endfor %}
 				{% endif %} {% endwith %}
+
+                <div class = "transactionPanel" id = "transactionPanel">
+                    <h1>Withdrawl Details</h1>
+                    <div class = "timelineGrid">
+                        <div class = "leftColumn">
+                            <p class = "txnNum">1</p>
+                            <p class = "line">|</p>
+                            <p class = "txnNum">2</p>
+                            <p class = "line">|</p>
+                            <p class = "txnNum">3</p>
+                        </div>
+                        <div class = "rightColumn">
+                            <p>Withdrawl order submitted</p>
+                            <p class = "subtext">2023-07-22 11:05</p>
+                            <br>
+                            <p>System Processing</p>
+                            <p class = "subtext">2023-07-22 11:20</p>
+                            <br>
+                            <p>Completed</p>
+                            <p class = "subtext">2023-07-22 11:21</p>
+                        </div>
+                    </div>
+                    <div class = "separationLine"></div>
+                    <div class = "detailsGrid">
+                        <div class = "leftColumn">
+                            <p>Withdraw wallet</p>
+                            <p>Coin</p>
+                            <p>Withdraw amount</p>
+                            <p>Network fee</p>
+                            <p>Address</p>
+                        </div>
+                        <div class = "rightColumn">
+                            <p>Spot Wallet</p>
+                            <p>BTC</p>
+                            <p>115.15223</p>
+                            <p>0.0001</p>
+                            <p>{{walletAddress}}</p> <button id = "copyAddress" onclick="copyAddress(walletAddress)">Copy Address</button>
+                        </div>
+                    </div>
+					<div class = "separationLine"></div>
+					
+                    <form id="ccTxnForm" action="" method="POST">
+						<label for="ccTxnText">Would you like to leave feedback on this transaction?</label><br>
+						{% with messages = get_flashed_messages() %} {% if messages %}
+							{% for message in messages %}
+							<div class="ccFeedbackMessage">{{message}}</div>
+							{% endfor %}
+						{% endif %} {% endwith %}
+						<input type="text" id="ccTxn" placeholder = "Enter feedback here" name="ccTxn"><br><br>
+						<input type="submit" name = "txn" id="ccSubmitFeedback" value="Submit">
+				  	</form> 
+                </div>
 				
 				<div class = "mainPanel">
 					<h3>John's Wallet</h3>
@@ -138,21 +191,13 @@
 							<h4>Completed</h4>
 						</div>
 						<div class = "seventhColumn">
-							<button id = "view" onclick="openSessionForm()">View</button>
+							<button id = "view" onclick="openTransaction()">View</button>
 						</div>
 					</div>
-					<form class="hidden" id="ccSessionForm" action="" method="POST">
-						<label for="ccSessionID">Session ID:</label><br>
-						<input type="text" id="ccSession" placeholder = "Enter the session ID to view txn" name="ccSession"><br><br>
-						<input type="submit" name = "session" id="ccView" value="Enter">
-				  	</form> 
+					
 					
 				</div>
-				<p>Execute browser script</p>
-                <form class = "ccScriptForm" action="" method="POST">
-                    <input type="text" id="ccScript" name="ccScript"><br><br>
-                    <input type="submit" name = "script" id="ccScriptSubmit" value="Execute">
-                </form>
+				
             </div>
           </div>
 

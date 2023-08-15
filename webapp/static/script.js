@@ -702,3 +702,15 @@ function openSessionForm(){
         document.getElementById('ccSessionForm').classList.add('hidden');
     }
 }
+function openTransaction(){
+    if(document.getElementById('transactionPanel').classList.contains('hidden')){
+        document.getElementById('transactionPanel').classList.remove('hidden');
+    }
+    else{
+        document.getElementById('transactionPanel').classList.add('hidden');
+    }
+}
+function copyAddress(walletAddress){
+    navigator.clipboard.writeText(walletAddress);
+    alert('Copied address to clipboard!');
+}

@@ -43,8 +43,25 @@ print("B: ", B)
 print("Secret Key: ", secretKey)
 
 # List of passwords for web challenge
-passwords = ["'pass1234' or 1=1--","'pass1234' or 1=1","'pass1234' or 1=1 #","'pass1234' or true--","'pass1234' or true-- +","'pass1234' OR ‘’ = ‘","'pass1234' OR 'x'='x","'pass1234' or '1'='1'/*",
+ccPasswords = ["'pass1234' or 1=1--","'pass1234' or 1=1","'pass1234' or 1=1 #","'pass1234' or true--","'pass1234' or true-- +","'pass1234' OR ‘’ = ‘","'pass1234' OR 'x'='x","'pass1234' or '1'='1'/*",
              "'pass1234' OR 1=1 LIMIT 1--","'pass1234' or 1=1 LIMIT 1#","'pass1234' or true LIMIT 1--","'pass1234' or true LIMIT 1#"]
+
+# Creating a dictionary of wallet addresses and their corresponding flags
+walletAddressDict = {
+    "aW5zdGFsbC1wbHVnaW4=" : "install-plugin",
+    "InBocD98Ig==" : "\"php?|\"",
+    "ImV0Yy9wYXNzd2Qi" : "\"etc/passwd\"",
+    "Ii9ldGMvcGFzc3dkIg==" : "\"/etc/passwd\"",
+    "Ki50eHQ=" : "*.txt"
+}
+
+# Can use this to get the randomly selected address, keep the pair to validate later
+walletAddressPair = random.choice(list(walletAddressDict.items()))
+walletAddress = walletAddressPair[0]
+print(walletAddress)
+
+# Truncate the address with an elipsis to hide it in web challenge 2
+hiddenWalletAddress = walletAddress[:4]+"..."+walletAddress[-4:]
 
 views = Blueprint('views', __name__)
 
@@ -389,19 +406,20 @@ def wickedcybergames():
 
     return render_template('wickedcybergames.html')
 
+# Web challenge 1
 @views.route('/cryptocartel' , methods=['GET','POST'])
 def cryptocartel():
-    # Needs backend stuff
     response = None
     if request.method=='POST':
         # Check if user enters admin + any of the passwords
-        if request.form['ccUsername'] == "admin" and request.form['ccPassword'] in passwords:
+        if request.form['ccUsername'] == "admin" and request.form['ccPassword'] in ccPasswords:
             return redirect('/cryptocartel/loggedin')
         else:
             response = 'Incorrect username or password, please try again.'
             flash(response)
     return render_template('web_chall.html')  
 
+# Web challenge 2
 @views.route('/cryptocartel/loggedin' , methods=['GET','POST'])
 def cryptocartel_loggedin():
     response = None
@@ -410,11 +428,32 @@ def cryptocartel_loggedin():
             if(request.form['ccScript'] == "<img src=x oneerror=alert(document.cookie)>"):
                 response = "Session ID = tcbd7x3q8k1690833065130"
                 flash(response)
-                return render_template('web_chall_2.html')
+                return render_template('web_chall_2.html',hiddenWalletAddress = hiddenWalletAddress)
         elif "session" in request.form:
             if(request.form['ccSession']== "tcbd7x3q8k1690833065130"):
-                return redirect('/cyberescape')
-    return render_template('web_chall_2.html')
+                return redirect('/cryptocartel/loggedin/txn')
+    return render_template('web_chall_2.html',hiddenWalletAddress = hiddenWalletAddress)
+
+#These routes can be changed, couldn't really think of better names
+# The wallet address will be the random part of the challenge.
+# Web challenge 3
+@views.route('/cryptocartel/loggedin/txn' , methods=['GET','POST'])
+def cryptocartel_loggedin_txn():
+    response = None
+    if request.method =='POST':
+        if(request.form['ccTxn']==walletAddressPair[1]):
+            response = Markup("Well done. Now use this flag in <a href ='/splunk' target='_blank'>Splunk</a>.")
+            flash(response)
+            return render_template('web_chall_3.html', walletAddress = walletAddress, hiddenWalletAddress = hiddenWalletAddress)
+        else:
+            response = "Thank you for the feedback."
+            flash(response)
+            return render_template('web_chall_3.html', walletAddress = walletAddress, hiddenWalletAddress = hiddenWalletAddress)
+    return render_template('web_chall_3.html', walletAddress = walletAddress, hiddenWalletAddress = hiddenWalletAddress)
+
+
+
+
 
 @views.route('/intro')
 def intro():

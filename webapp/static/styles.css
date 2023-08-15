@@ -2200,24 +2200,24 @@ background-color: #ec131a;
     margin-top:-30px;
 }
 
-.addressBar {
+.virtualBrowser .addressBar {
     padding: 10px;
     background: #f1f1f1;
   }
 
-.column {
+.virtualBrowser .column {
   float: left;
 }
 
-.left {
+.virtualBrowser .left {
   width: 15%;
 }
 
-.right {
+.virtualBrowser .right {
   width: 10%;
 }
 
-.middle {
+.virtualBrowser .middle {
   width: 75%;
 }
 
@@ -2238,8 +2238,8 @@ background-color: #ec131a;
     display: inline-block;
   }
   
-  /* Style the input field */
-  input[type=text] {
+  /* Most of the form text use this class */
+  input[id="urlText"], input[id="ccUsername"], input[id="ccPassword"],input[id="ccScript"], input[id="ccSession"],input[id="ccTxn"] {
     width: 100%;
     border-radius: 3px;
     border: none;
@@ -2296,7 +2296,7 @@ background-color: #ec131a;
         outline: none;
         border: rgb(18, 94, 215) 1px solid;
     }
-    ::placeholder {
+    input[id="ccUsername"]::placeholder,  input[id="ccPassword"]::placeholder{
         color: rgb(18, 94, 215);
         opacity: 0.7;
     }
@@ -2322,8 +2322,8 @@ background-color: #ec131a;
     .ccMessage{
         color:rgb(18, 94, 215);
     }
-    /* Challenge 2  CSS start*/
 
+    /* Challenge 2  CSS start*/
     .browserContent2 {
         padding: 10px;
         background-image: linear-gradient(rgb(105,88,156), rgb(40, 37, 107));
@@ -2346,6 +2346,14 @@ background-color: #ec131a;
         margin-top: -27px;
         margin-right: 10px;
         font-size: 20px;
+    }
+    .browserContent2 p{
+        display:flex;
+        font-size: 20px;
+        text-align: left;
+        margin-bottom: 10px;
+        margin-left:23px;
+        color: rgba(255, 255, 255, 0.292);
     }
     .ccSessionForm{
        display:none;
@@ -2512,35 +2520,37 @@ background-color: #ec131a;
         color:rgb(18, 94, 215);
         background:transparent;
     }
+    .grid3 .seventhColumn button:hover{
+        cursor: pointer;
+    }
   
     #scriptPanel{
         position: relative;
         padding: 1em;
         border-radius: 5px;
         color:black;
-       
     }
-    #browserBottom{
-        margin-top: -10px;
-        background-color: #f1f1f1;
-        border: black 1px solid;
+    #scriptPanel:hover{
+        cursor: pointer;
     }
-    #browserBottom p{
-        position: relative;
-        left:2%;
-    }
+   
     input[id="ccScript"]{
         position: relative;
         width: 50%;
         left:2%;
-        background: transparent;
+        background: rgba(255, 255, 255, 0.292);
         border: black 1px solid;
         border-radius: 5px;
+        color:white;
     }
     #ccScriptSubmit{
         position: relative;
         left:2%;
         margin-bottom: 10px;
+        background: rgba(255, 255, 255, 0.292);
+    }
+    #ccScriptSubmit:hover{
+        cursor: pointer;
     }
     input[id="ccScript"]:focus{
         outline: none;
@@ -2559,6 +2569,12 @@ background-color: #ec131a;
         text-align: center;
         margin-bottom: 10px;
     }
+    .popupAlert p{
+       position: relative;
+        justify-content: center;
+        right:15px;
+        color: rgb(18, 94, 215);
+    }
     .popupAlert button{
         position: relative;
         margin-bottom: 10px;
@@ -2572,6 +2588,135 @@ background-color: #ec131a;
         cursor: pointer;
     }
 
+    /* Challenge 3 CSS Start */
+    .transactionPanel{
+        position: fixed;
+        font-size: 20px;
+        z-index: 1;
+        width: 40%;
+        left:30%;
+        bottom:1%;
+        background: wheat;
+        border: black 2px solid;
+        border-radius: 5px;
+        color:rgb(18, 94, 215);
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .transactionPanel h1{
+        position: relative;
+        color:rgb(18, 94, 215);
+        font-size: 25px;
+       justify-content: center;
+       margin-top:10px;
+       border-bottom: 2px solid black
+    }
+    .timelineGrid{
+        display:grid;
+        column-gap: 0.2em;
+        justify-content: start;
+    }
+    .timelineGrid .leftColumn{
+        grid-row-start: 1;
+        grid-column-start: 1;
+        margin-top:-5px;
+    }
+    .timelineGrid .rightColumn{
+        grid-row-start: 1;
+        grid-column-start: 2;
+    }
+    .timelineGrid p{
+        color:rgb(18, 94, 215);
+        font-size: 15px;
+       text-align: left;
+    }
+    .timelineGrid .txnNum{
+        display:block;
+        width: 35px;
+        line-height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 20px;
+        color:white;
+        border: 2px solid rgb(18, 94, 215);
+        background-color:rgb(18, 94, 215); 
+    }
+   .timelineGrid .line{
+        display:block;
+        width: 35px;
+        text-align: center;
+        font-size: 20px;
+        color:rgb(18, 94, 215);
+   }
+   .timelineGrid .subtext{
+        color:rgb(63, 108, 181);
+        font-size: 13px;
+   }
+   .separationLine{
+        border-bottom: 2px solid black;
+   }
+   .detailsGrid {
+        display:grid;
+
+   }
+   .detailsGrid p{
+        color:rgb(18, 94, 215);
+        font-size: 15px;
+       text-align: left;
+   }
+   .detailsGrid .leftColumn{
+        grid-row-start: 1;
+        grid-column-start: 1;
+        margin-top:-5px;
+    }
+    .detailsGrid .rightColumn{
+        grid-row-start: 1;
+        grid-column-start: 2;
+        justify-content: right;
+    }
+    #copyAddress{
+        float:right;
+        margin:5px;
+        background: rgb(63, 108, 181);
+        color:white;
+        border: black 1px solid;
+        border-radius: 5px;
+    }
+    #copyAddress:hover{
+        cursor: pointer;
+    }
+
+    input[id="ccTxn"]{
+        position: relative;
+        width:50%;
+        margin-top:10px;
+        border: black 1px solid;
+        color: rgb(18, 94, 2215);
+    }
+    input[id="ccSubmitFeedback"]{
+        position: relative;
+        width: 40%;
+        margin:5px;
+        line-height: 200%;
+        background: rgb(63, 108, 181);
+        border: black 1px solid;
+        border-radius: 5px;
+        color:white;
+    }
+    input[id="ccSubmitFeedback"]:hover{
+        cursor: pointer;
+    }
+    .ccFeedbackMessage{
+        font-size:17px;
+        position: relative;
+        margin:10px;
+        color:Black;
+        text-shadow: White 1px 1px 1px;
+    }
+    .ccFeedbackMessage a{
+        color:rgb(0, 98, 255);
+    }
+    .ccFeedbackMessage a:hover{
+        cursor: pointer;
+    }
     
-     
- 
