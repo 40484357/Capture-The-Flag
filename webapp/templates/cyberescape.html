@@ -15,7 +15,7 @@
 			href="{{ url_for('static', filename='styles.css')}}"
 		/>
 	</head>
-	<body>
+	<body onload="changeLockPic()">
 		<div class="gameLauncher" id="secondScene">
 			<!-- second scene, contains clickable elements, a navigation menu (which has time and room title), as well as a tracker for challenges and score-->
 			<div class="gameHeader">
@@ -31,12 +31,24 @@
 				<div class="roomTitle">Evidence Room</div>
 				<div id="clock"></div>
 			</div>
+			
 
 			<div class="evidenceRoom">
+				<div class = "helpOverlayModalButton" onclick="showHelpModal()">i</div>
+				<div id="helpOverlayModal">
+					<span class="closeHelpModal" onclick="closeHelpModal()">&times;</span>
+					<h1>Challenge instructions</h1>
+					<p>This is the evidence room. Try clicking on pieces of evidence to investigate them.</p>
+					<p>{{chall1Status}}</p>
+				</div>
 				<div class="laptopPic" onclick="goToLaptop()"></div>
 				<div class="phonePic" onclick="goToPhone()"></div>
-				<div class="safePic" onclick="goToWinroom()"></div>
+				<div class="safePic"></div>
 				<div class="serverPic" onclick="goToServer()"></div>
+				
+				<div id = "laptopLock"></div>
+				<div id = "phoneLock"></div>
+				<div id = "serverLock"></div>
 			</div>
 			<div class="trackerElements">
 				<!-- contains checklist for challenges and scores -->
@@ -48,6 +60,25 @@
 		<script src="{{ url_for('static', filename='script.js')}}"></script>
 		<script>
 			myVar = getTimeLimit({{userTime}})
+			function changeLockPic(){
+				var True = true;
+				var False = false;
+
+				var chall1State= {{chall1State}};
+				var chall2State = {{chall2State}};
+				var chall3State = {{chall3State}};
+
+				if (chall1State){
+					document.getElementById('laptopLock').style.backgroundImage="url(../static/unlocked.png)"
+				}
+				if (chall2State){
+					document.getElementById('phoneLock').style.backgroundImage="url(../static/unlocked.png)"
+				}
+				if (chall3State){
+					document.getElementById('serverLock').style.backgroundImage="url(../static/unlocked.png)"
+				}
+			}
 		</script>
+		
 	</body>
 </html>

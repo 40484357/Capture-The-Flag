@@ -2720,3 +2720,102 @@ background-color: #ec131a;
         cursor: pointer;
     }
     
+    .closeHelpModal{
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .closeHelpModal:hover,
+    .closeHelpModal:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+    }
+    .helpOverlayModalButton{
+        float: left;
+        color: white;
+        width:60px;
+        height: 60px;
+        font-size: 50px;
+        border: white solid 2px;
+        text-align: center;
+        border-radius:50%;
+    }
+    .helpOverlayModalButton:hover{
+        background-color: white;
+        color: #0B0909;
+        cursor: pointer;
+    }
+    
+    #helpOverlayModal{
+        padding:10px;
+        border: white solid 2px;
+        border-radius: 10px;
+        position: fixed;
+        z-index: 1;
+        left: 30%;
+        top: 40%;
+        width: 40%;
+        height: 30%;
+        overflow: auto;
+        /* Fallback color */
+        background-color: rgb(14, 41, 75);
+    
+    }
+    #helpOverlayModal h1{
+        color: rgb(255, 255, 255);
+        font-size: 30px;
+        text-align: center;
+    }
+    #helpOverlayModal p{
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+    }
+    #helpOverlayModal #copyScript{
+        color: black;
+        font-size: 20px;
+        margin-left: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: black solid 2px;
+        border-radius: 10px;
+        padding: 5px;
+        cursor: pointer;
+        
+    }
+
+    #laptopLock{
+        position: relative;
+        background:url(./locked.png);
+        background-size: contain;
+        height:7vb;
+        width: 5vb;
+        left: 32%;
+        bottom: 50%;
+        position: relative;
+    }
+    #phoneLock{
+        position: relative;
+        background:url(./locked.png);
+        background-size: contain;
+        height:7vb;
+        width: 5vb;
+        left: 58%;
+        bottom: 38%;
+        position: relative;
+    }
+    #serverLock{
+        position: relative;
+        background:url(./locked.png);
+        background-size: contain;
+        height:7vb;
+        width: 5vb;
+        left: 69%;
+        bottom: 20%;
+        position: relative;
+    }

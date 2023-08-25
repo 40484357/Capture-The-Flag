@@ -714,3 +714,15 @@ function copyAddress(walletAddress){
     navigator.clipboard.writeText(walletAddress);
     alert('Copied address to clipboard!');
 }
+
+
+function showHelpModal(){
+    if(document.getElementById('helpOverlayModal').style.display == "none"){
+        document.getElementById('helpOverlayModal').style.display = "block";
+    }
+}
+function closeHelpModal(){
+    if(document.getElementById('helpOverlayModal').style.display != "none"){
+        document.getElementById('helpOverlayModal').style.display = "none";
+    }
+}
