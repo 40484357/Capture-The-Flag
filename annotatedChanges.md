@@ -111,7 +111,9 @@ For styles.css, I'll give the changes first, then the new chunks.
 Changes:
 
 near line 654, .descriptText{
+
 `background: rgba(18, 15, 14, 0.9);` instead of `background: rgba(204, 101, 57, 0.38);`
+
 `padding:2em`; instead of `padding:1em;`
 
 
