@@ -14,6 +14,7 @@
 			rel="stylesheet"
 			href="{{ url_for('static', filename='styles.css')}}"
 		/>
+		<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 	</head>
 	<body onload="changeLockPic()">
 		<div class="gameLauncher" id="secondScene">
@@ -37,9 +38,8 @@
 				<div class = "helpOverlayModalButton" onclick="showHelpModal()">i</div>
 				<div id="helpOverlayModal">
 					<span class="closeHelpModal" onclick="closeHelpModal()">&times;</span>
-					<h1>Challenge instructions</h1>
-					<p>This is the evidence room. Try clicking on pieces of evidence to investigate them.</p>
-					<p>{{chall1Status}}</p>
+					<h1 id = "challengeInstructionsH1">Challenge instructions</h1>
+					<p id = "challengeInstructionsP">This is the evidence room. Try clicking on pieces of evidence to investigate them.</p>
 				</div>
 				<div class="laptopPic" onclick="goToLaptop()"></div>
 				<div class="phonePic" onclick="goToPhone()"></div>
@@ -77,6 +77,17 @@
 				if (chall3State){
 					document.getElementById('serverLock').style.backgroundImage="url(../static/unlocked.png)"
 				}
+				if(chall1State&&chall2State&&chall3State)
+				{
+					document.getElementById('challengeInstructionsH1').innerText = "Congratulations!"
+					document.getElementById('challengeInstructionsP').innerText = "You have completed all of the splunk challenges. Well done!"
+					const jsConfetti = new JSConfetti()
+                    jsConfetti.addConfetti({
+                        confettiRadius: 7,
+                        confettiNumber: 400,
+                    })
+                }
+				
 			}
 		</script>
 		

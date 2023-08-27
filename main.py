@@ -20,40 +20,36 @@ def cyberescape():
     phoneChallenge = db.session.query(phone_challenge.challengeState).filter_by(user_id = current_user.id).first()
     serverChallenge = db.session.query(server_challenge.challengeState).filter_by(user_id = current_user.id).first()
     
+    # Get splunk challenges
+    splunkChall1 = db.session.query(splunk_challenges.key_one).filter_by(user_id = current_user.id).first()
+    splunkChall2 = db.session.query(splunk_challenges.key_two).filter_by(user_id = current_user.id).first()
+    splunkChall3 = db.session.query(splunk_challenges.key_three).filter_by(user_id = current_user.id).first()
+
     chall1State = False
     chall2State = False
     chall3State = False
-    
-    # Pass states of challenges through to change lock pictures if challenge is completed
 
     # Check if challenge exists
-    if laptopChallenge: 
+    if splunkChall1: 
         # If challenge is not completed, set state to false
-        if laptopChallenge[0] != 4:
-            chall1State = False
+        if splunkChall1[0] != 0:
+            chall1State = True
         # If challenge is completed, set state to true
         else: 
-            chall1State = True
-    # If challenge is completed, set state to true
-    else: 
-        chall1State = False
+            chall1State = False
 
     # Same as above
-    if phoneChallenge:
-        if phoneChallenge[0] != 3:
-            chall2State = False
-        else:
+    if splunkChall2:
+        if splunkChall2[0] != 0:
             chall2State = True
-    else:
-        chall2State = False
-
-    if serverChallenge:
-        if serverChallenge[0] != 4:
-            chall3State = False
         else:
+            chall2State = False
+
+    if splunkChall3:
+        if splunkChall3[0] != 0:
             chall3State = True
-    else:
-        chall3State = False
+        else:
+            chall3State = False
 
     if user_points:
         userPoints = user_points[0]
@@ -75,7 +71,7 @@ def cyberescape():
     if(laptopChallenge and phoneChallenge and serverChallenge):
         if(laptopChallenge[0] == 4 and phoneChallenge[0] == 3 and serverChallenge[0] == 4):
             keyValidator = Markup(constructKeyValidator)
-            return render_template('cyberescape.html', user=current_user, userPoints = userPoints, userTime = timeLeft, keyValidator = keyValidator)
+            return render_template('cyberescape.html', user=current_user, userPoints = userPoints, userTime = timeLeft, keyValidator = keyValidator,chall1State = chall1State, chall2State = chall2State, chall3State = chall3State)
     
     return render_template('cyberescape.html', user = current_user, userPoints = userPoints, userTime = timeLeft, chall1State = chall1State, chall2State = chall2State, chall3State = chall3State)
 
