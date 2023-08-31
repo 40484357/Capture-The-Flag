@@ -2796,7 +2796,7 @@ background-color: #ec131a;
         height:7vb;
         width: 5vb;
         left: 32%;
-        bottom: 50%;
+        bottom: 35%;
         position: relative;
     }
     #phoneLock{
@@ -2806,7 +2806,7 @@ background-color: #ec131a;
         height:7vb;
         width: 5vb;
         left: 58%;
-        bottom: 38%;
+        bottom: 25%;
         position: relative;
     }
     #serverLock{

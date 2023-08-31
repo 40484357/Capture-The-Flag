@@ -31,10 +31,10 @@ def cyberescape():
 
     # Check if challenge exists
     if splunkChall1: 
-        # If challenge is not completed, set state to false
+        # If challenge is completed, set state to true
         if splunkChall1[0] != 0:
             chall1State = True
-        # If challenge is completed, set state to true
+        # else set state to false
         else: 
             chall1State = False
 
